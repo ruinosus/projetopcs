@@ -3,3 +3,8 @@ C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Excecoes\bin\
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Excecoes\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Excecoes\obj\Debug\Excecoes.dll
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Excecoes\obj\Debug\Excecoes.pdb
+D:\ProjetoPCS\Excecoes\bin\Debug\Excecoes.dll
+D:\ProjetoPCS\Excecoes\bin\Debug\Excecoes.pdb
+D:\ProjetoPCS\Excecoes\obj\Debug\ResolveAssemblyReference.cache
+D:\ProjetoPCS\Excecoes\obj\Debug\Excecoes.dll
+D:\ProjetoPCS\Excecoes\obj\Debug\Excecoes.pdb
