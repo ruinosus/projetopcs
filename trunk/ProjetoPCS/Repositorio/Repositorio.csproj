@@ -53,6 +53,7 @@
     <Compile Include="implementacoes\RepositorioLocalidade.cs" />
     <Compile Include="interfaces\IRepositorioDepartamento.cs" />
     <Compile Include="interfaces\IRepositorioDependente.cs" />
+    <Compile Include="interfaces\IRepositorioEmpregado.cs" />
     <Compile Include="interfaces\IRepositorioEndereco.cs" />
     <Compile Include="interfaces\IRepositorioLocalidade.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
