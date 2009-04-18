@@ -8,3 +8,13 @@ C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\UI\obj\Debug\
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\UI\bin\Debug\ClassesBasicas.dll
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\UI\bin\Debug\ClassesBasicas.pdb
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\UI\obj\Debug\UI.Form1.resources
+D:\ProjetoPCS\UI\obj\Debug\UI.exe
+D:\ProjetoPCS\UI\obj\Debug\UI.pdb
+D:\ProjetoPCS\UI\bin\Debug\UI.exe
+D:\ProjetoPCS\UI\bin\Debug\UI.pdb
+D:\ProjetoPCS\UI\bin\Debug\ClassesBasicas.dll
+D:\ProjetoPCS\UI\bin\Debug\ClassesBasicas.pdb
+D:\ProjetoPCS\UI\obj\Debug\ResolveAssemblyReference.cache
+D:\ProjetoPCS\UI\obj\Debug\UI.Form1.resources
+D:\ProjetoPCS\UI\obj\Debug\UI.Properties.Resources.resources
+D:\ProjetoPCS\UI\obj\Debug\UI.csproj.GenerateResource.Cache

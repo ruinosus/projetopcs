@@ -5,3 +5,10 @@ C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\bin\Debu
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\bin\Debug\Excecoes.pdb
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\obj\Debug\Util.dll
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\obj\Debug\Util.pdb
+D:\ProjetoPCS\Util\bin\Debug\Util.dll
+D:\ProjetoPCS\Util\bin\Debug\Util.pdb
+D:\ProjetoPCS\Util\bin\Debug\Excecoes.dll
+D:\ProjetoPCS\Util\bin\Debug\Excecoes.pdb
+D:\ProjetoPCS\Util\obj\Debug\ResolveAssemblyReference.cache
+D:\ProjetoPCS\Util\obj\Debug\Util.dll
+D:\ProjetoPCS\Util\obj\Debug\Util.pdb

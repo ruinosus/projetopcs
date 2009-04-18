@@ -3,3 +3,8 @@ C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\ClassesBasica
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\ClassesBasicas\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\ClassesBasicas\obj\Debug\ClassesBasicas.dll
 C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\ClassesBasicas\obj\Debug\ClassesBasicas.pdb
+D:\ProjetoPCS\ClassesBasicas\bin\Debug\ClassesBasicas.dll
+D:\ProjetoPCS\ClassesBasicas\bin\Debug\ClassesBasicas.pdb
+D:\ProjetoPCS\ClassesBasicas\obj\Debug\ResolveAssemblyReference.cache
+D:\ProjetoPCS\ClassesBasicas\obj\Debug\ClassesBasicas.dll
+D:\ProjetoPCS\ClassesBasicas\obj\Debug\ClassesBasicas.pdb
