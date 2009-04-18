@@ -1,0 +1,7 @@
+C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\bin\Debug\Util.dll
+C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\bin\Debug\Util.pdb
+C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\bin\Debug\Excecoes.dll
+C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\bin\Debug\Excecoes.pdb
+C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\obj\Debug\Util.dll
+C:\Users\Ruinosus\Documents\Visual Studio 2008\Projects\ProjetoPCS\Util\obj\Debug\Util.pdb
