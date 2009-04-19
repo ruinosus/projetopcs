@@ -7,7 +7,7 @@ using System.Collections;
 
 namespace Repositorio.interfaces
 {
-    public class IRepositorioEmpregado
+    public interface IRepositorioEmpregado
     {
         void InserirEmpregado(Empregado empregado);
         Empregado ConsultarPorCodigo(int codEmpregado);
