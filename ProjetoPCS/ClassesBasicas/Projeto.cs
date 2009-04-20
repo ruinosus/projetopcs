@@ -36,15 +36,24 @@ namespace ClassesBasicas
             set { localidade = value; }
         }
 
-        private ArrayList funcionarios;
-        public ArrayList Funcionarios
+        private ArrayList empregados;
+        public ArrayList Empregados
         {
-            get { return funcionarios; }
-            set { funcionarios = value; }
+            get { return empregados; }
+            set { empregados = value; }
         }
 
         public Projeto()
         { 
+        }
+
+        public Projeto(int codigo, string nome, Departamento departamento, Localidade localidade, ArrayList empregados)
+        {
+            this.codigo = codigo;
+            this.nome = nome;
+            this.departamento = departamento;
+            this.localidade = localidade;
+            this.empregados = empregados;
         }
     }
 }
