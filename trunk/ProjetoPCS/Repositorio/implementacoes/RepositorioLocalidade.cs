@@ -15,14 +15,17 @@ namespace Repositorio.implementacoes
     public class RepositorioLocalidade : IRepositorioLocalidade
     {
 
+        #region Sql Tabela LOCALIDADE
+
         private static String QUERY_INSERT = "INSERT INTO LOCALIDADE (NOME_LOCALIDADE) VALUES (?nomeLocalidade)";
         private static String QUERY_SELECT_ALL = "SELECT * FROM LOCALIDADE ORDER BY NOME_LOCALIDADE";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM LOCALIDADE WHERE COD_LOCALIDADE = ?codLocalidade";
         private static String QUERY_SELECT_NOME = "SELECT * FROM LOCALIDADE WHERE NOME_LOCALIDADE LIKE ?nomeLocalidade";
         private static String QUERY_DELETE = "DELETE FROM LOCALIDADE WHERE COD_LOCALIDADE = ?codLocalidade";
 
+        #endregion
        
-        #region IRepositorioLocalidade Members 
+        #region IRepositorioLocalidade - Tabela LOCALIDADE 
 
         public void InserirLocalidade(ClassesBasicas.Localidade localidade)
         {

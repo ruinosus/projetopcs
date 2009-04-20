@@ -9,9 +9,11 @@ namespace Repositorio.interfaces
 {
     public interface IRepositorioEndereco
     {
+        #region Tabela ENDERECO
         void InserirEndereco(Endereco endereco);
         Endereco ConsultarPorCodigo(int codEndereco);
         void RemoverEndereco(int codEndereco);
-        ArrayList ConsultarTodos();
+        ArrayList ConsultarTodos(); 
+        #endregion
     }
 }

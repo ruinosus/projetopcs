@@ -9,10 +9,14 @@ namespace Repositorio.interfaces
 {
     public interface IRepositorioDependente
     {
-        void InserirDependente(int codEmpregado,Dependente dependente);
+        #region Tabela DEPENDENTE
+        void InserirDependente(int codEmpregado, Dependente dependente);
         Dependente ConsultarPorCodigo(int codDependente);
+        ArrayList ConsultarPorEmpregado(int codEmpregado);
         ArrayList ConsultarPorNome(String nomeDependente);
         void RemoverDependente(int codDependente);
-        ArrayList ConsultarTodos();
+        ArrayList ConsultarTodos(); 
+        #endregion
+
     }
 }

@@ -14,12 +14,16 @@ namespace Repositorio.implementacoes
 {
     public class RepositorioEndereco : IRepositorioEndereco
     {
+        #region Sql Tabela ENDERECO
+
         private static String QUERY_INSERT = "INSERT INTO ENDERECO (LOGRADOURO,BAIRRO,COMPLEMENTO,CEP,NUMERO,UF,CIDADE,PAIS) VALUES (?logradouro,?bairro,?complemento,?cep,?numero,?uf,?cidade,?pais)";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM ENDERECO WHERE COD_ENDERECO = ?codEndereco";
         private static String QUERY_DELETE = "DELETE FROM ENDERECO WHERE COD_ENDERECO = ?codEndereco";
-        private static String QUERY_SELECT_ALL = "SELECT * FROM ENDERECO";
+        private static String QUERY_SELECT_ALL = "SELECT * FROM ENDERECO"; 
 
-        #region IRepositorioEndereco Members
+        #endregion
+
+        #region IRepositorioEndereco - Tabela ENDERECO
 
         public void InserirEndereco(ClassesBasicas.Endereco endereco)
         {
