@@ -18,15 +18,15 @@ namespace Repositorio.implementacoes
         private IRepositorioEndereco repEndereco = new RepositorioEndereco();
         private IRepositorioDepartamento repDepartamento = new RepositorioDepartamento();
 
-        //private static String QUERY_SELECT_PADRAO = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE E.COD_EMPREGADO IN (?codEmpregado) ";
+        //private static String QUERY_SELECT_PADRAO = "SELECT E.COD_EMPREGADO CODIGO, E.COD_EMPREGADO_SUPERVISOR SUPERVISOR, E.COD_ENDERECO ENDERECO, E.NOME_EMPREGADO NOME, E.SALARIO, E.CPF, E.DATA_NASCIMENTO, E.RG, E.SEXO, E.TELEFONE, A.COD_DEPARTAMENTO ALOCADO, A.DATA_ALOCACAO DATA_ALOCACAO, C.COD_DEPARTAMENTO CHEFIADO, C.DATA_INICIO DATA_INICIO, C.DATA_FINAL DATA_FINAL  FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE E.COD_EMPREGADO IN (?codEmpregado) ";
    
         #region Sql da tabela EMPREGADO
 
         private static String QUERY_INSERT = "INSERT INTO EMPREGADO (COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
         private static String QUERY_INSERT_SUPERVISOR = "INSERT INTO EMPREGADO (COD_EMPREGADO_SUPERVISOR,COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEmpregadoSupervisor,?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
-        private static String QUERY_SELECT_ALL = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO ORDER BY NOME_EMPREGADO";
-        private static String QUERY_SELECT_CODIGO = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE E.COD_EMPREGADO IN (?codEmpregado)";
-        private static String QUERY_SELECT_NOME = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
+        private static String QUERY_SELECT_ALL = "SELECT E.COD_EMPREGADO CODIGO, E.COD_EMPREGADO_SUPERVISOR SUPERVISOR, E.COD_ENDERECO ENDERECO, E.NOME_EMPREGADO NOME, E.SALARIO, E.CPF, E.DATA_NASCIMENTO, E.RG, E.SEXO, E.TELEFONE, A.COD_DEPARTAMENTO ALOCADO, A.DATA_ALOCACAO DATA_ALOCACAO, C.COD_DEPARTAMENTO CHEFIADO, C.DATA_INICIO DATA_INICIO, C.DATA_FINAL DATA_FINAL  FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO ORDER BY NOME_EMPREGADO";
+        private static String QUERY_SELECT_CODIGO = "SELECT E.COD_EMPREGADO CODIGO, E.COD_EMPREGADO_SUPERVISOR SUPERVISOR, E.COD_ENDERECO ENDERECO, E.NOME_EMPREGADO NOME, E.SALARIO, E.CPF, E.DATA_NASCIMENTO, E.RG, E.SEXO, E.TELEFONE, A.COD_DEPARTAMENTO ALOCADO, A.DATA_ALOCACAO DATA_ALOCACAO, C.COD_DEPARTAMENTO CHEFIADO, C.DATA_INICIO DATA_INICIO, C.DATA_FINAL DATA_FINAL  FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE E.COD_EMPREGADO IN (?codEmpregado)";
+        private static String QUERY_SELECT_NOME = "SELECT E.COD_EMPREGADO CODIGO, E.COD_EMPREGADO_SUPERVISOR SUPERVISOR, E.COD_ENDERECO ENDERECO, E.NOME_EMPREGADO NOME, E.SALARIO, E.CPF, E.DATA_NASCIMENTO, E.RG, E.SEXO, E.TELEFONE, A.COD_DEPARTAMENTO ALOCADO, A.DATA_ALOCACAO DATA_ALOCACAO, C.COD_DEPARTAMENTO CHEFIADO, C.DATA_INICIO DATA_INICIO, C.DATA_FINAL DATA_FINAL  FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
         private static String QUERY_DELETE = "DELETE FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
 
         #endregion
@@ -451,25 +451,25 @@ namespace Repositorio.implementacoes
 
         private Empregado CriarEmpregado(MySqlDataReader resultado)
         {
-            int codEmpregado = resultado.GetInt32("E.COD_EMPREGADO");
-            int codEmpregadoSupervisor = resultado.GetInt32("E.COD_EMPREGADO_SUPERVISOR");
-            int codEndereco = resultado.GetInt32("E.COD_ENDERECO");
-            int cpf = resultado.GetInt32("E.CPF");
-            int rg = resultado.GetInt32("E.RG");
-            int telefone = resultado.GetInt32("E.TELEFONE");
-            string nome = resultado.GetString("E.NOME_EMPREGADO");
-            double salario = resultado.GetDouble("E.SALARIO");
-            char sexo = resultado.GetChar("E.SEXO");
-            DateTime dataNascimento = resultado.GetDateTime("E.DATA_NASCIMENTO");
+            int codEmpregado = resultado.GetInt32("CODIGO");
+            int codEmpregadoSupervisor = resultado.GetInt32("SUPERVISOR");
+            int codEndereco = resultado.GetInt32("ENDERECO");
+            int cpf = resultado.GetInt32("CPF");
+            int rg = resultado.GetInt32("RG");
+            int telefone = resultado.GetInt32("TELEFONE");
+            string nome = resultado.GetString("NOME");
+            double salario = resultado.GetDouble("SALARIO");
+            char sexo = resultado.GetChar("SEXO");
+            DateTime dataNascimento = resultado.GetDateTime("DATA_NASCIMENTO");
 
             ArrayList dependentes = this.repDependente.ConsultarPorEmpregado(codEmpregado);
 
-            int codDepartamentoAlocado = resultado.GetInt32("A.COD_DEPARTAMENTO");
-            DateTime dataAlocacao = resultado.GetDateTime("A.DATA_ALOCACAO");
+            int codDepartamentoAlocado = resultado.GetInt32("ALOCADO");
+            DateTime dataAlocacao = resultado.GetDateTime("DATA_ALOCACAO");
 
-            int codDepartamentoChefiado = resultado.GetInt32("C.COD_DEPARTAMENTO");
-            DateTime dataInicio = resultado.GetDateTime("C.DATA_INICIO");
-            DateTime dataFinal = resultado.GetDateTime("C.DATA_FINAL");
+            int codDepartamentoChefiado = resultado.GetInt32("CHEFIADO");
+            DateTime dataInicio = resultado.GetDateTime("DATA_INICIO");
+            DateTime dataFinal = resultado.GetDateTime("DATA_FINAL");
 
             Departamento departamentoAlocado = this.repDepartamento.ConsultarPorCodigo(codDepartamentoAlocado);
            
