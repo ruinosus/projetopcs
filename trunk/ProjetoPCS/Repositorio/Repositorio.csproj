@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="implementacoes\RepositorioDepartamento.cs" />
     <Compile Include="implementacoes\RepositorioDependente.cs" />
+    <Compile Include="implementacoes\RepositorioEmpregado.cs" />
     <Compile Include="implementacoes\RepositorioEndereco.cs" />
     <Compile Include="implementacoes\RepositorioLocalidade.cs" />
     <Compile Include="interfaces\IRepositorioDepartamento.cs" />
