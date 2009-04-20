@@ -10,18 +10,22 @@ namespace Repositorio.interfaces
     public interface IRepositorioProjeto
     {
         #region Tabela PROJETO
+
         void InserirProjeto(Projeto projeto);
-        Empregado ConsultarPorCodigo(int codProjeto);
+        Projeto ConsultarPorCodigo(int codProjeto);
         ArrayList ConsultarPorNome(String nomeProjeto);
         void RemoverProjeto(int codProjeto);
         ArrayList ConsultarTodos();
+        int ObterMaximoCodigo();
+
         #endregion
 
         #region Tabela EMPREGADO_PROJETO
+
         void InserirEmpregadoProjeto(Projeto projeto);
-        Empregado ConsultarPorCodigoEmpregado(int codEmpregado);
-        Empregado ConsultarPorCodigoProjeto(int codProjeto);
+        ArrayList ConsultarPorCodigoProjeto(int codProjeto);
         void RemoverEmpregadoProjeto(int codProjeto,int codEmpregado);
+        
         #endregion
     }
 }
