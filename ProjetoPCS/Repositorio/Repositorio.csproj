@@ -52,11 +52,13 @@
     <Compile Include="implementacoes\RepositorioEmpregado.cs" />
     <Compile Include="implementacoes\RepositorioEndereco.cs" />
     <Compile Include="implementacoes\RepositorioLocalidade.cs" />
+    <Compile Include="implementacoes\RepositorioProjeto.cs" />
     <Compile Include="interfaces\IRepositorioDepartamento.cs" />
     <Compile Include="interfaces\IRepositorioDependente.cs" />
     <Compile Include="interfaces\IRepositorioEmpregado.cs" />
     <Compile Include="interfaces\IRepositorioEndereco.cs" />
     <Compile Include="interfaces\IRepositorioLocalidade.cs" />
+    <Compile Include="interfaces\IRepositorioProjeto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
