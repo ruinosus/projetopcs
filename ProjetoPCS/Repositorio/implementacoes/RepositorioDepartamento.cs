@@ -36,7 +36,7 @@ namespace Repositorio.implementacoes
 
         #endregion
 
-        #region IRepositorioDepartamento Members
+        #region IRepositorioDepartamento - Tabela DEPARTAMENTO
 
         public void InserirDepartamento(ClassesBasicas.Departamento departamento)
         {
@@ -217,6 +217,10 @@ namespace Repositorio.implementacoes
             return departamentos;
         }
 
+        #endregion
+
+        #region IRepositorioDepartamento - Tabela DEPARTAMENTO_LOCALIDADE
+
         public void InserirDepartamentoLocalidade(Departamento departamento)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
@@ -245,68 +249,68 @@ namespace Repositorio.implementacoes
         }
 
         public void RemoverDepartamentoLocalidade(int codDepartamento)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE, conexao);
+                comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
+
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
+
+                if (regitrosAfetados == 0)
                 {
-                    MySqlConnection conexao = UtilBD.ObterConexao();
-                    try
-                    {
-                        MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE, conexao);
-                        comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
-
-                        conexao.Open();
-                        int regitrosAfetados = comando.ExecuteNonQuery();
-
-                        if (regitrosAfetados == 0)
-                        {
-                            throw new ObjetoNaoExistente();
-                        }
-
-                    }
-                    catch (ObjetoNaoExistente e)
-                    {
-                        MessageBox.Show("Nenhum departamento encontrado.");
-                    }
-                    catch (MySqlException e)
-                    {
-                        MessageBox.Show(e.Message);
-                    }
-                    finally
-                    {
-                        UtilBD.FecharConexao(conexao);
-                    }
-
+                    throw new ObjetoNaoExistente();
                 }
+
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum departamento encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+
+        }
 
         public int ObterMaximoCodigo()
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            int codigo = 0;
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_MAX_CODIGO, conexao);
+                MySqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+
+                if (resultado.HasRows)
                 {
-                    MySqlConnection conexao = UtilBD.ObterConexao();
-                    int codigo = 0;
-                    try
-                    {
-                        MySqlCommand comando = new MySqlCommand(QUERY_MAX_CODIGO, conexao);
-                        MySqlDataReader resultado;
-                        conexao.Open();
-
-                        resultado = comando.ExecuteReader();
-                        resultado.Read();
-
-                        if (resultado.HasRows)
-                        {
-                            codigo = resultado.GetInt32("MAXCOD");
-                        }
-                        resultado.Close();
-                        UtilBD.FecharConexao(conexao);
-                    }
-                    catch (MySqlException e)
-                    {
-                        MessageBox.Show(e.Message);
-                    }
-                    finally
-                    {
-                        UtilBD.FecharConexao(conexao);
-                    }
-
-                    return codigo;
+                    codigo = resultado.GetInt32("MAXCOD");
                 }
+                resultado.Close();
+                UtilBD.FecharConexao(conexao);
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+
+            return codigo;
+        }
 
         #endregion
 

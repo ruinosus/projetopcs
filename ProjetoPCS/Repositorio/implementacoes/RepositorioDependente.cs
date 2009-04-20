@@ -14,13 +14,18 @@ namespace Repositorio.implementacoes
 {
     public class RepositorioDependente : IRepositorioDependente
     {
+        #region Sql tabela DEPENDENTE
+
         private static String QUERY_INSERT = "INSERT INTO DEPENDENTE (COD_EMPREGADO,NOME_DEPENDENTE,GRAU_PARENTESCO,DATA_NASCIMENTO,SEXO) VALUES (?codEmpregado,nomeDependente,grauParentesco,dataNascimento,sexo)";
         private static String QUERY_SELECT_ALL = "SELECT * FROM DEPENDENTE ORDER BY NOME_DEPENDENTE";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM DEPENDENTE WHERE COD_DEPENDENTE = ?codDependente";
+        private static String QUERY_SELECT_CODIGO_EMPREGADO = "SELECT * FROM DEPENDENTE WHERE COD_EMPREGADO = ?codEmpregado";
         private static String QUERY_SELECT_NOME = "SELECT * FROM DEPENDENTE WHERE NOME_DEPENDENTE LIKE ?nomeDependente";
         private static String QUERY_DELETE = "DELETE FROM DEPENDENTE WHERE COD_DEPENDENTE = ?codDependente";
 
-        #region IRepositorioDependente Members
+        #endregion
+
+        #region IRepositorioDependente - tabela DEPENDENTE
 
         public void InserirDependente(int codEmpregado,ClassesBasicas.Dependente dependente)
         {
@@ -86,6 +91,50 @@ namespace Repositorio.implementacoes
             }
 
             return dependente;
+        }
+
+        public ArrayList ConsultarPorEmpregado(int codEmpregado)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            ArrayList dependentes = new ArrayList();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_SELECT_CODIGO_EMPREGADO, conexao);
+
+                MySqlDataReader resultado;
+                comando.Parameters.AddWithValue("?codEmpregado" , codEmpregado);
+
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+
+                if (resultado.HasRows)
+                {
+                    while (resultado.Read())
+                    {
+                        dependentes.Add(this.CriarDependente(resultado));
+                    }
+                }
+                else
+                {
+                    throw new ObjetoNaoExistente();
+                }
+                resultado.Close();
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum dependente encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+            return dependentes;
         }
 
         public System.Collections.ArrayList ConsultarPorNome(string nomeDependente)
