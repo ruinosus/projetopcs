@@ -18,13 +18,15 @@ namespace Repositorio.implementacoes
         private IRepositorioEndereco repEndereco = new RepositorioEndereco();
         private IRepositorioDepartamento repDepartamento = new RepositorioDepartamento();
 
+        //private static String QUERY_SELECT_PADRAO = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE E.COD_EMPREGADO IN (?codEmpregado) ";
+   
         #region Sql da tabela EMPREGADO
 
         private static String QUERY_INSERT = "INSERT INTO EMPREGADO (COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
         private static String QUERY_INSERT_SUPERVISOR = "INSERT INTO EMPREGADO (COD_EMPREGADO_SUPERVISOR,COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEmpregadoSupervisor,?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
-        private static String QUERY_SELECT_ALL = "SELECT * FROM EMPREGADO ORDER BY NOME_EMPREGADO";
-        private static String QUERY_SELECT_CODIGO = "SELECT * FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
-        private static String QUERY_SELECT_NOME = "SELECT * FROM EMPREGADO WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
+        private static String QUERY_SELECT_ALL = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO ORDER BY NOME_EMPREGADO";
+        private static String QUERY_SELECT_CODIGO = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE E.COD_EMPREGADO IN (?codEmpregado)";
+        private static String QUERY_SELECT_NOME = "SELECT * FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
         private static String QUERY_DELETE = "DELETE FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
 
         #endregion
@@ -44,7 +46,7 @@ namespace Repositorio.implementacoes
         private static String QUERY_DELETE_ALOCAR = "DELETE FROM ALOCAR WHERE COD_EMPREGADO = ?codEmpregado";
 
         #endregion
-        
+       
         #region IRepositorioEmpregado - Tabela EMPREGADO
 
         public void InserirEmpregado(ClassesBasicas.Empregado empregado)
@@ -251,57 +253,234 @@ namespace Repositorio.implementacoes
 
         public void InserirChefiar(Empregado empregado)
         {
-            throw new NotImplementedException();
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_INSERT_CHEFIAR, conexao);
+
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
+                comando.Parameters.AddWithValue("?codDepartamento", empregado.DepartamentoChefiado.Codigo);
+                comando.Parameters.AddWithValue("?dataInicio", empregado.DataInicio);
+                comando.Parameters.AddWithValue("?dataFinal", empregado.DataFinal);
+
+                conexao.Open();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
         }
 
         public Empregado ConsultarPorCodigoEmpregadoChefiar(int codEmpregado)
         {
-            throw new NotImplementedException();
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            Empregado empregado = null;
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_SELECT_CODIGO_EMPREGADO_CHEFIAR, conexao);
+
+                MySqlDataReader resultado;
+                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+
+                if (resultado.HasRows)
+                {
+                    empregado = this.CriarEmpregado(resultado);
+                }
+                else
+                {
+                    throw new ObjetoNaoExistente();
+                }
+                resultado.Close();
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum empregado encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+
+            return empregado;
         }
 
         public void RemoverChefiar(int codEmpregado)
         {
-            throw new NotImplementedException();
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_CHEFIAR, conexao);
+                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
+
+                if (regitrosAfetados == 0)
+                {
+                    throw new ObjetoNaoExistente();
+                }
+
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum empregado encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
         }
 
         #endregion
 
         #region IRepositorioEmpregado - Tabela ALOCAR
+
         public void InserirAlocar(Empregado empregado)
         {
-            throw new NotImplementedException();
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_INSERT_ALOCAR, conexao);
+
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
+                comando.Parameters.AddWithValue("?codDepartamento", empregado.DepartamentoAlocado.Codigo);
+                comando.Parameters.AddWithValue("?dataAlocacao", empregado.DataAlocação);
+
+                conexao.Open();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
         }
 
         public Empregado ConsultarPorCodigoEmpregadoAlocar(int codEmpregado)
         {
-            throw new NotImplementedException();
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            Empregado empregado = null;
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_SELECT_CODIGO_EMPREGADO_ALOCAR, conexao);
+
+                MySqlDataReader resultado;
+                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+
+                if (resultado.HasRows)
+                {
+                    empregado = this.CriarEmpregado(resultado);
+                }
+                else
+                {
+                    throw new ObjetoNaoExistente();
+                }
+                resultado.Close();
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum empregado encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+
+            return empregado;
         }
 
         public void RemoverAlocar(int codEmpregado)
         {
-            throw new NotImplementedException();
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_ALOCAR, conexao);
+                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
+
+                if (regitrosAfetados == 0)
+                {
+                    throw new ObjetoNaoExistente();
+                }
+
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum empregado encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
         } 
         #endregion
 
         private Empregado CriarEmpregado(MySqlDataReader resultado)
         {
-            int codEmpregado = resultado.GetInt32("COD_EMPREGADO");
-            int codEmpregadoSupervisor = resultado.GetInt32("COD_EMPREGADO_SUPERVISOR");
-            int codEndereco = resultado.GetInt32("COD_ENDERECO");
-            int cpf = resultado.GetInt32("CPF");
-            int rg = resultado.GetInt32("RG");
-            int telefone = resultado.GetInt32("TELEFONE");
-            string nome = resultado.GetString("NOME_EMPREGADO");
-            double salario = resultado.GetDouble("SALARIO");
-            char sexo = resultado.GetChar("SEXO");
-            DateTime dataNascimento = resultado.GetDateTime("DATA_NASCIMENTO");
+            int codEmpregado = resultado.GetInt32("E.COD_EMPREGADO");
+            int codEmpregadoSupervisor = resultado.GetInt32("E.COD_EMPREGADO_SUPERVISOR");
+            int codEndereco = resultado.GetInt32("E.COD_ENDERECO");
+            int cpf = resultado.GetInt32("E.CPF");
+            int rg = resultado.GetInt32("E.RG");
+            int telefone = resultado.GetInt32("E.TELEFONE");
+            string nome = resultado.GetString("E.NOME_EMPREGADO");
+            double salario = resultado.GetDouble("E.SALARIO");
+            char sexo = resultado.GetChar("E.SEXO");
+            DateTime dataNascimento = resultado.GetDateTime("E.DATA_NASCIMENTO");
 
             ArrayList dependentes = this.repDependente.ConsultarPorEmpregado(codEmpregado);
-            Empregado supervisor = this.ConsultarPorCodigo(codEmpregadoSupervisor);
-            Endereco endereco = this.repEndereco.ConsultarPorCodigo(codEndereco);            
 
-           // return new Empregado(codEmpregado,nome,dataNascimento,sexo,salario,cpf,rg,telefone,endereco,
-            return new Empregado();
+            int codDepartamentoAlocado = resultado.GetInt32("A.COD_DEPARTAMENTO");
+            DateTime dataAlocacao = resultado.GetDateTime("A.DATA_ALOCACAO");
+
+            int codDepartamentoChefiado = resultado.GetInt32("C.COD_DEPARTAMENTO");
+            DateTime dataInicio = resultado.GetDateTime("C.DATA_INICIO");
+            DateTime dataFinal = resultado.GetDateTime("C.DATA_FINAL");
+
+            Departamento departamentoAlocado = this.repDepartamento.ConsultarPorCodigo(codDepartamentoAlocado);
+           
+            Departamento departamentoChefiado = this.repDepartamento.ConsultarPorCodigo(codDepartamentoChefiado);
+
+            Empregado supervisor = this.ConsultarPorCodigo(codEmpregadoSupervisor);
+
+            Endereco endereco = this.repEndereco.ConsultarPorCodigo(codEndereco);
+
+            return new Empregado(codEmpregado, nome, dataNascimento, sexo, salario, cpf, rg, telefone, endereco, departamentoAlocado, dataAlocacao, departamentoChefiado, dataInicio, dataFinal, dependentes, supervisor);
+
         }
     }
 }
