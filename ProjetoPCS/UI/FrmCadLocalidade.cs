@@ -6,20 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using ClassesBasicas;
 
 namespace UI
 {
-    public partial class FrmPrincipal : Form
+    public partial class FrmCadLocalidade : Form
     {
-        public FrmPrincipal()
+        public FrmCadLocalidade()
         {
             InitializeComponent();
-        }
-
-        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close();
         }
     }
 }

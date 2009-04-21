@@ -21,6 +21,7 @@ namespace Repositorio.implementacoes
         #region Sql da tabela PROJETO
 
         private static String QUERY_INSERT = "INSERT INTO PROJETO(COD_DEPARTAMENTO,COD_LOCALIDADE,NOME_PROJETO) VALUES(?codDepartamento,?codLocalidade,?nomeProjeto)";
+        private static String QUERY_UPDATE = "UPDATE PROJETO SET COD_DEPARTAMENTO = ?codDepartamento, COD_LOCALIDADE = ?codLocalidade, NOME_PROJETO = ?nomeProjeto WHERE COD_PROJETO = ?codProjeto";
         private static String QUERY_SELECT_ALL = "SELECT * FROM PROJETO  ORDER BY NOME_PROJETO";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM PROJETO WHERE COD_PROJETO = ?codProjeto";
         private static String QUERY_SELECT_NOME = "SELECT * FROM PROJETO  WHERE NOME_PROJETO LIKE ?nomeProjeto";
@@ -50,6 +51,31 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codDepartamento", projeto.Departamento.Codigo);
                 comando.Parameters.AddWithValue("?codLocalidade", projeto.Localidade.Codigo);
                 comando.Parameters.AddWithValue("?nomeprojeto", projeto.Nome);
+
+                conexao.Open();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }
+
+        public void InserirProjeto(ClassesBasicas.Projeto projeto)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_UPDATE, conexao);
+
+                comando.Parameters.AddWithValue("?codDepartamento", projeto.Departamento.Codigo);
+                comando.Parameters.AddWithValue("?codLocalidade", projeto.Localidade.Codigo);
+                comando.Parameters.AddWithValue("?nomeprojeto", projeto.Nome);
+                comando.Parameters.AddWithValue("?codProjeto", projeto.Codigo);
 
                 conexao.Open();
             }

@@ -28,28 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
             this.bnmbnmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sairToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.LocalidadeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.departamentoMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.empregadoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.projetoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.empregadoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.dependenteMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(178, 160);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // menuPrincipal
             // 
@@ -73,7 +62,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -92,31 +81,31 @@
             // LocalidadeMenu
             // 
             this.LocalidadeMenu.Name = "LocalidadeMenu";
-            this.LocalidadeMenu.Size = new System.Drawing.Size(152, 22);
+            this.LocalidadeMenu.Size = new System.Drawing.Size(150, 22);
             this.LocalidadeMenu.Text = "Localidade";
             // 
             // departamentoMenu
             // 
             this.departamentoMenu.Name = "departamentoMenu";
-            this.departamentoMenu.Size = new System.Drawing.Size(152, 22);
+            this.departamentoMenu.Size = new System.Drawing.Size(150, 22);
             this.departamentoMenu.Text = "Departamento";
-            // 
-            // empregadoMenu
-            // 
-            this.empregadoMenu.Name = "empregadoMenu";
-            this.empregadoMenu.Size = new System.Drawing.Size(152, 22);
-            this.empregadoMenu.Text = "Empregado";
             // 
             // projetoMenu
             // 
             this.projetoMenu.Name = "projetoMenu";
-            this.projetoMenu.Size = new System.Drawing.Size(152, 22);
+            this.projetoMenu.Size = new System.Drawing.Size(150, 22);
             this.projetoMenu.Text = "Projeto";
+            // 
+            // empregadoMenu
+            // 
+            this.empregadoMenu.Name = "empregadoMenu";
+            this.empregadoMenu.Size = new System.Drawing.Size(150, 22);
+            this.empregadoMenu.Text = "Empregado";
             // 
             // dependenteMenu
             // 
             this.dependenteMenu.Name = "dependenteMenu";
-            this.dependenteMenu.Size = new System.Drawing.Size(152, 22);
+            this.dependenteMenu.Size = new System.Drawing.Size(150, 22);
             this.dependenteMenu.Text = "Dependente";
             // 
             // FrmPrincipal
@@ -125,7 +114,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(531, 356);
             this.Controls.Add(this.menuPrincipal);
-            this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmPrincipal";
             this.Text = "Formulário Principal - Projeto PCS";
@@ -138,7 +126,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MenuStrip menuPrincipal;
         private System.Windows.Forms.ToolStripMenuItem bnmbnmToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sairToolStripMenuItem;

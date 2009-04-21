@@ -10,11 +10,14 @@ namespace Repositorio.interfaces
     public interface IRepositorioLocalidade
     {
         #region Tabela LOCALIDADE
+
         void InserirLocalidade(Localidade localidade);
+        void AlterarLocalidade(Localidade localidade);
         Localidade ConsultarPorCodigo(int codLocalidade);
         ArrayList ConsultarPorNome(String nomeLocalidade);
         void RemoverLocalidade(int codLocalidade);
         ArrayList ConsultarTodos(); 
+
         #endregion
     }
 }

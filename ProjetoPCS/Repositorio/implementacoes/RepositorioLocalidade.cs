@@ -18,6 +18,7 @@ namespace Repositorio.implementacoes
         #region Sql Tabela LOCALIDADE
 
         private static String QUERY_INSERT = "INSERT INTO LOCALIDADE (NOME_LOCALIDADE) VALUES (?nomeLocalidade)";
+        private static String QUERY_UPDATE = "UPDATE LOCALIDADE SET NOME_LOCALIDADE = ?nomeLocalidade WHERE COD_LOCALIDADE = ?codLocalidade";
         private static String QUERY_SELECT_ALL = "SELECT * FROM LOCALIDADE ORDER BY NOME_LOCALIDADE";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM LOCALIDADE WHERE COD_LOCALIDADE = ?codLocalidade";
         private static String QUERY_SELECT_NOME = "SELECT * FROM LOCALIDADE WHERE NOME_LOCALIDADE LIKE ?nomeLocalidade";
@@ -38,6 +39,29 @@ namespace Repositorio.implementacoes
  
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();                
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }
+
+        public void AlterarLocalidade(ClassesBasicas.Localidade localidade)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_UPDATE, conexao);
+                comando.Parameters.AddWithValue("?nomeLocalidade", localidade.Nome);
+                comando.Parameters.AddWithValue("?codLocalidade", localidade.Codigo);
+
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {

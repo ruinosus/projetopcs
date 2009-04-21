@@ -12,6 +12,7 @@ namespace Repositorio.interfaces
         #region Tabela DEPARTAMENTO
 
         void InserirDepartamento(Departamento departamento);
+        void AlterarDepartamento(Departamento departamento);
         Departamento ConsultarPorCodigo(int codDepartamento);
         ArrayList ConsultarPorNome(String nomeDepartamento);
         void RemoverDepartamento(int codDepartamento);

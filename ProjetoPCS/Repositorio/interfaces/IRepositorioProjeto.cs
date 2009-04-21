@@ -12,6 +12,7 @@ namespace Repositorio.interfaces
         #region Tabela PROJETO
 
         void InserirProjeto(Projeto projeto);
+        void AlterarProjeto(Projeto projeto);
         Projeto ConsultarPorCodigo(int codProjeto);
         ArrayList ConsultarPorNome(String nomeProjeto);
         void RemoverProjeto(int codProjeto);
