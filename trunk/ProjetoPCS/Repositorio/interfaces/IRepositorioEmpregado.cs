@@ -19,13 +19,13 @@ namespace Repositorio.interfaces
 
         #region Tabela CHEFIAR
         void InserirChefiar(Empregado empregado);
-        Empregado ConsultarPorCodigoEmpregadoChefiar(int codEmpregado);
+        Empregado ConsultarPorCodigoEmpregadoChefiar(Empregado empregado);
         void RemoverChefiar(int codEmpregado); 
         #endregion
 
         #region Tabela ALOCAR
         void InserirAlocar(Empregado empregado);
-        Empregado ConsultarPorCodigoEmpregadoAlocar(int codEmpregado);
+        Empregado ConsultarPorCodigoEmpregadoAlocar(Empregado empregado);
         void RemoverAlocar(int codEmpregado); 
         #endregion
 

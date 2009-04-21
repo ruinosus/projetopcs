@@ -21,9 +21,9 @@ namespace Repositorio.implementacoes
         #region Sql da tabela PROJETO
 
         private static String QUERY_INSERT = "INSERT INTO PROJETO(COD_DEPARTAMENTO,COD_LOCALIDADE,NOME_PROJETO) VALUES(?codDepartamento,?codLocalidade,?nomeProjeto)";
-        private static String QUERY_SELECT_ALL = "SELECT P.COD_PROJETO PROJETO, P.COD_DEPARTAMENTO, P.COD_LOCALIDADE, P.NOME_PROJETO, EP.COD_EMPREGADO EMPREGADO FROM PROJETO P INNER JOIN EMPREGADO_PROJETO EP  ORDER BY NOME_PROJETO";
-        private static String QUERY_SELECT_CODIGO = "SELECT P.COD_PROJETO PROJETO, P.COD_DEPARTAMENTO, P.COD_LOCALIDADE, P.NOME_PROJETO, EP.COD_EMPREGADO EMPREGADO FROM PROJETO P INNER JOIN EMPREGADO_PROJETO EP  WHERE P.COD_PROJETO = ?codProjeto";
-        private static String QUERY_SELECT_NOME = "SELECT P.COD_PROJETO PROJETO, P.COD_DEPARTAMENTO, P.COD_LOCALIDADE, P.NOME_PROJETO, EP.COD_EMPREGADO EMPREGADO FROM PROJETO P INNER JOIN EMPREGADO_PROJETO EP  WHERE P.NOME_PROJETO LIKE ?nomeProjeto";
+        private static String QUERY_SELECT_ALL = "SELECT * FROM PROJETO  ORDER BY NOME_PROJETO";
+        private static String QUERY_SELECT_CODIGO = "SELECT * FROM PROJETO WHERE COD_PROJETO = ?codProjeto";
+        private static String QUERY_SELECT_NOME = "SELECT * FROM PROJETO  WHERE NOME_PROJETO LIKE ?nomeProjeto";
         private static String QUERY_DELETE = "DELETE FROM PROJETO WHERE COD_PROJETO = ?codProjeto";
         private static String QUERY_MAX_CODIGO = "SELECT MAX(COD_PROJETO) MAXCOD FROM PROJETO";
 
@@ -284,16 +284,16 @@ namespace Repositorio.implementacoes
             }
         }
 
-        public ArrayList ConsultarPorCodigoProjeto(int codProjeto)
+        public ArrayList ConsultarPorCodigoProjeto(Projeto projeto)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
-            ArrayList empregados = new ArrayList();
+            ArrayList empregados = projeto.Empregados;
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_CODIGO_PROJETO, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("?codProjeto", codProjeto);
+                comando.Parameters.AddWithValue("?codProjeto", projeto.Codigo);
 
                 conexao.Open();
 
@@ -310,7 +310,7 @@ namespace Repositorio.implementacoes
                 }
                 else
                 {
-                    throw new ObjetoNaoExistente();
+                   // throw new ObjetoNaoExistente();
                 }
                 resultado.Close();
             }
@@ -365,17 +365,20 @@ namespace Repositorio.implementacoes
 
         private Projeto CriarProjeto(MySqlDataReader resultado)
         {
-            int codProjeto = resultado.GetInt32("PROJETO");
+            Projeto projeto = new Projeto();
+            int codProjeto = resultado.GetInt32("COD_PROJETO");
             int codDepartamento = resultado.GetInt32("COD_DEPARTAMENTO");
             int codLocalidade = resultado.GetInt32("COD_LOCALIDADE");
-            int codEmpregado = resultado.GetInt32("EMPREGADO");
-            string nome = resultado.GetString("NOME_PROJETO");            
+            string nome = resultado.GetString("NOME_PROJETO");
 
-            Departamento departamento = this.repDepartamento.ConsultarPorCodigo(codDepartamento);
-            Localidade localidade = this.repLocalidade.ConsultarPorCodigo(codLocalidade);
-            ArrayList empregados = this.ConsultarPorCodigoProjeto(codProjeto);
+            projeto.Codigo = codProjeto;
+            projeto.Nome = nome;
 
-            return new Projeto(codProjeto, nome, departamento, localidade, empregados);
+            projeto.Departamento = this.repDepartamento.ConsultarPorCodigo(codDepartamento);
+            projeto.Localidade = this.repLocalidade.ConsultarPorCodigo(codLocalidade);
+            projeto.Empregados = this.ConsultarPorCodigoProjeto(projeto);
+
+            return projeto;
 
         }
     }

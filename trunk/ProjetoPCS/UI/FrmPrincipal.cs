@@ -36,5 +36,10 @@ namespace UI
             MessageBox.Show(super.Nome + "\n" + super.Supervisor.Nome);
 
         }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

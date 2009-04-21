@@ -24,9 +24,9 @@ namespace Repositorio.implementacoes
 
         private static String QUERY_INSERT = "INSERT INTO EMPREGADO (COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
         private static String QUERY_INSERT_SUPERVISOR = "INSERT INTO EMPREGADO (COD_EMPREGADO_SUPERVISOR,COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEmpregadoSupervisor,?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
-        private static String QUERY_SELECT_ALL = "SELECT E.COD_EMPREGADO CODIGO, E.COD_EMPREGADO_SUPERVISOR SUPERVISOR, E.COD_ENDERECO ENDERECO, E.NOME_EMPREGADO NOME, E.SALARIO, E.CPF, E.DATA_NASCIMENTO, E.RG, E.SEXO, E.TELEFONE, A.COD_DEPARTAMENTO ALOCADO, A.DATA_ALOCACAO DATA_ALOCACAO, C.COD_DEPARTAMENTO CHEFIADO, C.DATA_INICIO DATA_INICIO, C.DATA_FINAL DATA_FINAL  FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO ORDER BY NOME_EMPREGADO";
-        private static String QUERY_SELECT_CODIGO = "SELECT E.COD_EMPREGADO CODIGO, E.COD_EMPREGADO_SUPERVISOR SUPERVISOR, E.COD_ENDERECO ENDERECO, E.NOME_EMPREGADO NOME, E.SALARIO, E.CPF, E.DATA_NASCIMENTO, E.RG, E.SEXO, E.TELEFONE, A.COD_DEPARTAMENTO ALOCADO, A.DATA_ALOCACAO DATA_ALOCACAO, C.COD_DEPARTAMENTO CHEFIADO, C.DATA_INICIO DATA_INICIO, C.DATA_FINAL DATA_FINAL  FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE E.COD_EMPREGADO IN (?codEmpregado)";
-        private static String QUERY_SELECT_NOME = "SELECT E.COD_EMPREGADO CODIGO, E.COD_EMPREGADO_SUPERVISOR SUPERVISOR, E.COD_ENDERECO ENDERECO, E.NOME_EMPREGADO NOME, E.SALARIO, E.CPF, E.DATA_NASCIMENTO, E.RG, E.SEXO, E.TELEFONE, A.COD_DEPARTAMENTO ALOCADO, A.DATA_ALOCACAO DATA_ALOCACAO, C.COD_DEPARTAMENTO CHEFIADO, C.DATA_INICIO DATA_INICIO, C.DATA_FINAL DATA_FINAL  FROM EMPREGADO E INNER JOIN CHEFIAR C  ON C.COD_EMPREGADO = E.COD_EMPREGADO INNER JOIN ALOCAR A ON A.COD_EMPREGADO= E.COD_EMPREGADO WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
+        private static String QUERY_SELECT_ALL = "SELECT * FROM EMPREGADO ORDER BY NOME_EMPREGADO";
+        private static String QUERY_SELECT_CODIGO = "SELECT * FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
+        private static String QUERY_SELECT_NOME = "SELECT * FROM EMPREGADO  WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
         private static String QUERY_DELETE = "DELETE FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
 
         #endregion
@@ -276,16 +276,16 @@ namespace Repositorio.implementacoes
             }
         }
 
-        public Empregado ConsultarPorCodigoEmpregadoChefiar(int codEmpregado)
+        public Empregado ConsultarPorCodigoEmpregadoChefiar(Empregado empregado)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
-            Empregado empregado = null;
+            Empregado emp = empregado;
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_CODIGO_EMPREGADO_CHEFIAR, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+                comando.Parameters.AddWithValue("?codEmpregado", emp.Codigo);
                 conexao.Open();
 
                 resultado = comando.ExecuteReader();
@@ -293,11 +293,18 @@ namespace Repositorio.implementacoes
 
                 if (resultado.HasRows)
                 {
-                    empregado = this.CriarEmpregado(resultado);
+                    int codDepartamento = resultado.GetInt32("COD_DEPARTAMENTO");
+                    DateTime dataInicio = resultado.GetDateTime("DATA_INICIO");
+                    DateTime dataFinal = resultado.GetDateTime("DATA_FINAL");
+                    Departamento departamento = this.repDepartamento.ConsultarPorCodigo(codDepartamento);
+                    
+                    emp.DepartamentoChefiado = departamento;
+                    emp.DataInicio = dataInicio;
+                    emp.DataFinal = dataFinal;
                 }
                 else
                 {
-                    throw new ObjetoNaoExistente();
+                   // throw new ObjetoNaoExistente();
                 }
                 resultado.Close();
             }
@@ -314,7 +321,7 @@ namespace Repositorio.implementacoes
                 UtilBD.FecharConexao(conexao);
             }
 
-            return empregado;
+            return emp;
         }
 
         public void RemoverChefiar(int codEmpregado)
@@ -376,16 +383,16 @@ namespace Repositorio.implementacoes
             }
         }
 
-        public Empregado ConsultarPorCodigoEmpregadoAlocar(int codEmpregado)
+        public Empregado ConsultarPorCodigoEmpregadoAlocar(Empregado empregado)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
-            Empregado empregado = null;
+            Empregado emp = empregado;
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_CODIGO_EMPREGADO_ALOCAR, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+                comando.Parameters.AddWithValue("?codEmpregado", emp.Codigo);
                 conexao.Open();
 
                 resultado = comando.ExecuteReader();
@@ -393,11 +400,16 @@ namespace Repositorio.implementacoes
 
                 if (resultado.HasRows)
                 {
-                    empregado = this.CriarEmpregado(resultado);
+                    int codDepartamento = resultado.GetInt32("COD_DEPARTAMENTO");
+                    DateTime dataAlocacao = resultado.GetDateTime("DATA_ALOCACAO");
+                    Departamento departamento = this.repDepartamento.ConsultarPorCodigo(codDepartamento);
+
+                    emp.DepartamentoAlocado = departamento;
+                    emp.DataAlocação = dataAlocacao;
                 }
                 else
                 {
-                    throw new ObjetoNaoExistente();
+                   // throw new ObjetoNaoExistente();
                 }
                 resultado.Close();
             }
@@ -414,7 +426,7 @@ namespace Repositorio.implementacoes
                 UtilBD.FecharConexao(conexao);
             }
 
-            return empregado;
+            return emp;
         }
 
         public void RemoverAlocar(int codEmpregado)
@@ -451,35 +463,51 @@ namespace Repositorio.implementacoes
 
         private Empregado CriarEmpregado(MySqlDataReader resultado)
         {
-            int codEmpregado = resultado.GetInt32("CODIGO");
-            int codEmpregadoSupervisor = resultado.GetInt32("SUPERVISOR");
-            int codEndereco = resultado.GetInt32("ENDERECO");
+            Empregado empregado = new Empregado();
+
+            int codEmpregado = resultado.GetInt32("COD_EMPREGADO");
+            int codEmpregadoSupervisor;
+
+            try
+            {
+                codEmpregadoSupervisor = resultado.GetInt32("COD_SUPERVISOR");
+            }
+            catch (Exception e)
+            {
+                codEmpregadoSupervisor = 0;
+            }
+
+            int codEndereco = resultado.GetInt32("COD_ENDERECO");
             int cpf = resultado.GetInt32("CPF");
             int rg = resultado.GetInt32("RG");
             int telefone = resultado.GetInt32("TELEFONE");
-            string nome = resultado.GetString("NOME");
+            string nome = resultado.GetString("NOME_EMPREGADO");
             double salario = resultado.GetDouble("SALARIO");
             char sexo = resultado.GetChar("SEXO");
             DateTime dataNascimento = resultado.GetDateTime("DATA_NASCIMENTO");
 
-            ArrayList dependentes = this.repDependente.ConsultarPorEmpregado(codEmpregado);
+            empregado.Codigo = codEmpregado;
+            empregado.Cpf = cpf;
+            empregado.DataNascimento = dataNascimento;
+            empregado.Nome = nome;
+            empregado.Rg = rg;
+            empregado.Salario = salario;
+            empregado.Sexo = sexo;
+            empregado.Telefone = telefone;
 
-            int codDepartamentoAlocado = resultado.GetInt32("ALOCADO");
-            DateTime dataAlocacao = resultado.GetDateTime("DATA_ALOCACAO");
+            empregado.Dependentes = this.repDependente.ConsultarPorEmpregado(codEmpregado);
 
-            int codDepartamentoChefiado = resultado.GetInt32("CHEFIADO");
-            DateTime dataInicio = resultado.GetDateTime("DATA_INICIO");
-            DateTime dataFinal = resultado.GetDateTime("DATA_FINAL");
+            if (codEmpregadoSupervisor != 0)
+            {
+                empregado.Supervisor = this.ConsultarPorCodigo(codEmpregadoSupervisor); 
+            }
 
-            Departamento departamentoAlocado = this.repDepartamento.ConsultarPorCodigo(codDepartamentoAlocado);
-           
-            Departamento departamentoChefiado = this.repDepartamento.ConsultarPorCodigo(codDepartamentoChefiado);
+            empregado.Endereco = this.repEndereco.ConsultarPorCodigo(codEndereco);
 
-            Empregado supervisor = this.ConsultarPorCodigo(codEmpregadoSupervisor);
+            empregado = this.ConsultarPorCodigoEmpregadoAlocar(empregado);
+            empregado = this.ConsultarPorCodigoEmpregadoChefiar(empregado);
 
-            Endereco endereco = this.repEndereco.ConsultarPorCodigo(codEndereco);
-
-            return new Empregado(codEmpregado, nome, dataNascimento, sexo, salario, cpf, rg, telefone, endereco, departamentoAlocado, dataAlocacao, departamentoChefiado, dataInicio, dataFinal, dependentes, supervisor);
+            return empregado;
 
         }
     }
