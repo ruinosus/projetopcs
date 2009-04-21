@@ -48,6 +48,20 @@
     <Compile Include="Controlador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassesBasicas\ClassesBasicas.csproj">
+      <Project>{9F46B5DC-BE5B-41AB-9BC6-3C8F287C4C75}</Project>
+      <Name>ClassesBasicas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Excecoes\Excecoes.csproj">
+      <Project>{8AE2544A-9DDD-413E-96AF-06FCEF3D7783}</Project>
+      <Name>Excecoes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositorio\Repositorio.csproj">
+      <Project>{517B8B12-4E00-40B2-BD80-6C1F1E61B9EF}</Project>
+      <Name>Repositorio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
