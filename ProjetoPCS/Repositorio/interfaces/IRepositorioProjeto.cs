@@ -23,7 +23,7 @@ namespace Repositorio.interfaces
         #region Tabela EMPREGADO_PROJETO
 
         void InserirEmpregadoProjeto(Projeto projeto);
-        ArrayList ConsultarPorCodigoProjeto(int codProjeto);
+        ArrayList ConsultarPorCodigoProjeto(Projeto projeto);
         void RemoverEmpregadoProjeto(int codProjeto,int codEmpregado);
         
         #endregion
