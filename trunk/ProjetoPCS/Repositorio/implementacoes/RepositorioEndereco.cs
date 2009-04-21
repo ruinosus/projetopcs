@@ -75,7 +75,7 @@ namespace Repositorio.implementacoes
                 }
                 else
                 {
-                    throw new ObjetoNaoExistente();
+                  //  throw new ObjetoNaoExistente();
                 }
                 resultado.Close();
             }
@@ -108,7 +108,7 @@ namespace Repositorio.implementacoes
 
                 if (regitrosAfetados == 0)
                 {
-                    throw new ObjetoNaoExistente();
+                   // throw new ObjetoNaoExistente();
                 }
 
             }
@@ -149,7 +149,7 @@ namespace Repositorio.implementacoes
                 }
                 else
                 {
-                    throw new ObjetoNaoExistente();
+                   // throw new ObjetoNaoExistente();
                 }
                 resultado.Close();
             }
