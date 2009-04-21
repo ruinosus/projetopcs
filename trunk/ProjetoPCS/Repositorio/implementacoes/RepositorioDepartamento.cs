@@ -19,6 +19,7 @@ namespace Repositorio.implementacoes
         #region Sql da tabela DEPARTAMENTO
 
         private static String QUERY_INSERT = "INSERT INTO DEPARTAMENTO (NOME_DEPARTAMENTO) VALUES (?nomeDepartamento)";
+        private static String QUERY_UPDATE = "UPDATE DEPARTAMENTO SET NOME_DEPARTAMENTO = ?nomeDepartamento WHERE COD_DEPARTAMENTO = ?codDepartamento ";
         private static String QUERY_SELECT_ALL = "SELECT * FROM DEPARTAMENTO ORDER BY NOME_DEPARTAMENTO";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM DEPARTAMENTO WHERE COD_DEPARTAMENTO = ?codDepartamento";
         private static String QUERY_SELECT_NOME = "SELECT * FROM DEPARTAMENTO WHERE NOME_DEPARTAMENTO LIKE ?nomeDepartamento";
@@ -45,6 +46,28 @@ namespace Repositorio.implementacoes
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_INSERT, conexao);
                 comando.Parameters.AddWithValue("?nomeDepartamento", departamento.Nome);
+
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }
+
+        public void AlterarDepartamento(Departamento departamento)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_UPDATE, conexao);
+                comando.Parameters.AddWithValue("?nomeDepartamento", departamento.Nome);
+                comando.Parameters.AddWithValue("?codDepartamento", departamento.Codigo);
 
                 conexao.Open();
                 int regitrosAfetados = comando.ExecuteNonQuery();
@@ -246,7 +269,7 @@ namespace Repositorio.implementacoes
                 UtilBD.FecharConexao(conexao);
             }
 
-        }
+        }        
 
         public void RemoverDepartamentoLocalidade(int codDepartamento)
         {

@@ -16,7 +16,8 @@ namespace Repositorio.implementacoes
     {
         #region Sql tabela DEPENDENTE
 
-        private static String QUERY_INSERT = "INSERT INTO DEPENDENTE (COD_EMPREGADO,NOME_DEPENDENTE,GRAU_PARENTESCO,DATA_NASCIMENTO,SEXO) VALUES (?codEmpregado,nomeDependente,grauParentesco,dataNascimento,sexo)";
+        private static String QUERY_INSERT = "INSERT INTO DEPENDENTE (COD_EMPREGADO,NOME_DEPENDENTE,GRAU_PARENTESCO,DATA_NASCIMENTO,SEXO) VALUES (?codEmpregado,?nomeDependente,?grauParentesco,?dataNascimento,?sexo)";
+        private static String QUERY_UPDATE = "UPDATE DEPENDENTE SET COD_EMPREGADO = ?codEmpregado, NOME_DEPENDENTE = ?nomeDependente, GRAU_PARENTESCO = ?grauParentesco, DATA_NASCIMENTO = ?dataNascimento,SEXO = ?sexo WHERE COD_DEPENDENTE = ?codDependente"; 
         private static String QUERY_SELECT_ALL = "SELECT * FROM DEPENDENTE ORDER BY NOME_DEPENDENTE";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM DEPENDENTE WHERE COD_DEPENDENTE = ?codDependente";
         private static String QUERY_SELECT_CODIGO_EMPREGADO = "SELECT * FROM DEPENDENTE WHERE COD_EMPREGADO = ?codEmpregado";
@@ -50,6 +51,33 @@ namespace Repositorio.implementacoes
             {
                 UtilBD.FecharConexao(conexao);
             }
+        }
+
+        public void AlterarDependente(int codEmpregado, Dependente dependente)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_UPDATE, conexao);
+                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+                comando.Parameters.AddWithValue("?nomeDependente", dependente.Nome);
+                comando.Parameters.AddWithValue("?grauParentesco", dependente.GrauParentesco);
+                comando.Parameters.AddWithValue("?dataNascimento", dependente.DataNascimento);
+                comando.Parameters.AddWithValue("?sexo", dependente.Sexo);
+                comando.Parameters.AddWithValue("?codDependente", dependente.Codigo);
+
+                conexao.Open();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+
         }
 
         public ClassesBasicas.Dependente ConsultarPorCodigo(int codDependente)

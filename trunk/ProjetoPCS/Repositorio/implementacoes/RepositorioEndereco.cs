@@ -17,6 +17,7 @@ namespace Repositorio.implementacoes
         #region Sql Tabela ENDERECO
 
         private static String QUERY_INSERT = "INSERT INTO ENDERECO (LOGRADOURO,BAIRRO,COMPLEMENTO,CEP,NUMERO,UF,CIDADE,PAIS) VALUES (?logradouro,?bairro,?complemento,?cep,?numero,?uf,?cidade,?pais)";
+        private static String QUERY_UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?logradouro, BAIRRO = ?bairro, COMPLEMENTO = ?complemento, CEP = ?cep ,NUMERO = ?numero, UF = ?uf, CIDADE = ?cidade, PAIS = ?pais WHERE COD_ENDERECO = ?codEndereco";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM ENDERECO WHERE COD_ENDERECO = ?codEndereco";
         private static String QUERY_DELETE = "DELETE FROM ENDERECO WHERE COD_ENDERECO = ?codEndereco";
         private static String QUERY_SELECT_ALL = "SELECT * FROM ENDERECO"; 
@@ -40,6 +41,36 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?uf", endereco.Uf);
                 comando.Parameters.AddWithValue("?cidade", endereco.Cidade);
                 comando.Parameters.AddWithValue("?pais", endereco.Pais);
+
+                conexao.Open();
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }
+
+        public void AlterarEndereco(ClassesBasicas.Endereco endereco)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_UPDATE, conexao);
+                comando.Parameters.AddWithValue("?logradouro", endereco.Logradouro);
+                comando.Parameters.AddWithValue("?bairro", endereco.Bairro);
+                comando.Parameters.AddWithValue("?complemento", endereco.Complemento);
+                comando.Parameters.AddWithValue("?cep", endereco.Cep);
+                comando.Parameters.AddWithValue("?numero", endereco.Numero);
+                comando.Parameters.AddWithValue("?uf", endereco.Uf);
+                comando.Parameters.AddWithValue("?cidade", endereco.Cidade);
+                comando.Parameters.AddWithValue("?pais", endereco.Pais);
+                comando.Parameters.AddWithValue("?codEndereco", endereco.Codigo);
 
                 conexao.Open();
 

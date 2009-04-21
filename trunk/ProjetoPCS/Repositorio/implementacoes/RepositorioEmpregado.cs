@@ -23,6 +23,7 @@ namespace Repositorio.implementacoes
         #region Sql da tabela EMPREGADO
 
         private static String QUERY_INSERT = "INSERT INTO EMPREGADO (COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
+        private static String QUERY_UPDATE = "UPDATE EMPREGADO SET COD_EMPREGADO_SUPERVISOR = ?codEmpregadoSupervisor ,COD_ENDERECO = ?codEndereco ,NOME_EMPREGADO = ?nomeEmpregado, SALARIO = ?salario, CPF = ?cpf, DATA_NASCIMENTO = ?dataNascimento, RG = ?rg, SEXO = ?sexo, TELEFONE =?telefone WHERE COD_EMPREGADO = ?codEmpregado "; 
         private static String QUERY_INSERT_SUPERVISOR = "INSERT INTO EMPREGADO (COD_EMPREGADO_SUPERVISOR,COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEmpregadoSupervisor,?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
         private static String QUERY_SELECT_ALL = "SELECT * FROM EMPREGADO ORDER BY NOME_EMPREGADO";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
@@ -34,6 +35,7 @@ namespace Repositorio.implementacoes
         #region Sql da tabela CHEFIAR
 
         private static String QUERY_INSERT_CHEFIAR = "INSERT INTO CHEFIAR (COD_EMPREGADO,COD_DEPARTAMENTO,DATA_INICIO,DATA_FINAL) VALUES (?codEmpregado,?codDepartamento,?dataInicio,?dataFinal)";
+        private static String QUERY_UPDATE_CHEFIAR = "UPDATE CHEFIAR SET COD_DEPARTAMENTO = ?codDepartamento, DATA_INICIO = ?dataInicio, DATA_FINAL = ?dataFinal WHERE COD_EMPREGADO = ?codEmpregado"; 
         private static String QUERY_SELECT_CODIGO_EMPREGADO_CHEFIAR = "SELECT * FROM CHEFIAR WHERE COD_EMPREGADO = ?codEmpregado";
         private static String QUERY_DELETE_CHEFIAR = "DELETE FROM CHEFIAR WHERE COD_EMPREGADO = ?codEmpregado";
  
@@ -42,6 +44,7 @@ namespace Repositorio.implementacoes
         #region Sql da tabela ALOCAR
 
         private static String QUERY_INSERT_ALOCAR = "INSERT INTO ALOCAR (COD_EMPREGADO,COD_DEPARTAMENTO,DATA_ALOCACAO) VALUES (?codEmpregado,?codDepartamento,?dataAlocacao)";
+        private static String QUERY_UPDATE_ALOCAR = "UPDATE ALOCAR SET COD_DEPARTAMENTO = ?codDepartamento, DATA_ALOCACAO = ?dataAlocacao WHERE COD_EMPREGADO = ?codEmpregado";  
         private static String QUERY_SELECT_CODIGO_EMPREGADO_ALOCAR = "SELECT * FROM ALOCAR WHERE COD_EMPREGADO = ?codEmpregado";
         private static String QUERY_DELETE_ALOCAR = "DELETE FROM ALOCAR WHERE COD_EMPREGADO = ?codEmpregado";
 
@@ -75,6 +78,37 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?rg", empregado.Rg);
                 comando.Parameters.AddWithValue("?sexo", empregado.Sexo);
                 comando.Parameters.AddWithValue("?telefone", empregado.Telefone);
+
+                conexao.Open();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }
+
+        public void AlterarEmpregado(ClassesBasicas.Empregado empregado)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando= new MySqlCommand(QUERY_UPDATE, conexao);
+
+                comando.Parameters.AddWithValue("?codEmpregadoSupervisor", empregado.Supervisor.Codigo);
+                comando.Parameters.AddWithValue("?codEndereco", empregado.Endereco.Codigo);
+                comando.Parameters.AddWithValue("?nomeEmpregado", empregado.Nome);
+                comando.Parameters.AddWithValue("?salario", empregado.Salario);
+                comando.Parameters.AddWithValue("?cpf", empregado.Cpf);
+                comando.Parameters.AddWithValue("?dataNascimento", empregado.DataNascimento);
+                comando.Parameters.AddWithValue("?rg", empregado.Rg);
+                comando.Parameters.AddWithValue("?sexo", empregado.Sexo);
+                comando.Parameters.AddWithValue("?telefone", empregado.Telefone);
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo); 
 
                 conexao.Open();
             }
@@ -276,6 +310,33 @@ namespace Repositorio.implementacoes
             }
         }
 
+        public void AlterarChefiar(Empregado empregado)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_UPDATE_CHEFIAR, conexao);
+
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
+                comando.Parameters.AddWithValue("?codDepartamento", empregado.DepartamentoChefiado.Codigo);
+                comando.Parameters.AddWithValue("?dataInicio", empregado.DataInicio);
+                comando.Parameters.AddWithValue("?dataFinal", empregado.DataFinal);
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
+
+
+                conexao.Open();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }
+
         public Empregado ConsultarPorCodigoEmpregadoChefiar(Empregado empregado)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
@@ -370,6 +431,31 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
                 comando.Parameters.AddWithValue("?codDepartamento", empregado.DepartamentoAlocado.Codigo);
                 comando.Parameters.AddWithValue("?dataAlocacao", empregado.DataAlocação);
+
+                conexao.Open();
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }
+
+        public void AlterarAlocar(Empregado empregado)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_UPDATE_ALOCAR, conexao);
+
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
+                comando.Parameters.AddWithValue("?codDepartamento", empregado.DepartamentoAlocado.Codigo);
+                comando.Parameters.AddWithValue("?dataAlocacao", empregado.DataAlocação);
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
 
                 conexao.Open();
             }
