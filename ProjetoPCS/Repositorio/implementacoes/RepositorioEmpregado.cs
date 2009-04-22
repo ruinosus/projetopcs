@@ -80,6 +80,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?telefone", empregado.Telefone);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -111,6 +112,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo); 
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -299,6 +301,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?dataFinal", empregado.DataFinal);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -326,6 +329,7 @@ namespace Repositorio.implementacoes
 
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -433,6 +437,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?dataAlocacao", empregado.DataAlocação);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -458,6 +463,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -564,9 +570,9 @@ namespace Repositorio.implementacoes
             }
 
             int codEndereco = resultado.GetInt32("COD_ENDERECO");
-            int cpf = resultado.GetInt32("CPF");
-            int rg = resultado.GetInt32("RG");
-            int telefone = resultado.GetInt32("TELEFONE");
+            string cpf = resultado.GetString("CPF");
+            string rg = resultado.GetString("RG");
+            string telefone = resultado.GetString("TELEFONE");
             string nome = resultado.GetString("NOME_EMPREGADO");
             double salario = resultado.GetDouble("SALARIO");
             char sexo = resultado.GetChar("SEXO");

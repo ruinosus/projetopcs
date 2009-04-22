@@ -54,6 +54,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?nomeprojeto", projeto.Nome);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -79,6 +80,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codProjeto", projeto.Codigo);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -299,6 +301,7 @@ namespace Repositorio.implementacoes
                     comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
 
                     conexao.Open();
+                    int regitrosAfetados = comando.ExecuteNonQuery();
                 }
             }
             catch (MySqlException e)

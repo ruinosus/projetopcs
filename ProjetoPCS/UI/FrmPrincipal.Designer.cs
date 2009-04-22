@@ -81,31 +81,32 @@
             // LocalidadeMenu
             // 
             this.LocalidadeMenu.Name = "LocalidadeMenu";
-            this.LocalidadeMenu.Size = new System.Drawing.Size(150, 22);
+            this.LocalidadeMenu.Size = new System.Drawing.Size(152, 22);
             this.LocalidadeMenu.Text = "Localidade";
+            this.LocalidadeMenu.Click += new System.EventHandler(this.LocalidadeMenu_Click);
             // 
             // departamentoMenu
             // 
             this.departamentoMenu.Name = "departamentoMenu";
-            this.departamentoMenu.Size = new System.Drawing.Size(150, 22);
+            this.departamentoMenu.Size = new System.Drawing.Size(152, 22);
             this.departamentoMenu.Text = "Departamento";
             // 
             // projetoMenu
             // 
             this.projetoMenu.Name = "projetoMenu";
-            this.projetoMenu.Size = new System.Drawing.Size(150, 22);
+            this.projetoMenu.Size = new System.Drawing.Size(152, 22);
             this.projetoMenu.Text = "Projeto";
             // 
             // empregadoMenu
             // 
             this.empregadoMenu.Name = "empregadoMenu";
-            this.empregadoMenu.Size = new System.Drawing.Size(150, 22);
+            this.empregadoMenu.Size = new System.Drawing.Size(152, 22);
             this.empregadoMenu.Text = "Empregado";
             // 
             // dependenteMenu
             // 
             this.dependenteMenu.Name = "dependenteMenu";
-            this.dependenteMenu.Size = new System.Drawing.Size(150, 22);
+            this.dependenteMenu.Size = new System.Drawing.Size(152, 22);
             this.dependenteMenu.Text = "Dependente";
             // 
             // FrmPrincipal
