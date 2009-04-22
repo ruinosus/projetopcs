@@ -15,22 +15,22 @@ namespace ClassesBasicas
             set { salario = value; }
         }
 
-        private int cpf;
-        public int Cpf
+        private string cpf;
+        public string Cpf
         {
             get { return cpf; }
             set { cpf = value; }
         }
 
-        private int rg;
-        public int Rg
+        private string rg;
+        public string Rg
         {
             get { return rg; }
             set { rg = value; }
         }
 
-        private int telefone;
-        public int Telefone
+        private string telefone;
+        public string Telefone
         {
             get { return telefone; }
             set { telefone = value; }
@@ -102,7 +102,7 @@ namespace ClassesBasicas
         { 
         }
 
-        public Empregado(int codigo, string nome, DateTime dataNascimento, char sexo, double salario, int cpf,int rg, int telefone, Endereco endereco,Departamento departamentoAlocado, DateTime dataAlocacao,Departamento departamentoChefiado, DateTime dataInicio,DateTime dataFinal, ArrayList dependentes, Empregado supervisor )
+        public Empregado(int codigo, string nome, DateTime dataNascimento, char sexo, double salario, string cpf, string rg, string telefone, Endereco endereco, Departamento departamentoAlocado, DateTime dataAlocacao, Departamento departamentoChefiado, DateTime dataInicio, DateTime dataFinal, ArrayList dependentes, Empregado supervisor)
             : base(codigo, nome, dataNascimento, sexo)
         {
             this.salario = salario;

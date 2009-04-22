@@ -93,6 +93,18 @@
       <Project>{9F46B5DC-BE5B-41AB-9BC6-3C8F287C4C75}</Project>
       <Name>ClassesBasicas</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Excecoes\Excecoes.csproj">
+      <Project>{8AE2544A-9DDD-413E-96AF-06FCEF3D7783}</Project>
+      <Name>Excecoes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocios\Negocios.csproj">
+      <Project>{AF92EF18-C930-4880-A7BD-EDD09BD4B8C6}</Project>
+      <Name>Negocios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util\Util.csproj">
+      <Project>{F9EB57D7-D2C0-481B-9269-4CD8D4A067F7}</Project>
+      <Name>Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,6 +12,8 @@ namespace UI
 {
     public partial class FrmPrincipal : Form
     {
+        private FrmCadLocalidade frmCadLocalidade = new FrmCadLocalidade();
+
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -20,6 +22,11 @@ namespace UI
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void LocalidadeMenu_Click(object sender, EventArgs e)
+        {
+            frmCadLocalidade.ShowDialog();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Repositorio.implementacoes
 
         #region IRepositorioDependente - tabela DEPENDENTE
 
-        public void InserirDependente(int codEmpregado,ClassesBasicas.Dependente dependente)
+        public void InserirDependente(int codEmpregado, Dependente dependente)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
 
@@ -42,6 +42,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?sexo", dependente.Sexo);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {
@@ -68,6 +69,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codDependente", dependente.Codigo);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
             {

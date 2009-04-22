@@ -44,6 +44,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?pais", endereco.Pais);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
 
             }
             catch (MySqlException e)
@@ -74,6 +75,7 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codEndereco", endereco.Codigo);
 
                 conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
 
             }
             catch (MySqlException e)
