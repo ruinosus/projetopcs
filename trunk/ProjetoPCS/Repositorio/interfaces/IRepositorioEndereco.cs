@@ -15,7 +15,8 @@ namespace Repositorio.interfaces
         void AlterarEndereco(Endereco endereco);
         Endereco ConsultarPorCodigo(int codEndereco);
         void RemoverEndereco(int codEndereco);
-        ArrayList ConsultarTodos(); 
+        ArrayList ConsultarTodos();
+        int ObterMaximoCodigo();
 
         #endregion
     }

@@ -25,6 +25,7 @@ namespace Repositorio.interfaces
 
         void InserirEmpregadoProjeto(Projeto projeto);
         ArrayList ConsultarPorCodigoProjeto(Projeto projeto);
+        void RemoverEmpregadoProjeto(int codProjeto);
         void RemoverEmpregadoProjeto(int codProjeto,int codEmpregado);
         
         #endregion

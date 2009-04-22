@@ -38,7 +38,7 @@ namespace Negocios
 
         public void DepartamentoInserirDepartamento(Departamento departamento)
         {
-            if ((departamento.Localidades.Count > 0) && (departamento.Localidades != null))
+            if ((departamento.Localidades != null) && (departamento.Localidades.Count > 0))
             {
                 this.repDepartamento.InserirDepartamento(departamento);
                 departamento.Codigo = this.repDepartamento.ObterMaximoCodigo();
@@ -47,6 +47,20 @@ namespace Negocios
             else
             {
                 this.repDepartamento.InserirDepartamento(departamento);
+            }
+        }
+
+        public void DepartamentoAlterarDepartamento(Departamento departamento)
+        {
+            if ((departamento.Localidades != null)&&(departamento.Localidades.Count > 0))
+            {
+                this.repDepartamento.AlterarDepartamento(departamento);
+                this.repDepartamento.RemoverDepartamentoLocalidade(departamento.Codigo);
+                this.repDepartamento.InserirDepartamentoLocalidade(departamento);
+            }
+            else
+            {
+                this.repDepartamento.AlterarDepartamento(departamento);
             }
         }
 
@@ -79,6 +93,11 @@ namespace Negocios
             this.repDepartamento.RemoverDepartamentoLocalidade(codDepartamento);
         }
 
+        public void DepartamentoLocalidadeRemoverDepartamentoLocalidade(int codDepartamento, int codLocalidade)
+        {
+            this.repDepartamento.RemoverDepartamentoLocalidade(codDepartamento, codLocalidade);
+        }
+
         #endregion
 
         #region IRepositorioDependente Tabela DEPENDENTE
@@ -86,6 +105,11 @@ namespace Negocios
         public void DependenteInserirDependente(int codEmpregado, Dependente dependente)
         {
             this.repDependente.InserirDependente(codEmpregado, dependente);
+        }
+
+        public void DependenteAlterarDependente(int codEmpregado, Dependente dependente)
+        {
+            this.repDependente.AlterarDependente(codEmpregado, dependente);
         }
 
         public Dependente DependenteConsultarPorCodigo(int codDependente)
@@ -120,7 +144,43 @@ namespace Negocios
         public void EmpregadoInserirEmpregado(Empregado empregado)
         {
             this.repEndereco.InserirEndereco(empregado.Endereco);
+            empregado.Endereco.Codigo = this.repEndereco.ObterMaximoCodigo();
             this.repEmpregado.InserirEmpregado(empregado);
+
+            if (empregado.DepartamentoAlocado != null)
+            {
+                this.repEmpregado.AlterarAlocar(empregado);
+            }            
+
+            if (empregado.DepartamentoChefiado != null)
+            {
+                this.repEmpregado.AlterarChefiar(empregado);
+            }
+            
+        }
+
+        public void EmpregadoAlterarEmpregado(Empregado empregado)
+        {
+            this.repEndereco.AlterarEndereco(empregado.Endereco);
+            this.repEmpregado.AlterarEmpregado(empregado);
+
+            if (empregado.DepartamentoAlocado != null)
+            {
+                this.repEmpregado.AlterarAlocar(empregado);
+            }
+            else
+            {
+                this.repEmpregado.RemoverAlocar(empregado.Codigo);
+            }
+
+            if (empregado.DepartamentoChefiado != null)
+            {
+                this.repEmpregado.AlterarChefiar(empregado);
+            }
+            else
+            {
+                this.repEmpregado.RemoverChefiar(empregado.Codigo);
+            }
         }
 
         public Empregado EmpregadoConsultarPorCodigo(int codEmpregado)
@@ -147,39 +207,39 @@ namespace Negocios
 
         #region IRepositorioEmpregado Tabela CHEFIAR
 
-        public void ChefiarInserirChefiar(Empregado empregado)
-        {
-            this.repEmpregado.InserirChefiar(empregado);
-        }
+        //public void ChefiarInserirChefiar(Empregado empregado)
+        //{
+        //    this.repEmpregado.InserirChefiar(empregado);
+        //}
 
         public Empregado ChefiarConsultarPorCodigoEmpregadoChefiar(Empregado empregado)
         {
             return this.repEmpregado.ConsultarPorCodigoEmpregadoChefiar(empregado);
         }
 
-        public void ChefiarRemoverChefiar(int codEmpregado)
-        {
-            this.repEmpregado.RemoverChefiar(codEmpregado);
-        }
+        //public void ChefiarRemoverChefiar(int codEmpregado)
+        //{
+        //    this.repEmpregado.RemoverChefiar(codEmpregado);
+        //}
 
         #endregion
 
         #region IRepositorioEmpregado Tabela ALOCAR
 
-        public void AlocarInserirAlocar(Empregado empregado)
-        {
-            this.repEmpregado.InserirAlocar(empregado);
-        }
+        //public void AlocarInserirAlocar(Empregado empregado)
+        //{
+        //    this.repEmpregado.InserirAlocar(empregado);
+        //}
 
         public Empregado AlocarConsultarPorCodigoEmpregadoAlocar(Empregado empregado)
         {
             return this.repEmpregado.ConsultarPorCodigoEmpregadoAlocar(empregado);
         }
 
-        public void AlocarRemoverAlocar(int codEmpregado)
-        {
-            this.repEmpregado.RemoverAlocar(codEmpregado);
-        }
+        //public void AlocarRemoverAlocar(int codEmpregado)
+        //{
+        //    this.repEmpregado.RemoverAlocar(codEmpregado);
+        //}
 
         #endregion
 
@@ -188,6 +248,11 @@ namespace Negocios
         public void LocalidadeInserirLocalidade(Localidade localidade)
         {
             this.repLocalidade.InserirLocalidade(localidade);
+        }
+
+        public void LocalidadeAlterarLocalidade(Localidade localidade)
+        {
+            this.repLocalidade.AlterarLocalidade(localidade);
         }
 
         public Localidade LocalidadeConsultarPorCodigo(int codLocalidade)
@@ -216,7 +281,31 @@ namespace Negocios
 
         public void ProjetoInserirProjeto(Projeto projeto)
         {
-            this.repProjeto.InserirProjeto(projeto);
+            if ((projeto.Empregados != null) && (projeto.Empregados.Count > 0))
+            {
+                this.repProjeto.InserirProjeto(projeto);
+                projeto.Codigo = this.repProjeto.ObterMaximoCodigo();
+                this.repProjeto.InserirEmpregadoProjeto(projeto);
+            }
+            else
+            {
+                this.repProjeto.InserirProjeto(projeto);
+            }
+        }
+
+        public void ProjetoAlterarProjeto(Projeto projeto)
+        {
+            if ((projeto.Empregados != null) && (projeto.Empregados.Count > 0))
+            {
+                this.repProjeto.AlterarProjeto(projeto);
+                this.repProjeto.RemoverEmpregadoProjeto(projeto.Codigo);
+                this.repProjeto.InserirEmpregadoProjeto(projeto);
+            }
+            else
+            {
+                this.repProjeto.AlterarProjeto(projeto);
+            }
+
         }
 
         public Projeto ProjetoConsultarPorCodigo(int codProjeto)
