@@ -21,9 +21,12 @@ namespace Repositorio.interfaces
         #endregion
 
         #region Tabela DEPARTAMENTO_LOCALIDADE
+
         void InserirDepartamentoLocalidade(Departamento departamento);
         void RemoverDepartamentoLocalidade(int codDepartamento);
+        void RemoverDepartamentoLocalidade(int codDepartamento, int codLocalidade);
         int ObterMaximoCodigo(); 
+
         #endregion
     }
 }

@@ -32,7 +32,8 @@ namespace Repositorio.implementacoes
 
         private static String QUERY_INSERT_DEPARTAMENTO_LOCALIDADE = "INSERT INTO DEPARTAMENTO_LOCALIDADE (COD_DEPARTAMENTO,COD_LOCALIDADE) VALUES (?codDepartamento,?codLocalidade)";
         private static String QUERY_SELECT_CODIGO_DEPARTAMENTO = "SELECT * FROM DEPARTAMENTO_LOCALIDADE WHERE  COD_DEPARTAMENTO = ?codDepartamento";
-        private static String QUERY_DELETE_DEPARTAMENTO_LOCALIDADE = "DELETE FROM DEPARTAMENTO_LOCALIDADE WHERE COD_DEPARTAMENTO = ?codDepartamento";
+        private static String QUERY_DELETE_DEPARTAMENTO_LOCALIDADE_1 = "DELETE FROM DEPARTAMENTO_LOCALIDADE WHERE COD_DEPARTAMENTO = ?codDepartamento";
+        private static String QUERY_DELETE_DEPARTAMENTO_LOCALIDADE_2 = "DELETE FROM DEPARTAMENTO_LOCALIDADE WHERE COD_DEPARTAMENTO = ?codDepartamento AND COD_LOCALIDADE = ?codLocalidade";
         //private static String QUERY_SELECT_CODIGO_LOCALIDADE = "SELECT * FROM DEPARTAMENTO_LOCALIDADE WHERE  COD_LOCALIDADE = ?codLocalidade";
 
         #endregion
@@ -276,7 +277,7 @@ namespace Repositorio.implementacoes
             MySqlConnection conexao = UtilBD.ObterConexao();
             try
             {
-                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE, conexao);
+                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE_1, conexao);
                 comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
 
                 conexao.Open();
@@ -285,6 +286,39 @@ namespace Repositorio.implementacoes
                 if (regitrosAfetados == 0)
                 {
                    // throw new ObjetoNaoExistente();
+                }
+
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum departamento encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+
+        }
+
+        public void RemoverDepartamentoLocalidade(int codDepartamento, int codLocalidade)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE_2, conexao);
+                comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
+                comando.Parameters.AddWithValue("?codLocalidade", codLocalidade);
+
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
+
+                if (regitrosAfetados == 0)
+                {
+                    // throw new ObjetoNaoExistente();
                 }
 
             }

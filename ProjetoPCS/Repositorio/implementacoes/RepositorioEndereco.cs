@@ -20,7 +20,8 @@ namespace Repositorio.implementacoes
         private static String QUERY_UPDATE = "UPDATE ENDERECO SET LOGRADOURO = ?logradouro, BAIRRO = ?bairro, COMPLEMENTO = ?complemento, CEP = ?cep ,NUMERO = ?numero, UF = ?uf, CIDADE = ?cidade, PAIS = ?pais WHERE COD_ENDERECO = ?codEndereco";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM ENDERECO WHERE COD_ENDERECO = ?codEndereco";
         private static String QUERY_DELETE = "DELETE FROM ENDERECO WHERE COD_ENDERECO = ?codEndereco";
-        private static String QUERY_SELECT_ALL = "SELECT * FROM ENDERECO"; 
+        private static String QUERY_SELECT_ALL = "SELECT * FROM ENDERECO";
+        private static String QUERY_MAX_CODIGO = "SELECT MAX(COD_ENDERECO) MAXCOD FROM ENDERECO";
 
         #endregion
 
@@ -198,6 +199,38 @@ namespace Repositorio.implementacoes
             }
 
             return enderecos;
+        }
+
+        public int ObterMaximoCodigo()
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            int codigo = 0;
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_MAX_CODIGO, conexao);
+                MySqlDataReader resultado;
+                conexao.Open();
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+
+                if (resultado.HasRows)
+                {
+                    codigo = resultado.GetInt32("MAXCOD");
+                }
+                resultado.Close();
+                UtilBD.FecharConexao(conexao);
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+
+            return codigo;
         }
 
         #endregion

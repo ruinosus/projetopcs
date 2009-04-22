@@ -34,7 +34,8 @@ namespace Repositorio.implementacoes
 
         private static String QUERY_INSERT_EMPREGADO_PROJETO = "INSERT INTO EMPREGADO_PROJETO (COD_PROJETO,COD_EMPREGADO) VALUES (?codProjeto,?codEmpregado)";
         private static String QUERY_SELECT_CODIGO_PROJETO = "SELECT * FROM EMPREGADO_PROJETO WHERE COD_PROJETO = ?codProjeto";
-        private static String QUERY_DELETE_EMPREGADO_PROJETO = "DELETE FROM EMPREGADO_PROJETO WHERE COD_PROJETO = ?codProjeto AND COD_EMPREGADO = ?codEmpregado";
+        private static String QUERY_DELETE_EMPREGADO_PROJETO_1 = "DELETE FROM EMPREGADO_PROJETO WHERE COD_PROJETO = ?codProjeto ";
+        private static String QUERY_DELETE_EMPREGADO_PROJETO_2 = "DELETE FROM EMPREGADO_PROJETO WHERE COD_PROJETO = ?codProjeto AND COD_EMPREGADO = ?codEmpregado";
 
         #endregion
 
@@ -64,7 +65,7 @@ namespace Repositorio.implementacoes
             }
         }
 
-        public void InserirProjeto(ClassesBasicas.Projeto projeto)
+        public void AlterarProjeto(ClassesBasicas.Projeto projeto)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
 
@@ -355,12 +356,44 @@ namespace Repositorio.implementacoes
             return empregados;
         }
 
+        public void RemoverEmpregadoProjeto(int codProjeto)
+        {
+            MySqlConnection conexao = UtilBD.ObterConexao();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_EMPREGADO_PROJETO_1, conexao);
+                comando.Parameters.AddWithValue("?codProjeto", codProjeto);
+
+
+                conexao.Open();
+                int regitrosAfetados = comando.ExecuteNonQuery();
+
+                if (regitrosAfetados == 0)
+                {
+                    // throw new ObjetoNaoExistente();
+                }
+
+            }
+            catch (ObjetoNaoExistente e)
+            {
+                MessageBox.Show("Nenhum projeto encontrado.");
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                UtilBD.FecharConexao(conexao);
+            }
+        }        
+
         public void RemoverEmpregadoProjeto(int codProjeto, int codEmpregado)
         {
             MySqlConnection conexao = UtilBD.ObterConexao();
             try
             {
-                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_EMPREGADO_PROJETO, conexao);
+                MySqlCommand comando = new MySqlCommand(QUERY_DELETE_EMPREGADO_PROJETO_2, conexao);
                 comando.Parameters.AddWithValue("?codProjeto", codProjeto);
                 comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
 
