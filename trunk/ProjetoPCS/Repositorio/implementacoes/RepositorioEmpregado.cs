@@ -205,7 +205,7 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_NOME, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("?nomeEmpregado" ","%" +  nomeEmpregado+ "%);
+                comando.Parameters.AddWithValue("?nomeEmpregado","%" +  nomeEmpregado+ "%");
 
                 if (conexao.State == System.Data.ConnectionState.Closed)
                 {
