@@ -36,7 +36,6 @@
             this.departamentoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.projetoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.empregadoMenu = new System.Windows.Forms.ToolStripMenuItem();
-            this.dependenteMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +61,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -71,9 +70,8 @@
             this.cadastroMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LocalidadeMenu,
             this.departamentoMenu,
-            this.projetoMenu,
             this.empregadoMenu,
-            this.dependenteMenu});
+            this.projetoMenu});
             this.cadastroMenu.Name = "cadastroMenu";
             this.cadastroMenu.Size = new System.Drawing.Size(66, 20);
             this.cadastroMenu.Text = "Cadastro";
@@ -104,12 +102,6 @@
             this.empregadoMenu.Size = new System.Drawing.Size(152, 22);
             this.empregadoMenu.Text = "Empregado";
             // 
-            // dependenteMenu
-            // 
-            this.dependenteMenu.Name = "dependenteMenu";
-            this.dependenteMenu.Size = new System.Drawing.Size(152, 22);
-            this.dependenteMenu.Text = "Dependente";
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -136,7 +128,6 @@
         private System.Windows.Forms.ToolStripMenuItem departamentoMenu;
         private System.Windows.Forms.ToolStripMenuItem empregadoMenu;
         private System.Windows.Forms.ToolStripMenuItem projetoMenu;
-        private System.Windows.Forms.ToolStripMenuItem dependenteMenu;
     }
 }
 

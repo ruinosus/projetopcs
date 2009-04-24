@@ -329,6 +329,8 @@ namespace Repositorio.implementacoes
                         conexao.Close();
                         conexao.Open();
                     }
+
+                    int regitrosAfetados = comando.ExecuteNonQuery();
                 }
             }
             catch (MySqlException e)

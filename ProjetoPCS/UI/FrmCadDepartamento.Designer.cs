@@ -1,6 +1,6 @@
 ﻿namespace UI
 {
-    partial class FrmCadLocalidade
+    partial class FrmCadDepartamento
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadLocalidade));
-            this.txtNome = new System.Windows.Forms.TextBox();
-            this.lbNome = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadDepartamento));
+            this.stPrincipal = new System.Windows.Forms.StatusStrip();
+            this.lbInformacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlPrincipal = new System.Windows.Forms.ToolStrip();
             this.btnNovo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -47,29 +47,33 @@
             this.btnUltimo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.txtLocalizar = new System.Windows.Forms.ToolStripTextBox();
-            this.stPrincipal = new System.Windows.Forms.StatusStrip();
-            this.lbInformacao = new System.Windows.Forms.ToolStripStatusLabel();
-            this.bsLocalidade = new System.Windows.Forms.BindingSource(this.components);
-            this.tlPrincipal.SuspendLayout();
+            this.bsDepartamento = new System.Windows.Forms.BindingSource(this.components);
+            this.lbNome = new System.Windows.Forms.Label();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.lstLocalidades = new System.Windows.Forms.ListBox();
+            this.cmbLocalidades = new System.Windows.Forms.ComboBox();
+            this.lbLocalidades = new System.Windows.Forms.Label();
+            this.btnRemoverLocalidade = new System.Windows.Forms.Button();
+            this.btnAdicionarLocalidade = new System.Windows.Forms.Button();
             this.stPrincipal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLocalidade)).BeginInit();
+            this.tlPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDepartamento)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtNome
+            // stPrincipal
             // 
-            this.txtNome.Location = new System.Drawing.Point(69, 35);
-            this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(221, 20);
-            this.txtNome.TabIndex = 131;
+            this.stPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lbInformacao});
+            this.stPrincipal.Location = new System.Drawing.Point(0, 184);
+            this.stPrincipal.Name = "stPrincipal";
+            this.stPrincipal.Size = new System.Drawing.Size(451, 22);
+            this.stPrincipal.TabIndex = 136;
             // 
-            // lbNome
+            // lbInformacao
             // 
-            this.lbNome.AutoSize = true;
-            this.lbNome.Location = new System.Drawing.Point(12, 35);
-            this.lbNome.Name = "lbNome";
-            this.lbNome.Size = new System.Drawing.Size(38, 13);
-            this.lbNome.TabIndex = 132;
-            this.lbNome.Text = "Nome:";
+            this.lbInformacao.Name = "lbInformacao";
+            this.lbInformacao.Size = new System.Drawing.Size(68, 17);
+            this.lbInformacao.Text = "informação";
             // 
             // tlPrincipal
             // 
@@ -90,8 +94,8 @@
             this.txtLocalizar});
             this.tlPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tlPrincipal.Name = "tlPrincipal";
-            this.tlPrincipal.Size = new System.Drawing.Size(359, 25);
-            this.tlPrincipal.TabIndex = 133;
+            this.tlPrincipal.Size = new System.Drawing.Size(451, 25);
+            this.tlPrincipal.TabIndex = 135;
             this.tlPrincipal.Text = "toolStrip1";
             // 
             // btnNovo
@@ -211,43 +215,97 @@
             // txtLocalizar
             // 
             this.txtLocalizar.Name = "txtLocalizar";
-            this.txtLocalizar.Size = new System.Drawing.Size(100, 25);
+            this.txtLocalizar.Size = new System.Drawing.Size(200, 23);
             this.txtLocalizar.ToolTipText = "Informe o nome ou parte dele para localiza-lo";
             this.txtLocalizar.TextChanged += new System.EventHandler(this.txtLocalizar_TextChanged);
             // 
-            // stPrincipal
+            // lbNome
             // 
-            this.stPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lbInformacao});
-            this.stPrincipal.Location = new System.Drawing.Point(0, 184);
-            this.stPrincipal.Name = "stPrincipal";
-            this.stPrincipal.Size = new System.Drawing.Size(359, 22);
-            this.stPrincipal.TabIndex = 134;
+            this.lbNome.AutoSize = true;
+            this.lbNome.Location = new System.Drawing.Point(12, 35);
+            this.lbNome.Name = "lbNome";
+            this.lbNome.Size = new System.Drawing.Size(38, 13);
+            this.lbNome.TabIndex = 138;
+            this.lbNome.Text = "Nome:";
             // 
-            // lbInformacao
+            // txtNome
             // 
-            this.lbInformacao.Name = "lbInformacao";
-            this.lbInformacao.Size = new System.Drawing.Size(68, 17);
-            this.lbInformacao.Text = "informação";
+            this.txtNome.Location = new System.Drawing.Point(77, 35);
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(347, 20);
+            this.txtNome.TabIndex = 137;
             // 
-            // FrmCadLocalidade
+            // lstLocalidades
+            // 
+            this.lstLocalidades.FormattingEnabled = true;
+            this.lstLocalidades.Location = new System.Drawing.Point(304, 74);
+            this.lstLocalidades.Name = "lstLocalidades";
+            this.lstLocalidades.Size = new System.Drawing.Size(120, 95);
+            this.lstLocalidades.TabIndex = 139;
+            this.lstLocalidades.SelectedIndexChanged += new System.EventHandler(this.lstLocalidades_SelectedIndexChanged);
+            // 
+            // cmbLocalidades
+            // 
+            this.cmbLocalidades.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLocalidades.FormattingEnabled = true;
+            this.cmbLocalidades.Location = new System.Drawing.Point(77, 74);
+            this.cmbLocalidades.Name = "cmbLocalidades";
+            this.cmbLocalidades.Size = new System.Drawing.Size(191, 21);
+            this.cmbLocalidades.TabIndex = 140;
+            this.cmbLocalidades.SelectedIndexChanged += new System.EventHandler(this.cmbLocalidades_SelectedIndexChanged);
+            // 
+            // lbLocalidades
+            // 
+            this.lbLocalidades.AutoSize = true;
+            this.lbLocalidades.Location = new System.Drawing.Point(12, 79);
+            this.lbLocalidades.Name = "lbLocalidades";
+            this.lbLocalidades.Size = new System.Drawing.Size(59, 13);
+            this.lbLocalidades.TabIndex = 138;
+            this.lbLocalidades.Text = "Localidade";
+            // 
+            // btnRemoverLocalidade
+            // 
+            this.btnRemoverLocalidade.Location = new System.Drawing.Point(430, 74);
+            this.btnRemoverLocalidade.Name = "btnRemoverLocalidade";
+            this.btnRemoverLocalidade.Size = new System.Drawing.Size(21, 23);
+            this.btnRemoverLocalidade.TabIndex = 142;
+            this.btnRemoverLocalidade.Text = "-";
+            this.btnRemoverLocalidade.UseVisualStyleBackColor = true;
+            this.btnRemoverLocalidade.Click += new System.EventHandler(this.btnRemoverLocalidade_Click);
+            // 
+            // btnAdicionarLocalidade
+            // 
+            this.btnAdicionarLocalidade.Location = new System.Drawing.Point(277, 74);
+            this.btnAdicionarLocalidade.Name = "btnAdicionarLocalidade";
+            this.btnAdicionarLocalidade.Size = new System.Drawing.Size(21, 23);
+            this.btnAdicionarLocalidade.TabIndex = 141;
+            this.btnAdicionarLocalidade.Text = "+";
+            this.btnAdicionarLocalidade.UseVisualStyleBackColor = true;
+            this.btnAdicionarLocalidade.Click += new System.EventHandler(this.btnAdicionarLocalidade_Click);
+            // 
+            // FrmCadDepartamento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(359, 206);
-            this.Controls.Add(this.stPrincipal);
-            this.Controls.Add(this.tlPrincipal);
+            this.ClientSize = new System.Drawing.Size(451, 206);
+            this.Controls.Add(this.btnRemoverLocalidade);
+            this.Controls.Add(this.btnAdicionarLocalidade);
+            this.Controls.Add(this.cmbLocalidades);
+            this.Controls.Add(this.lstLocalidades);
+            this.Controls.Add(this.lbLocalidades);
             this.Controls.Add(this.lbNome);
             this.Controls.Add(this.txtNome);
+            this.Controls.Add(this.stPrincipal);
+            this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "FrmCadLocalidade";
-            this.Text = "FrmCadLocalidade";
-            this.Load += new System.EventHandler(this.FrmCadLocalidade_Load);
-            this.tlPrincipal.ResumeLayout(false);
-            this.tlPrincipal.PerformLayout();
+            this.Name = "FrmCadDepartamento";
+            this.Text = "FrmCadDepartamento";
+            this.Load += new System.EventHandler(this.FrmCadDepartamento_Load);
             this.stPrincipal.ResumeLayout(false);
             this.stPrincipal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsLocalidade)).EndInit();
+            this.tlPrincipal.ResumeLayout(false);
+            this.tlPrincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDepartamento)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,12 +313,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.Label lbNome;
+        private System.Windows.Forms.StatusStrip stPrincipal;
+        private System.Windows.Forms.ToolStripStatusLabel lbInformacao;
         private System.Windows.Forms.ToolStrip tlPrincipal;
         private System.Windows.Forms.ToolStripButton btnNovo;
-        private System.Windows.Forms.ToolStripButton btnGravar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton btnGravar;
         private System.Windows.Forms.ToolStripButton btnCancelar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnAlterar;
@@ -272,8 +330,13 @@
         private System.Windows.Forms.ToolStripButton btnUltimo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripTextBox txtLocalizar;
-        private System.Windows.Forms.StatusStrip stPrincipal;
-        private System.Windows.Forms.ToolStripStatusLabel lbInformacao;
-        private System.Windows.Forms.BindingSource bsLocalidade;
+        private System.Windows.Forms.BindingSource bsDepartamento;
+        private System.Windows.Forms.Label lbNome;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.ListBox lstLocalidades;
+        private System.Windows.Forms.ComboBox cmbLocalidades;
+        private System.Windows.Forms.Label lbLocalidades;
+        private System.Windows.Forms.Button btnRemoverLocalidade;
+        private System.Windows.Forms.Button btnAdicionarLocalidade;
     }
 }

@@ -16,24 +16,14 @@ namespace UI
     {
         private Status status = new Status();
         private Controlador controlador = Controlador.GetInstancia();
-        private Localidade localidade;
+        private Localidade localidadeAtual;
         private ArrayList localidades;
         private bool pesquisando = false;
 
         private void AjustaBotoes()
         {
+            AjustaEdits();
 
-
-            if (pesquisando == false)
-            {
-                localidades = controlador.LocalidadeConsultarTodos();
-            }
-            else
-            {
-                localidades = controlador.LocalidadeConsultarPorNome(txtLocalizar.Text);
-            }
-
-            bsLocalidade.DataSource = localidades;
             switch (status.StatusAtual())
             {
                 case "Inativa":
@@ -91,12 +81,21 @@ namespace UI
                         break;
                     }
             }
-
-            AjustaEdits();
         }
 
         private void AjustaEdits()
         {
+            if (pesquisando == false)
+            {
+                localidades = controlador.LocalidadeConsultarTodos();
+            }
+            else
+            {
+                localidades = controlador.LocalidadeConsultarPorNome(txtLocalizar.Text);
+            }
+
+            bsLocalidade.DataSource = localidades;
+
             switch (status.StatusAtual())
             {
                 case "Inativa":
@@ -125,8 +124,8 @@ namespace UI
                         txtNome.ReadOnly = true;
                         if (bsLocalidade.Count > 0)
                         {
-                            localidade = (Localidade)localidades[bsLocalidade.Position] ;
-                            txtNome.Text = localidade.Nome;
+                            localidadeAtual = (Localidade)localidades[bsLocalidade.Position] ;
+                            txtNome.Text = localidadeAtual.Nome;
                         }
                         lbInformacao.Text ="Quantidades de Localidades cadastradas: " + bsLocalidade.Count;
                         break;
@@ -164,9 +163,6 @@ namespace UI
 
         private void FrmCadLocalidade_Load(object sender, EventArgs e)
         {
-            //localidades.Add(new Localidade(1, "Goiana"));
-            //localidades.Add(new Localidade(2, "tambau"));
-            //localidades.Add(new Localidade(3, "bla bla bla"));
 
             status.Navegando();
             AjustaBotoes();        
@@ -192,8 +188,8 @@ namespace UI
             {
                 case "Alteração":
                     {
-                        localidade.Nome = txtNome.Text;
-                        controlador.LocalidadeAlterarLocalidade(localidade);
+                        localidadeAtual.Nome = txtNome.Text;
+                        controlador.LocalidadeAlterarLocalidade(localidadeAtual);
                         break;
                     }
 
@@ -222,7 +218,7 @@ namespace UI
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            controlador.LocalidadeRemoverLocalidade(localidade.Codigo);
+            controlador.LocalidadeRemoverLocalidade(localidadeAtual.Codigo);
             System.Windows.Forms.MessageBox.Show("Localidade Removida com sucesso.");
             status.Navegando();
             AjustaBotoes();

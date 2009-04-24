@@ -15,6 +15,7 @@ namespace UI
     public partial class FrmPrincipal : Form
     {
         private FrmCadLocalidade frmCadLocalidade = new FrmCadLocalidade();
+        private FrmCadDepartamento frmCadDepartamento = new FrmCadDepartamento();
 
         public FrmPrincipal()
         {
@@ -33,12 +34,7 @@ namespace UI
 
         private void departamentoMenu_Click(object sender, EventArgs e)
         {
-            Controlador controlador = Controlador.GetInstancia();
-            ArrayList teste = controlador.EmpregadoConsultarTodos();
-            for (int i = 0; i < teste.Count; i++)
-            {
-                MessageBox.Show(((Empregado)teste[i]).Codigo + "   " + ((Empregado)teste[i]).Nome);
-            }
+            frmCadDepartamento.ShowDialog();
         }
     }
 }
