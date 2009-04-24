@@ -30,7 +30,8 @@ namespace Repositorio.implementacoes
 
         public void InserirLocalidade(ClassesBasicas.Localidade localidade)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {                
@@ -54,13 +55,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarLocalidade(ClassesBasicas.Localidade localidade)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -85,13 +87,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public System.Collections.ArrayList ConsultarTodos()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             ArrayList localidades = new ArrayList();
             try
             {
@@ -133,7 +136,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return localidades;
@@ -141,7 +144,9 @@ namespace Repositorio.implementacoes
 
         public ClassesBasicas.Localidade ConsultarPorCodigo(int codLocalidade)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             Localidade localidade = null;
             try
             {
@@ -182,7 +187,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return localidade;
@@ -190,14 +195,16 @@ namespace Repositorio.implementacoes
 
         public System.Collections.ArrayList ConsultarPorNome(string nomeLocalidade)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList localidades = new ArrayList();
             try
             {                
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_NOME, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("%" + "?nomeLocalidade" + "%", nomeLocalidade);
+                comando.Parameters.AddWithValue("?nomeLocalidade", "%" + nomeLocalidade + "%");
 
                 if (conexao.State == System.Data.ConnectionState.Closed)
                 {
@@ -235,14 +242,16 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return localidades;
         }
 
         public void RemoverLocalidade(int codLocalidade)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {                
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
@@ -275,7 +284,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 

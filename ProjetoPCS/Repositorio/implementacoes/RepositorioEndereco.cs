@@ -29,7 +29,8 @@ namespace Repositorio.implementacoes
 
         public void InserirEndereco(ClassesBasicas.Endereco endereco)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -61,13 +62,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarEndereco(ClassesBasicas.Endereco endereco)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -100,13 +102,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
-        public ClassesBasicas.Endereco ConsultarPorCodigo(int codEndereco)
+        public Endereco ConsultarPorCodigo(int codEndereco)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             Endereco endereco = null;
             try
             {
@@ -147,7 +151,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return endereco;
@@ -155,7 +159,8 @@ namespace Repositorio.implementacoes
 
         public void RemoverEndereco(int codEndereco)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
@@ -188,13 +193,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public System.Collections.ArrayList ConsultarTodos()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList enderecos = new ArrayList();
             try
             {
@@ -237,7 +244,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return enderecos;
@@ -245,7 +252,9 @@ namespace Repositorio.implementacoes
 
         public int ObterMaximoCodigo()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             int codigo = 0;
             try
             {
@@ -269,7 +278,7 @@ namespace Repositorio.implementacoes
                     codigo = resultado.GetInt32("MAXCOD");
                 }
                 resultado.Close();
-                UtilBD.FecharConexao(conexao);
+              
             }
             catch (MySqlException e)
             {
@@ -277,7 +286,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return codigo;

@@ -43,7 +43,8 @@ namespace Repositorio.implementacoes
 
         public void InserirProjeto(ClassesBasicas.Projeto projeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -70,13 +71,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarProjeto(ClassesBasicas.Projeto projeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -104,13 +106,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
-        public ClassesBasicas.Projeto ConsultarPorCodigo(int codProjeto)
+        public Projeto ConsultarPorCodigo(int codProjeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             Projeto projeto = null;
             try
             {
@@ -151,7 +155,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return projeto;
@@ -159,14 +163,16 @@ namespace Repositorio.implementacoes
 
         public ArrayList ConsultarPorNome(string nomeProjeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList projetos = new ArrayList();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_NOME, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("%" + "?nomeProjeto" + "%", nomeProjeto);
+                comando.Parameters.AddWithValue( "?nomeProjeto" ,"%" + nomeProjeto+ "%");
 
                 if (conexao.State == System.Data.ConnectionState.Closed)
                 {
@@ -204,14 +210,16 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return projetos;
         }
 
         public void RemoverProjeto(int codProjeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
@@ -244,13 +252,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public ArrayList ConsultarTodos()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList projetos = new ArrayList();
             try
             {
@@ -293,7 +303,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return projetos;
@@ -301,7 +311,9 @@ namespace Repositorio.implementacoes
 
         public int ObterMaximoCodigo()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             int codigo = 0;
             try
             {
@@ -325,7 +337,7 @@ namespace Repositorio.implementacoes
                     codigo = resultado.GetInt32("MAXCOD");
                 }
                 resultado.Close();
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             catch (MySqlException e)
             {
@@ -333,7 +345,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return codigo;
@@ -345,7 +357,9 @@ namespace Repositorio.implementacoes
 
         public void InserirEmpregadoProjeto(ClassesBasicas.Projeto projeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {
 
@@ -374,13 +388,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public ArrayList ConsultarPorCodigoProjeto(Projeto projeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList empregados = projeto.Empregados;
             try
             {
@@ -426,14 +442,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return empregados;
         }
 
         public void RemoverEmpregadoProjeto(int codProjeto)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_EMPREGADO_PROJETO_1, conexao);
@@ -467,13 +484,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }        
 
         public void RemoverEmpregadoProjeto(int codProjeto, int codEmpregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_EMPREGADO_PROJETO_2, conexao);
@@ -507,7 +525,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }        
 
