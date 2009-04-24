@@ -18,11 +18,20 @@ namespace UI
         private Controlador controlador = Controlador.GetInstancia();
         private Localidade localidade;
         private ArrayList localidades;
+        private bool pesquisando = false;
 
         private void AjustaBotoes()
         {
 
-            localidades = controlador.LocalidadeConsultarTodos();
+
+            if (pesquisando == false)
+            {
+                localidades = controlador.LocalidadeConsultarTodos();
+            }
+            else
+            {
+                localidades = controlador.LocalidadeConsultarPorNome(txtLocalizar.Text);
+            }
 
             bsLocalidade.DataSource = localidades;
             switch (status.StatusAtual())
@@ -183,6 +192,7 @@ namespace UI
             {
                 case "Alteração":
                     {
+                        localidade.Nome = txtNome.Text;
                         controlador.LocalidadeAlterarLocalidade(localidade);
                         break;
                     }
@@ -217,6 +227,13 @@ namespace UI
             status.Navegando();
             AjustaBotoes();
 
+        }
+
+        private void txtLocalizar_TextChanged(object sender, EventArgs e)
+        {
+            pesquisando = txtLocalizar.Text.Trim() != "" && txtLocalizar.Text.Trim() != " ";
+            status.Navegando();
+            AjustaBotoes();
         }
 
 

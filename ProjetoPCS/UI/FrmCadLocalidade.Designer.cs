@@ -213,6 +213,7 @@
             this.txtLocalizar.Name = "txtLocalizar";
             this.txtLocalizar.Size = new System.Drawing.Size(100, 23);
             this.txtLocalizar.ToolTipText = "Informe o nome ou parte dele para localiza-lo";
+            this.txtLocalizar.TextChanged += new System.EventHandler(this.txtLocalizar_TextChanged);
             // 
             // stPrincipal
             // 
