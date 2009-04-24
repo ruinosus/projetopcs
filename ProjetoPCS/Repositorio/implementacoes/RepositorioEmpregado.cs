@@ -79,7 +79,15 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?sexo", empregado.Sexo);
                 comando.Parameters.AddWithValue("?telefone", empregado.Telefone);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -109,9 +117,17 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?rg", empregado.Rg);
                 comando.Parameters.AddWithValue("?sexo", empregado.Sexo);
                 comando.Parameters.AddWithValue("?telefone", empregado.Telefone);
-                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo); 
+                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -134,7 +150,15 @@ namespace Repositorio.implementacoes
 
                 MySqlDataReader resultado;
                 comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
                 resultado.Read();
@@ -176,10 +200,18 @@ namespace Repositorio.implementacoes
                 MySqlDataReader resultado;
                 comando.Parameters.AddWithValue("%" + "?nomeEmpregado" + "%", nomeEmpregado);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
-                resultado.Read();
+                //resultado.Read();
 
                 if (resultado.HasRows)
                 {
@@ -217,7 +249,15 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
                 comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
 
                 if (regitrosAfetados == 0)
@@ -250,9 +290,17 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_ALL, conexao);
                 MySqlDataReader resultado;
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 resultado = comando.ExecuteReader();
-                resultado.Read();
+                //resultado.Read();
 
                 if (resultado.HasRows)
                 {
@@ -300,7 +348,15 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?dataInicio", empregado.DataInicio);
                 comando.Parameters.AddWithValue("?dataFinal", empregado.DataFinal);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -328,7 +384,15 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
 
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -351,7 +415,15 @@ namespace Repositorio.implementacoes
 
                 MySqlDataReader resultado;
                 comando.Parameters.AddWithValue("?codEmpregado", emp.Codigo);
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
                 resultado.Read();
@@ -397,7 +469,15 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_CHEFIAR, conexao);
                 comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
 
                 if (regitrosAfetados == 0)
@@ -436,7 +516,15 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codDepartamento", empregado.DepartamentoAlocado.Codigo);
                 comando.Parameters.AddWithValue("?dataAlocacao", empregado.DataAlocação);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -462,7 +550,15 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?dataAlocacao", empregado.DataAlocação);
                 comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -485,7 +581,15 @@ namespace Repositorio.implementacoes
 
                 MySqlDataReader resultado;
                 comando.Parameters.AddWithValue("?codEmpregado", emp.Codigo);
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
                 resultado.Read();
@@ -529,7 +633,15 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_ALOCAR, conexao);
                 comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
 
                 if (regitrosAfetados == 0)

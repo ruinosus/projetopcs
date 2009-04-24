@@ -48,7 +48,15 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_INSERT, conexao);
                 comando.Parameters.AddWithValue("?nomeDepartamento", departamento.Nome);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -70,7 +78,15 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?nomeDepartamento", departamento.Nome);
                 comando.Parameters.AddWithValue("?codDepartamento", departamento.Codigo);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
             }
             catch (MySqlException e)
@@ -93,7 +109,15 @@ namespace Repositorio.implementacoes
 
                 MySqlDataReader resultado;
                 comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
                 resultado.Read();
@@ -135,10 +159,18 @@ namespace Repositorio.implementacoes
                 MySqlDataReader resultado;
                 comando.Parameters.AddWithValue("%" + "?nomeDepartamento" + "%", nomeDepartamento);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
-                resultado.Read();
+                //resultado.Read();
 
                 if (resultado.HasRows)
                 {
@@ -176,7 +208,15 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
                 comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
 
                 if (regitrosAfetados == 0)
@@ -208,9 +248,17 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_ALL, conexao);
                 MySqlDataReader resultado;
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 resultado = comando.ExecuteReader();
-                resultado.Read();
+                //resultado.Read();
 
                 if (resultado.HasRows)
                 {
@@ -258,7 +306,15 @@ namespace Repositorio.implementacoes
                     Localidade localidade = (Localidade)departamento.Localidades[i];
                     comando.Parameters.AddWithValue("?codLocalidade", localidade.Codigo);
 
-                    conexao.Open();
+                    if (conexao.State == System.Data.ConnectionState.Closed)
+                    {
+                        conexao.Open();
+                    }
+                    else
+                    {
+                        conexao.Close();
+                        conexao.Open();
+                    }
                 }
             }
             catch (MySqlException e)
@@ -280,7 +336,15 @@ namespace Repositorio.implementacoes
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE_1, conexao);
                 comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
 
                 if (regitrosAfetados == 0)
@@ -313,7 +377,15 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
                 comando.Parameters.AddWithValue("?codLocalidade", codLocalidade);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
                 int regitrosAfetados = comando.ExecuteNonQuery();
 
                 if (regitrosAfetados == 0)
@@ -345,7 +417,15 @@ namespace Repositorio.implementacoes
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_MAX_CODIGO, conexao);
                 MySqlDataReader resultado;
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
                 resultado.Read();
@@ -390,10 +470,18 @@ namespace Repositorio.implementacoes
 
                 comando.Parameters.AddWithValue("?codDepartamento", codDepartamento);
 
-                conexao.Open();
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
 
                 resultado = comando.ExecuteReader();
-                resultado.Read();
+                //resultado.Read();
 
                 if (resultado.HasRows)
                 {

@@ -15,6 +15,15 @@ D:\ProjetoPCS\UI\bin\Debug\UI.pdb
 D:\ProjetoPCS\UI\bin\Debug\ClassesBasicas.dll
 D:\ProjetoPCS\UI\bin\Debug\ClassesBasicas.pdb
 D:\ProjetoPCS\UI\obj\Debug\ResolveAssemblyReference.cache
-D:\ProjetoPCS\UI\obj\Debug\UI.Form1.resources
 D:\ProjetoPCS\UI\obj\Debug\UI.Properties.Resources.resources
 D:\ProjetoPCS\UI\obj\Debug\UI.csproj.GenerateResource.Cache
+D:\ProjetoPCS\UI\obj\Debug\UI.FrmPrincipal.resources
+D:\ProjetoPCS\UI\obj\Debug\UI.FrmCadLocalidade.resources
+D:\ProjetoPCS\UI\bin\Debug\Excecoes.dll
+D:\ProjetoPCS\UI\bin\Debug\Negocios.dll
+D:\ProjetoPCS\UI\bin\Debug\Util.dll
+D:\ProjetoPCS\UI\bin\Debug\Repositorio.dll
+D:\ProjetoPCS\UI\bin\Debug\Negocios.pdb
+D:\ProjetoPCS\UI\bin\Debug\Util.pdb
+D:\ProjetoPCS\UI\bin\Debug\Excecoes.pdb
+D:\ProjetoPCS\UI\bin\Debug\Repositorio.pdb
