@@ -127,11 +127,7 @@ namespace UI
             cmbLocalidades.DataSource = localidades;
             cmbLocalidades.DisplayMember = "Nome";
             cmbLocalidades.ValueMember = "Codigo";
-
-           // lstLocalidades.Items.Add(cmbLocalidades.Items[2]);
-            
-
-
+          
             switch (status.StatusAtual())
             {
                 case "Inativa":
@@ -185,6 +181,12 @@ namespace UI
                                 localidadesDepartamento = departamentoAtual.Localidades;
                                 LimparLista();
                                 CarregarLista();
+                            }
+                            else
+                            {
+                                localidadesDepartamento = new ArrayList();
+                                LimparLista();
+                                //CarregarLista();
                             }
                         }
                         lbInformacao.Text = "Quantidades de Departamentos cadastrados: " + bsDepartamento.Count;
