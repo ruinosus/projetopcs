@@ -11,15 +11,6 @@ namespace Negocios
 {
     public class Controlador
     {
-        public enum Status 
-        {
-            Inativa,
-            Inclusao,
-            Alteracao,
-            Navegacao
-        }
-
-
         private static Controlador controlador;
 
         private Controlador()

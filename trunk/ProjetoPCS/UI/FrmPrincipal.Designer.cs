@@ -62,7 +62,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -90,6 +90,7 @@
             this.departamentoMenu.Name = "departamentoMenu";
             this.departamentoMenu.Size = new System.Drawing.Size(152, 22);
             this.departamentoMenu.Text = "Departamento";
+            this.departamentoMenu.Click += new System.EventHandler(this.departamentoMenu_Click);
             // 
             // projetoMenu
             // 

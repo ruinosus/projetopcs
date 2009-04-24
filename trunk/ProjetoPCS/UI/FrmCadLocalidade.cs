@@ -14,18 +14,20 @@ namespace UI
 {
     public partial class FrmCadLocalidade : Form
     {
+        private Status status = new Status();
         private Controlador controlador = Controlador.GetInstancia();
-        //private Localidade localidade = new Localidade();
-        private ArrayList localidades = new ArrayList();
+        private Localidade localidade;
+        private ArrayList localidades;
 
-        private void AjustaBotoes(Controlador.Status status)
+        private void AjustaBotoes()
         {
 
             localidades = controlador.LocalidadeConsultarTodos();
+
             bsLocalidade.DataSource = localidades;
-            switch (status)
+            switch (status.StatusAtual())
             {
-                case Controlador.Status.Inativa:
+                case "Inativa":
                     {
                         btnAnterior.Enabled = false;
                         btnCancelar.Enabled = false;
@@ -39,7 +41,7 @@ namespace UI
                         break;
                     }
 
-                case Controlador.Status.Inclusao:
+                case "Inclusão":
                     {
                         btnAnterior.Enabled = false;
                         btnCancelar.Enabled = true;
@@ -52,7 +54,7 @@ namespace UI
                         btnAlterar.Enabled = false;
                         break;
                     }
-                case Controlador.Status.Alteracao:
+                case "Alteração":
                     {
                         btnAnterior.Enabled = false;
                         btnCancelar.Enabled = true;
@@ -65,7 +67,7 @@ namespace UI
                         btnAlterar.Enabled = false;
                         break;
                     }
-                case Controlador.Status.Navegacao:
+                case "Navegação":
                     {
                         btnAnterior.Enabled = bsLocalidade.Position > 0 ;
                         btnCancelar.Enabled = false;
@@ -81,14 +83,14 @@ namespace UI
                     }
             }
 
-            AjustaEdits(status);
+            AjustaEdits();
         }
 
-        private void AjustaEdits(Controlador.Status status)
+        private void AjustaEdits()
         {
-            switch (status)
+            switch (status.StatusAtual())
             {
-                case Controlador.Status.Inativa:
+                case "Inativa":
                     {
                         txtNome.ReadOnly = true;
                         txtNome.Clear();
@@ -96,26 +98,26 @@ namespace UI
                         break;
                     }
 
-                case Controlador.Status.Inclusao:
+                case "Inclusão":
                     {
                         txtNome.ReadOnly = false;
                         txtNome.Clear();
                         
                         break;
                     }
-                case Controlador.Status.Alteracao:
+                case "Alteração":
                     {
                         txtNome.ReadOnly = false;
                         
                         break;
                     }
-                case Controlador.Status.Navegacao:
+                case "Navegação":
                     {
                         txtNome.ReadOnly = true;
                         if (bsLocalidade.Count > 0)
                         {
-                            //localidade = ;
-                            txtNome.Text = ((Localidade)localidades[bsLocalidade.Position]).Nome;
+                            localidade = (Localidade)localidades[bsLocalidade.Position] ;
+                            txtNome.Text = localidade.Nome;
                         }
                         lbInformacao.Text ="Quantidades de Localidades cadastradas: " + bsLocalidade.Count;
                         break;
@@ -132,20 +134,23 @@ namespace UI
 
         private void btnNovo_Click(object sender, EventArgs e)
         {
-            AjustaBotoes(Controlador.Status.Inclusao);
+            status.Incluindo();
+            AjustaBotoes();
         }
 
         private void btnAnterior_Click(object sender, EventArgs e)
         {
+            status.Navegando();
             bsLocalidade.MovePrevious();
-            AjustaBotoes(Controlador.Status.Navegacao);
+            AjustaBotoes();
 
         }
 
         private void btnProximo_Click(object sender, EventArgs e)
         {
+            status.Navegando();
             bsLocalidade.MoveNext();
-            AjustaBotoes(Controlador.Status.Navegacao);
+            AjustaBotoes();
         }
 
         private void FrmCadLocalidade_Load(object sender, EventArgs e)
@@ -153,44 +158,64 @@ namespace UI
             //localidades.Add(new Localidade(1, "Goiana"));
             //localidades.Add(new Localidade(2, "tambau"));
             //localidades.Add(new Localidade(3, "bla bla bla"));
-            
-            AjustaBotoes(Controlador.Status.Navegacao);        
+
+            status.Navegando();
+            AjustaBotoes();        
         }
 
         private void btnPrimeiro_Click(object sender, EventArgs e)
         {
+            status.Navegando();
             bsLocalidade.MoveFirst();
-            AjustaBotoes(Controlador.Status.Navegacao);
+            AjustaBotoes();
         }
 
         private void btnUltimo_Click(object sender, EventArgs e)
         {
+            status.Navegando();
             bsLocalidade.MoveLast();
-            AjustaBotoes(Controlador.Status.Navegacao);
+            AjustaBotoes();
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            Localidade localidade = new Localidade(0, txtNome.Text);
-            controlador.LocalidadeInserirLocalidade(localidade);
-            AjustaBotoes(Controlador.Status.Navegacao);
+            switch (status.StatusAtual())
+            {
+                case "Alteração":
+                    {
+                        controlador.LocalidadeAlterarLocalidade(localidade);
+                        break;
+                    }
+
+                case "Inclusão":
+                    {
+                        Localidade l = new Localidade(0, txtNome.Text);
+                        controlador.LocalidadeInserirLocalidade(l);
+                        break;
+                    }
+            }
+            status.Navegando();
+            AjustaBotoes();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            AjustaBotoes(Controlador.Status.Navegacao);
+            status.Navegando();
+            AjustaBotoes();
         }
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
-            AjustaBotoes(Controlador.Status.Alteracao);
+            status.Alterando();
+            AjustaBotoes();
         }
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            controlador.LocalidadeRemoverLocalidade(((Localidade)localidades[bsLocalidade.Position]).Codigo);
+            controlador.LocalidadeRemoverLocalidade(localidade.Codigo);
             System.Windows.Forms.MessageBox.Show("Localidade Removida com sucesso.");
-            AjustaBotoes(Controlador.Status.Navegacao);
+            status.Navegando();
+            AjustaBotoes();
 
         }
 
