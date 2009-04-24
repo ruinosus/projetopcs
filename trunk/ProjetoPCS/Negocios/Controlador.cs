@@ -60,6 +60,7 @@ namespace Negocios
             }
             else
             {
+                this.repDepartamento.RemoverDepartamentoLocalidade(departamento.Codigo);
                 this.repDepartamento.AlterarDepartamento(departamento);
             }
         }
