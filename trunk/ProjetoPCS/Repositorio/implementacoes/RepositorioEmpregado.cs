@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ClassesBasicas;
 using System.Collections;
 using Excecoes;
+using System.Data;
 
 namespace Repositorio.implementacoes
 {
@@ -54,7 +55,8 @@ namespace Repositorio.implementacoes
 
         public void InserirEmpregado(ClassesBasicas.Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -96,13 +98,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarEmpregado(ClassesBasicas.Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -136,13 +139,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
-        public ClassesBasicas.Empregado ConsultarPorCodigo(int codEmpregado)
+        public Empregado ConsultarPorCodigo(int codEmpregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             Empregado empregado = null;
             try
             {
@@ -183,22 +188,24 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return empregado;
         }
 
-        public System.Collections.ArrayList ConsultarPorNome(string nomeEmpregado)
+        public ArrayList ConsultarPorNome(string nomeEmpregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList empregados = new ArrayList();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_NOME, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("%" + "?nomeEmpregado" + "%", nomeEmpregado);
+                comando.Parameters.AddWithValue("?nomeEmpregado" ","%" +  nomeEmpregado+ "%);
 
                 if (conexao.State == System.Data.ConnectionState.Closed)
                 {
@@ -236,14 +243,16 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return empregados;
         }
 
         public void RemoverEmpregado(int codEmpregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
@@ -276,17 +285,19 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
-        public System.Collections.ArrayList ConsultarTodos()
+        public ArrayList ConsultarTodos()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
-            ArrayList empregados = new ArrayList();
-            try
-            {
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
+            ArrayList empregados = new ArrayList();
+            
+            try
+            {  
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_ALL, conexao);
                 MySqlDataReader resultado;
 
@@ -299,21 +310,21 @@ namespace Repositorio.implementacoes
                     conexao.Close();
                     conexao.Open();
                 }
+
                 resultado = comando.ExecuteReader();
-                //resultado.Read();
 
                 if (resultado.HasRows)
                 {
                     while (resultado.Read())
                     {
-                        empregados.Add(this.CriarEmpregado(resultado));
+                        empregados.Add(this.CriarEmpregado(resultado));                       
                     }
                 }
                 else
                 {
-                   // throw new ObjetoNaoExistente();
+                    // throw new ObjetoNaoExistente();
                 }
-                resultado.Close();
+               resultado.Close();
             }
             catch (ObjetoNaoExistente e)
             {
@@ -324,8 +335,9 @@ namespace Repositorio.implementacoes
                 MessageBox.Show(e.Message);
             }
             finally
-            {
-                UtilBD.FecharConexao(conexao);
+            { 
+                
+                banco.FecharConexao(conexao);
             }
 
             return empregados;
@@ -337,7 +349,8 @@ namespace Repositorio.implementacoes
 
         public void InserirChefiar(Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -365,13 +378,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarChefiar(Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -401,13 +415,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public Empregado ConsultarPorCodigoEmpregadoChefiar(Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             Empregado emp = empregado;
             try
             {
@@ -455,7 +471,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return emp;
@@ -463,7 +479,8 @@ namespace Repositorio.implementacoes
 
         public void RemoverChefiar(int codEmpregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_CHEFIAR, conexao);
@@ -496,7 +513,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
@@ -506,7 +523,8 @@ namespace Repositorio.implementacoes
 
         public void InserirAlocar(Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -533,13 +551,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarAlocar(Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -567,13 +586,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public Empregado ConsultarPorCodigoEmpregadoAlocar(Empregado empregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             Empregado emp = empregado;
             try
             {
@@ -619,7 +640,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return emp;
@@ -627,7 +648,8 @@ namespace Repositorio.implementacoes
 
         public void RemoverAlocar(int codEmpregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_ALOCAR, conexao);
@@ -660,7 +682,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         } 
         #endregion
@@ -674,9 +696,9 @@ namespace Repositorio.implementacoes
 
             try
             {
-                codEmpregadoSupervisor = resultado.GetInt32("COD_SUPERVISOR");
+                codEmpregadoSupervisor = resultado.GetInt32("COD_EMPREGADO_SUPERVISOR");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 codEmpregadoSupervisor = 0;
             }
@@ -703,7 +725,7 @@ namespace Repositorio.implementacoes
 
             if (codEmpregadoSupervisor != 0)
             {
-                empregado.Supervisor = this.ConsultarPorCodigo(codEmpregadoSupervisor); 
+                empregado.Supervisor = this.ConsultarPorCodigo(codEmpregadoSupervisor);
             }
 
             empregado.Endereco = this.repEndereco.ConsultarPorCodigo(codEndereco);

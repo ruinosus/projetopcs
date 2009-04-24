@@ -42,7 +42,9 @@ namespace Repositorio.implementacoes
 
         public void InserirDepartamento(ClassesBasicas.Departamento departamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_INSERT, conexao);
@@ -65,13 +67,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarDepartamento(Departamento departamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_UPDATE, conexao);
@@ -95,13 +99,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
-        public ClassesBasicas.Departamento ConsultarPorCodigo(int codDepartamento)
+        public Departamento ConsultarPorCodigo(int codDepartamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             Departamento departamento = null;
             try
             {
@@ -142,22 +148,24 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return departamento;
         }
 
-        public System.Collections.ArrayList ConsultarPorNome(string nomeDepartamento)
+        public ArrayList ConsultarPorNome(string nomeDepartamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList departamentos = new ArrayList();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_NOME, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("%" + "?nomeDepartamento" + "%", nomeDepartamento);
+                comando.Parameters.AddWithValue("?nomeDepartamento" ,"%" +  nomeDepartamento+ "%");
 
                 if (conexao.State == System.Data.ConnectionState.Closed)
                 {
@@ -195,14 +203,16 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return departamentos;
         }
 
         public void RemoverDepartamento(int codDepartamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
@@ -235,13 +245,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
-        public System.Collections.ArrayList ConsultarTodos()
+        public ArrayList ConsultarTodos()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList departamentos = new ArrayList();
             try
             {
@@ -283,7 +295,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return departamentos;
@@ -295,7 +307,9 @@ namespace Repositorio.implementacoes
 
         public void InserirDepartamentoLocalidade(Departamento departamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             try
             {
 
@@ -323,14 +337,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
         }        
 
         public void RemoverDepartamentoLocalidade(int codDepartamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE_1, conexao);
@@ -363,14 +378,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
         }
 
         public void RemoverDepartamentoLocalidade(int codDepartamento, int codLocalidade)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE_DEPARTAMENTO_LOCALIDADE_2, conexao);
@@ -404,14 +420,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
         }
 
         public int ObterMaximoCodigo()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             int codigo = 0;
             try
             {
@@ -435,7 +452,7 @@ namespace Repositorio.implementacoes
                     codigo = resultado.GetInt32("MAXCOD");
                 }
                 resultado.Close();
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             catch (MySqlException e)
             {
@@ -443,7 +460,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return codigo;
@@ -461,7 +478,9 @@ namespace Repositorio.implementacoes
 
         private ArrayList ConsultarPorDepartamento(int codDepartamento)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList localidades = new ArrayList();
             try
             {
@@ -499,7 +518,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return localidades;
 

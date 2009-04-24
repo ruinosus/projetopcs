@@ -30,7 +30,8 @@ namespace Repositorio.implementacoes
 
         public void InserirDependente(int codEmpregado, Dependente dependente)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -58,13 +59,14 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
         public void AlterarDependente(int codEmpregado, Dependente dependente)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
 
             try
             {
@@ -93,14 +95,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
         }
 
-        public ClassesBasicas.Dependente ConsultarPorCodigo(int codDependente)
+        public Dependente ConsultarPorCodigo(int codDependente)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             Dependente dependente = null;
             try
             {
@@ -127,7 +130,7 @@ namespace Repositorio.implementacoes
                 }
                 else
                 {
-                    throw new ObjetoNaoExistente();
+                  //  throw new ObjetoNaoExistente();
                 }
                 resultado.Close();
             }
@@ -141,7 +144,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return dependente;
@@ -149,7 +152,9 @@ namespace Repositorio.implementacoes
 
         public ArrayList ConsultarPorEmpregado(int codEmpregado)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList dependentes = new ArrayList();
             try
             {
@@ -180,7 +185,7 @@ namespace Repositorio.implementacoes
                 }
                 else
                 {
-                    throw new ObjetoNaoExistente();
+                   // throw new ObjetoNaoExistente();
                 }
                 resultado.Close();
             }
@@ -194,21 +199,23 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return dependentes;
         }
 
-        public System.Collections.ArrayList ConsultarPorNome(string nomeDependente)
+        public ArrayList ConsultarPorNome(string nomeDependente)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList dependentes = new ArrayList();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_SELECT_NOME, conexao);
 
                 MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("%" + "?nomeDependente" + "%", nomeDependente);
+                comando.Parameters.AddWithValue( "?nomeDependente","%" + nomeDependente + "%");
 
                 if (conexao.State == System.Data.ConnectionState.Closed)
                 {
@@ -246,14 +253,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
             return dependentes;
         }
 
         public void RemoverDependente(int codDependente)
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_DELETE, conexao);
@@ -286,13 +294,15 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
         }
 
-        public System.Collections.ArrayList ConsultarTodos()
+        public ArrayList ConsultarTodos()
         {
-            MySqlConnection conexao = UtilBD.ObterConexao();
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
             ArrayList dependentes = new ArrayList();
             try
             {
@@ -335,7 +345,7 @@ namespace Repositorio.implementacoes
             }
             finally
             {
-                UtilBD.FecharConexao(conexao);
+                banco.FecharConexao(conexao);
             }
 
             return dependentes;
