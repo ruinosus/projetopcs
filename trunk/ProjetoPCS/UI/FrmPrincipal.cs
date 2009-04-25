@@ -16,6 +16,7 @@ namespace UI
     {
         private FrmCadLocalidade frmCadLocalidade = new FrmCadLocalidade();
         private FrmCadDepartamento frmCadDepartamento = new FrmCadDepartamento();
+        private FrmCadEmpregado frmCadEmpregado = new FrmCadEmpregado();
 
         public FrmPrincipal()
         {
@@ -35,6 +36,11 @@ namespace UI
         private void departamentoMenu_Click(object sender, EventArgs e)
         {
             frmCadDepartamento.ShowDialog();
+        }
+
+        private void empregadoMenu_Click(object sender, EventArgs e)
+        {
+            frmCadEmpregado.ShowDialog();
         }
     }
 }
