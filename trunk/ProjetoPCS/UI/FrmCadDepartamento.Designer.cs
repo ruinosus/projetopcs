@@ -47,7 +47,6 @@
             this.btnUltimo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.txtLocalizar = new System.Windows.Forms.ToolStripTextBox();
-            this.bsDepartamento = new System.Windows.Forms.BindingSource(this.components);
             this.lbNome = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lstLocalidades = new System.Windows.Forms.ListBox();
@@ -55,6 +54,7 @@
             this.lbLocalidades = new System.Windows.Forms.Label();
             this.btnRemoverLocalidade = new System.Windows.Forms.Button();
             this.btnAdicionarLocalidade = new System.Windows.Forms.Button();
+            this.bsDepartamento = new System.Windows.Forms.BindingSource(this.components);
             this.stPrincipal.SuspendLayout();
             this.tlPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDepartamento)).BeginInit();
@@ -215,7 +215,7 @@
             // txtLocalizar
             // 
             this.txtLocalizar.Name = "txtLocalizar";
-            this.txtLocalizar.Size = new System.Drawing.Size(200, 23);
+            this.txtLocalizar.Size = new System.Drawing.Size(200, 25);
             this.txtLocalizar.ToolTipText = "Informe o nome ou parte dele para localiza-lo";
             this.txtLocalizar.TextChanged += new System.EventHandler(this.txtLocalizar_TextChanged);
             // 
