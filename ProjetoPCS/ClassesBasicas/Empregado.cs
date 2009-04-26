@@ -83,13 +83,6 @@ namespace ClassesBasicas
 
         #endregion
 
-        private ArrayList dependentes;
-        public ArrayList Dependentes
-        {
-            get { return dependentes; }
-            set { dependentes = value; }
-        }
-
         private Empregado supervisor;
         public Empregado Supervisor
         {
@@ -102,7 +95,7 @@ namespace ClassesBasicas
         { 
         }
 
-        public Empregado(int codigo, string nome, DateTime dataNascimento, char sexo, double salario, string cpf, string rg, string telefone, Endereco endereco, Departamento departamentoAlocado, DateTime dataAlocacao, Departamento departamentoChefiado, DateTime dataInicio, DateTime dataFinal, ArrayList dependentes, Empregado supervisor)
+        public Empregado(int codigo, string nome, DateTime dataNascimento, char sexo, double salario, string cpf, string rg, string telefone, Endereco endereco, Departamento departamentoAlocado, DateTime dataAlocacao, Departamento departamentoChefiado, DateTime dataInicio, DateTime dataFinal, Empregado supervisor)
             : base(codigo, nome, dataNascimento, sexo)
         {
             this.salario = salario;
@@ -115,7 +108,6 @@ namespace ClassesBasicas
             this.departamentoChefiado = departamentoChefiado;
             this.dataInicio = dataInicio;
             this.dataFinal = dataFinal;
-            this.dependentes = dependentes;
             this.supervisor = supervisor;
 
         }
