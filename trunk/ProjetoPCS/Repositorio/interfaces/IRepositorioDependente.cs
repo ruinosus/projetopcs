@@ -11,10 +11,9 @@ namespace Repositorio.interfaces
     {
         #region Tabela DEPENDENTE
 
-        void InserirDependente(int codEmpregado, Dependente dependente);
-        void AlterarDependente(int codEmpregado, Dependente dependente);
+        void InserirDependente(Dependente dependente);
+        void AlterarDependente(Dependente dependente);
         Dependente ConsultarPorCodigo(int codDependente);
-        ArrayList ConsultarPorEmpregado(int codEmpregado);
         ArrayList ConsultarPorNome(String nomeDependente);
         void RemoverDependente(int codDependente);
         ArrayList ConsultarTodos(); 
