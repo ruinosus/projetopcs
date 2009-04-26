@@ -15,7 +15,6 @@ namespace Repositorio.implementacoes
 {
     public class RepositorioEmpregado : IRepositorioEmpregado
     {
-        private IRepositorioDependente repDependente = new RepositorioDependente();
         private IRepositorioEndereco repEndereco = new RepositorioEndereco();
         private IRepositorioDepartamento repDepartamento = new RepositorioDepartamento();
 
@@ -719,9 +718,7 @@ namespace Repositorio.implementacoes
             empregado.Rg = rg;
             empregado.Salario = salario;
             empregado.Sexo = sexo;
-            empregado.Telefone = telefone;
-
-            empregado.Dependentes = this.repDependente.ConsultarPorEmpregado(codEmpregado);
+            empregado.Telefone = telefone;           
 
             if (codEmpregadoSupervisor != 0)
             {
