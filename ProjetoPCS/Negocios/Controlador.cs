@@ -103,24 +103,19 @@ namespace Negocios
 
         #region IRepositorioDependente Tabela DEPENDENTE
 
-        public void DependenteInserirDependente(int codEmpregado, Dependente dependente)
+        public void DependenteInserirDependente(Dependente dependente)
         {
-            this.repDependente.InserirDependente(codEmpregado, dependente);
+            this.repDependente.InserirDependente(dependente);
         }
 
-        public void DependenteAlterarDependente(int codEmpregado, Dependente dependente)
+        public void DependenteAlterarDependente(Dependente dependente)
         {
-            this.repDependente.AlterarDependente(codEmpregado, dependente);
+            this.repDependente.AlterarDependente(dependente);
         }
 
         public Dependente DependenteConsultarPorCodigo(int codDependente)
         {
             return this.repDependente.ConsultarPorCodigo(codDependente);
-        }
-
-        public ArrayList DependenteConsultarPorEmpregado(int codEmpregado)
-        {
-            return this.repDependente.ConsultarPorEmpregado(codEmpregado);
         }
 
         public ArrayList DependenteConsultarPorNome(String nomeDependente)
