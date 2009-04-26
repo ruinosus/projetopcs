@@ -14,6 +14,8 @@ namespace Repositorio.implementacoes
 {
     public class RepositorioDependente : IRepositorioDependente
     {
+        private IRepositorioEmpregado repEmpregado = new RepositorioEmpregado();
+
         #region Sql tabela DEPENDENTE
 
         private static String QUERY_INSERT = "INSERT INTO DEPENDENTE (COD_EMPREGADO,NOME_DEPENDENTE,GRAU_PARENTESCO,DATA_NASCIMENTO,SEXO) VALUES (?codEmpregado,?nomeDependente,?grauParentesco,?dataNascimento,?sexo)";
@@ -28,7 +30,7 @@ namespace Repositorio.implementacoes
 
         #region IRepositorioDependente - tabela DEPENDENTE
 
-        public void InserirDependente(int codEmpregado, Dependente dependente)
+        public void InserirDependente(Dependente dependente)
         {
             UtilBD banco = new UtilBD();
             MySqlConnection conexao = banco.ObterConexao();
@@ -36,7 +38,7 @@ namespace Repositorio.implementacoes
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_INSERT, conexao);
-                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+                comando.Parameters.AddWithValue("?codEmpregado", dependente.Empregado.Codigo);
                 comando.Parameters.AddWithValue("?nomeDependente", dependente.Nome);
                 comando.Parameters.AddWithValue("?grauParentesco", dependente.GrauParentesco);
                 comando.Parameters.AddWithValue("?dataNascimento", dependente.DataNascimento);
@@ -63,7 +65,7 @@ namespace Repositorio.implementacoes
             }
         }
 
-        public void AlterarDependente(int codEmpregado, Dependente dependente)
+        public void AlterarDependente(Dependente dependente)
         {
             UtilBD banco = new UtilBD();
             MySqlConnection conexao = banco.ObterConexao();
@@ -71,7 +73,7 @@ namespace Repositorio.implementacoes
             try
             {
                 MySqlCommand comando = new MySqlCommand(QUERY_UPDATE, conexao);
-                comando.Parameters.AddWithValue("?codEmpregado", codEmpregado);
+                comando.Parameters.AddWithValue("?codEmpregado", dependente.Empregado.Codigo);
                 comando.Parameters.AddWithValue("?nomeDependente", dependente.Nome);
                 comando.Parameters.AddWithValue("?grauParentesco", dependente.GrauParentesco);
                 comando.Parameters.AddWithValue("?dataNascimento", dependente.DataNascimento);
@@ -148,60 +150,6 @@ namespace Repositorio.implementacoes
             }
 
             return dependente;
-        }
-
-        public ArrayList ConsultarPorEmpregado(int codEmpregado)
-        {
-            UtilBD banco = new UtilBD();
-            MySqlConnection conexao = banco.ObterConexao();
-
-            ArrayList dependentes = new ArrayList();
-            try
-            {
-                MySqlCommand comando = new MySqlCommand(QUERY_SELECT_CODIGO_EMPREGADO, conexao);
-
-                MySqlDataReader resultado;
-                comando.Parameters.AddWithValue("?codEmpregado" , codEmpregado);
-
-                if (conexao.State == System.Data.ConnectionState.Closed)
-                {
-                    conexao.Open();
-                }
-                else
-                {
-                    conexao.Close();
-                    conexao.Open();
-                }
-
-                resultado = comando.ExecuteReader();
-               // resultado.Read();
-
-                if (resultado.HasRows)
-                {
-                    while (resultado.Read())
-                    {
-                        dependentes.Add(this.CriarDependente(resultado));
-                    }
-                }
-                else
-                {
-                   // throw new ObjetoNaoExistente();
-                }
-                resultado.Close();
-            }
-            catch (ObjetoNaoExistente e)
-            {
-                MessageBox.Show("Nenhum dependente encontrado.");
-            }
-            catch (MySqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            finally
-            {
-                banco.FecharConexao(conexao);
-            }
-            return dependentes;
         }
 
         public ArrayList ConsultarPorNome(string nomeDependente)
@@ -360,8 +308,12 @@ namespace Repositorio.implementacoes
             string grauParentesco = resultado.GetString("GRAU_PARENTESCO");
             DateTime dataNascimento = resultado.GetDateTime("DATA_NASCIMENTO");
             char sexo = resultado.GetChar("SEXO");
+            int codEmpregado = resultado.GetInt32("COD_EMPREGADO");
 
-            return new Dependente(codDependente,nome,dataNascimento,sexo,grauParentesco);
+            Empregado empregado = this.repEmpregado.ConsultarPorCodigo(codEmpregado);
+
+
+            return new Dependente(codDependente,nome,dataNascimento,sexo,grauParentesco,empregado);
         }
 
     }
