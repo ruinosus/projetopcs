@@ -22,13 +22,15 @@ namespace Repositorio.implementacoes
    
         #region Sql da tabela EMPREGADO
 
-        private static String QUERY_INSERT = "INSERT INTO EMPREGADO (COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
-        private static String QUERY_UPDATE = "UPDATE EMPREGADO SET COD_EMPREGADO_SUPERVISOR = ?codEmpregadoSupervisor ,COD_ENDERECO = ?codEndereco ,NOME_EMPREGADO = ?nomeEmpregado, SALARIO = ?salario, CPF = ?cpf, DATA_NASCIMENTO = ?dataNascimento, RG = ?rg, SEXO = ?sexo, TELEFONE =?telefone WHERE COD_EMPREGADO = ?codEmpregado "; 
-        private static String QUERY_INSERT_SUPERVISOR = "INSERT INTO EMPREGADO (COD_EMPREGADO_SUPERVISOR,COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEmpregadoSupervisor,?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
+        private static String QUERY_INSERT_1 = "INSERT INTO EMPREGADO (COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
+        private static String QUERY_INSERT_2 = "INSERT INTO EMPREGADO (COD_EMPREGADO_SUPERVISOR,COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEmpregadoSupervisor,?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
+        private static String QUERY_UPDATE_1 = "UPDATE EMPREGADO SET COD_ENDERECO = ?codEndereco ,NOME_EMPREGADO = ?nomeEmpregado, SALARIO = ?salario, CPF = ?cpf, DATA_NASCIMENTO = ?dataNascimento, RG = ?rg, SEXO = ?sexo, TELEFONE =?telefone WHERE COD_EMPREGADO = ?codEmpregado ";
+        private static String QUERY_UPDATE_2 = "UPDATE EMPREGADO SET COD_EMPREGADO_SUPERVISOR = ?codEmpregadoSupervisor ,COD_ENDERECO = ?codEndereco ,NOME_EMPREGADO = ?nomeEmpregado, SALARIO = ?salario, CPF = ?cpf, DATA_NASCIMENTO = ?dataNascimento, RG = ?rg, SEXO = ?sexo, TELEFONE =?telefone WHERE COD_EMPREGADO = ?codEmpregado "; 
         private static String QUERY_SELECT_ALL = "SELECT * FROM EMPREGADO ORDER BY NOME_EMPREGADO";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
         private static String QUERY_SELECT_NOME = "SELECT * FROM EMPREGADO  WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
         private static String QUERY_DELETE = "DELETE FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
+        private static String QUERY_MAX_CODIGO = "SELECT MAX(COD_EMPREGADO) MAXCOD FROM EMPREGADO";
 
         #endregion
 
@@ -61,13 +63,13 @@ namespace Repositorio.implementacoes
             {
                 MySqlCommand comando;
 
-                if (empregado.Codigo == 0)
+                if (empregado.Supervisor == null)
                 {
-                     comando = new MySqlCommand(QUERY_INSERT, conexao);
+                     comando = new MySqlCommand(QUERY_INSERT_1, conexao);
                 }
                 else
                 {
-                     comando = new MySqlCommand(QUERY_INSERT_SUPERVISOR, conexao);
+                     comando = new MySqlCommand(QUERY_INSERT_2, conexao);
                      comando.Parameters.AddWithValue("?codEmpregadoSupervisor", empregado.Supervisor.Codigo);
                 }
 
@@ -108,9 +110,17 @@ namespace Repositorio.implementacoes
 
             try
             {
-                MySqlCommand comando= new MySqlCommand(QUERY_UPDATE, conexao);
+                MySqlCommand comando;
 
-                comando.Parameters.AddWithValue("?codEmpregadoSupervisor", empregado.Supervisor.Codigo);
+                if (empregado.Supervisor == null)
+                {
+                    comando = new MySqlCommand(QUERY_UPDATE_1, conexao);
+                }
+                else
+                {
+                    comando = new MySqlCommand(QUERY_UPDATE_2, conexao);
+                    comando.Parameters.AddWithValue("?codEmpregadoSupervisor", empregado.Supervisor.Codigo);
+                }
                 comando.Parameters.AddWithValue("?codEndereco", empregado.Endereco.Codigo);
                 comando.Parameters.AddWithValue("?nomeEmpregado", empregado.Nome);
                 comando.Parameters.AddWithValue("?salario", empregado.Salario);
@@ -342,6 +352,48 @@ namespace Repositorio.implementacoes
             return empregados;
         }
 
+        public int ObterMaximoCodigo()
+        {
+            UtilBD banco = new UtilBD();
+            MySqlConnection conexao = banco.ObterConexao();
+
+            int codigo = 0;
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(QUERY_MAX_CODIGO, conexao);
+                MySqlDataReader resultado;
+                if (conexao.State == System.Data.ConnectionState.Closed)
+                {
+                    conexao.Open();
+                }
+                else
+                {
+                    conexao.Close();
+                    conexao.Open();
+                }
+
+                resultado = comando.ExecuteReader();
+                resultado.Read();
+
+                if (resultado.HasRows)
+                {
+                    codigo = resultado.GetInt32("MAXCOD");
+                }
+                resultado.Close();
+
+            }
+            catch (MySqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            finally
+            {
+                banco.FecharConexao(conexao);
+            }
+
+            return codigo;
+        }
+
         #endregion       
 
         #region IRepositorioEmpregado - Tabela CHEFIAR
@@ -566,7 +618,6 @@ namespace Repositorio.implementacoes
                 comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
                 comando.Parameters.AddWithValue("?codDepartamento", empregado.DepartamentoAlocado.Codigo);
                 comando.Parameters.AddWithValue("?dataAlocacao", empregado.DataAlocação);
-                comando.Parameters.AddWithValue("?codEmpregado", empregado.Codigo);
 
                 if (conexao.State == System.Data.ConnectionState.Closed)
                 {
