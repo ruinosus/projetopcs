@@ -142,15 +142,16 @@ namespace Negocios
             this.repEndereco.InserirEndereco(empregado.Endereco);
             empregado.Endereco.Codigo = this.repEndereco.ObterMaximoCodigo();
             this.repEmpregado.InserirEmpregado(empregado);
+            empregado.Codigo = this.repEmpregado.ObterMaximoCodigo();
 
             if (empregado.DepartamentoAlocado != null)
             {
-                this.repEmpregado.AlterarAlocar(empregado);
+                this.repEmpregado.InserirAlocar(empregado);
             }            
 
             if (empregado.DepartamentoChefiado != null)
             {
-                this.repEmpregado.AlterarChefiar(empregado);
+                this.repEmpregado.InserirChefiar(empregado);
             }
             
         }
@@ -162,7 +163,8 @@ namespace Negocios
 
             if (empregado.DepartamentoAlocado != null)
             {
-                this.repEmpregado.AlterarAlocar(empregado);
+                this.repEmpregado.RemoverAlocar(empregado.Codigo);
+                this.repEmpregado.InserirAlocar(empregado);
             }
             else
             {
@@ -171,7 +173,8 @@ namespace Negocios
 
             if (empregado.DepartamentoChefiado != null)
             {
-                this.repEmpregado.AlterarChefiar(empregado);
+                this.repEmpregado.RemoverChefiar(empregado.Codigo);
+                this.repEmpregado.InserirChefiar(empregado);
             }
             else
             {
