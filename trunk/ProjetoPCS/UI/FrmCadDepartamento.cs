@@ -314,11 +314,15 @@ namespace UI
 
         private void btnRemover_Click(object sender, EventArgs e)
         {
-            controlador.DepartamentoRemoverDepartamento(departamentoAtual.Codigo);
-            System.Windows.Forms.MessageBox.Show("Departamento Removido com sucesso.");
-            status.Navegando();
-            AjustaBotoes();
+            DialogResult d = MessageBox.Show("Tem certeza que deseja remover?", "Confirmação", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
+            if (d.ToString() == "Yes")
+            {
+                controlador.DepartamentoRemoverDepartamento(departamentoAtual.Codigo);
+                System.Windows.Forms.MessageBox.Show("Departamento Removido com sucesso.");
+                status.Navegando();
+                AjustaBotoes();
+            }
         }
 
         private void txtLocalizar_TextChanged(object sender, EventArgs e)
