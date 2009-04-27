@@ -626,6 +626,7 @@
             this.mskCep.Name = "mskCep";
             this.mskCep.Size = new System.Drawing.Size(100, 20);
             this.mskCep.TabIndex = 7;
+            this.mskCep.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // lbNumero
             // 
@@ -864,7 +865,6 @@
             this.mskRg.Name = "mskRg";
             this.mskRg.Size = new System.Drawing.Size(59, 20);
             this.mskRg.TabIndex = 2;
-            this.mskRg.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // lbCpf
             // 
@@ -882,7 +882,6 @@
             this.mskTelefone.Name = "mskTelefone";
             this.mskTelefone.Size = new System.Drawing.Size(83, 20);
             this.mskTelefone.TabIndex = 5;
-            this.mskTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // cmbSupervisor
             // 
@@ -928,7 +927,6 @@
             this.mskCpf.Name = "mskCpf";
             this.mskCpf.Size = new System.Drawing.Size(85, 20);
             this.mskCpf.TabIndex = 3;
-            this.mskCpf.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             // 
             // lbTelefone
             // 
