@@ -166,6 +166,7 @@
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(23, 22);
             this.btnNovo.ToolTipText = "Clique aqui para incluir uma  nova localidade";
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // toolStripSeparator1
             // 
@@ -180,6 +181,7 @@
             this.btnGravar.Name = "btnGravar";
             this.btnGravar.Size = new System.Drawing.Size(23, 22);
             this.btnGravar.ToolTipText = "Clique aqui para confirmar";
+            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // btnCancelar
             // 
@@ -189,6 +191,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(23, 22);
             this.btnCancelar.ToolTipText = "Clique aqui para cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -203,6 +206,7 @@
             this.btnAlterar.Name = "btnAlterar";
             this.btnAlterar.Size = new System.Drawing.Size(23, 22);
             this.btnAlterar.ToolTipText = "Clique aqui para alterar";
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnRemover
             // 
@@ -212,6 +216,7 @@
             this.btnRemover.Name = "btnRemover";
             this.btnRemover.Size = new System.Drawing.Size(23, 22);
             this.btnRemover.ToolTipText = "Clique aqui para remover";
+            this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
             // 
             // toolStripSeparator3
             // 
@@ -227,6 +232,7 @@
             this.btnPrimeiro.Size = new System.Drawing.Size(27, 22);
             this.btnPrimeiro.Text = "<<";
             this.btnPrimeiro.ToolTipText = "Vai para o primeiro elemento";
+            this.btnPrimeiro.Click += new System.EventHandler(this.btnPrimeiro_Click);
             // 
             // btnAnterior
             // 
@@ -237,6 +243,7 @@
             this.btnAnterior.Size = new System.Drawing.Size(23, 22);
             this.btnAnterior.Text = "<";
             this.btnAnterior.ToolTipText = "Vai para o elemento anterior";
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
             // btnProximo
             // 
@@ -247,6 +254,7 @@
             this.btnProximo.Size = new System.Drawing.Size(23, 22);
             this.btnProximo.Text = ">";
             this.btnProximo.ToolTipText = "Vai para o proximo elemento";
+            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
             // 
             // btnUltimo
             // 
@@ -257,6 +265,7 @@
             this.btnUltimo.Size = new System.Drawing.Size(27, 22);
             this.btnUltimo.Text = ">>";
             this.btnUltimo.ToolTipText = "Vai para o último elemento";
+            this.btnUltimo.Click += new System.EventHandler(this.btnUltimo_Click);
             // 
             // toolStripSeparator4
             // 
