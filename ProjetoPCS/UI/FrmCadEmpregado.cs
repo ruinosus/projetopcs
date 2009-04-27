@@ -574,8 +574,67 @@ namespace UI
             {
                 case "Alteração":
                     {
+
+                        empregadoAtual.Endereco.Bairro = txtBairro.Text;
+                        empregadoAtual.Endereco.Cep = Convert.ToInt32(mskCep.Text);
+                        empregadoAtual.Endereco.Cidade = txtCidade.Text;
+                        empregadoAtual.Endereco.Complemento = txtComplemento.Text;
+                        empregadoAtual.Endereco.Logradouro = txtLogradouro.Text;
+                        empregadoAtual.Endereco.Numero = txtNumero.Text;
+                        empregadoAtual.Endereco.Pais = txtPais.Text;
+                        empregadoAtual.Endereco.Uf = (cmbUf.Text);
+
                         empregadoAtual.Nome = txtNome.Text;
-                        //colocar o resto do código aki
+                        empregadoAtual.Nome = txtNome.Text;
+                        empregadoAtual.Rg = mskRg.Text;
+                        empregadoAtual.Salario = Convert.ToDouble(txtSalario.Text);
+
+                        if (rdSexoMasculino.Checked)
+                        {
+                            empregadoAtual.Sexo = 'M';
+                        }
+                        else
+                        {
+                            empregadoAtual.Sexo = 'F';
+                        }
+
+                        if (lstSupervisor.Items.Count > 0)
+                        {
+                            empregadoAtual.Supervisor = (Empregado)lstSupervisor.Items[0];
+                        }
+
+                        empregadoAtual.Telefone = mskTelefone.Text;
+                        empregadoAtual.Cpf = mskCpf.Text;
+
+                        if (mskDataNascimento.Text.Trim() != "")
+                        {
+                            empregadoAtual.DataNascimento = Convert.ToDateTime(mskDataNascimento.Text);
+                        }
+
+                        if (lstAlocar.Items.Count > 0)
+                        {
+                            empregadoAtual.DepartamentoAlocado = (Departamento)lstAlocar.Items[0];
+
+                            if (mskDataAlocacao.Text.Trim() != "")
+                            {
+                                empregadoAtual.DataAlocação = Convert.ToDateTime(mskDataAlocacao.Text);
+                            }
+                        }
+
+                        if (lstChefiar.Items.Count > 0)
+                        {
+                            empregadoAtual.DepartamentoChefiado = (Departamento)lstChefiar.Items[0];
+
+                            if (mskDataInicio.Text.Trim() != "")
+                            {
+                                empregadoAtual.DataInicio = Convert.ToDateTime(mskDataInicio.Text);
+                            }
+
+                            if (mskDataFinal.Text.Trim() != "")
+                            {
+                                empregadoAtual.DataFinal = Convert.ToDateTime(mskDataFinal.Text);
+                            }
+                        }
                         controlador.EmpregadoAlterarEmpregado(empregadoAtual);
                         break;
                     }
@@ -583,7 +642,68 @@ namespace UI
                 case "Inclusão":
                     {
                         Empregado emp = new Empregado();
-                        //colocar o resto do código aki
+                        Endereco endereco = new Endereco();
+
+                        endereco.Bairro = txtBairro.Text;
+                        endereco.Cep = Convert.ToInt32(mskCep.Text);
+                        endereco.Cidade = txtCidade.Text;
+                        endereco.Complemento = txtComplemento.Text;
+                        endereco.Logradouro = txtLogradouro.Text;
+                        endereco.Numero = txtNumero.Text;
+                        endereco.Pais = txtPais.Text;
+                        endereco.Uf = (cmbSupervisor.Text);
+
+                        emp.Endereco = endereco;
+                        emp.Nome = txtNome.Text;
+                        emp.Rg = mskRg.Text;
+                        emp.Salario = Convert.ToDouble(txtSalario.Text);
+
+                        if (rdSexoMasculino.Checked)
+                        {
+                            emp.Sexo = 'M';
+                        }
+                        else
+                        {
+                            emp.Sexo = 'F';
+                        }
+
+                        if (lstSupervisor.Items.Count > 0)
+	                    {
+                            emp.Supervisor = (Empregado)lstSupervisor.Items[0];
+	                    }
+
+                        emp.Telefone = mskTelefone.Text;
+                        emp.Cpf = mskCpf.Text;
+
+                        if (mskDataNascimento.Text.Trim()!="")
+                        {
+                            emp.DataNascimento = Convert.ToDateTime(mskDataNascimento.Text); 
+                        }
+
+                        if (lstAlocar.Items.Count > 0)
+	                    {
+                            emp.DepartamentoAlocado = (Departamento)lstAlocar.Items[0];
+
+                            if (mskDataAlocacao.Text.Trim() != "")
+                            {
+                                emp.DataAlocação = Convert.ToDateTime(mskDataAlocacao.Text);
+                            }
+	                    }
+
+                        if (lstChefiar.Items.Count > 0)
+                        {
+                            emp.DepartamentoChefiado = (Departamento)lstChefiar.Items[0];
+
+                            if (mskDataInicio.Text.Trim() != "")
+                            {
+                                emp.DataInicio = Convert.ToDateTime(mskDataInicio.Text);
+                            }
+
+                            if (mskDataFinal.Text.Trim() != "")
+                            {
+                                emp.DataFinal = Convert.ToDateTime(mskDataFinal.Text);
+                            }
+                        }
                         controlador.EmpregadoInserirEmpregado(emp);
                         break;
                     }
