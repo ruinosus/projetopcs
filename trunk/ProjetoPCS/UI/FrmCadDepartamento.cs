@@ -259,45 +259,61 @@ namespace UI
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            switch (status.StatusAtual())
+
+            bool validacao = true;
+
+            if (txtNome.Text.Trim() == "")
             {
-                case "Alteração":
-                    {
-
-                        departamentoAtual.Nome = txtNome.Text;
-                        ArrayList l = null;
-                        if (lstLocalidades.Items.Count > 0)
-                        {
-                            l = new ArrayList();
-                            for (int i = 0; i < lstLocalidades.Items.Count; i++)
-                            {
-                                l.Add(lstLocalidades.Items[i]);
-                            }                            
-                        }
-                        departamentoAtual.Localidades = l;
-                      
-                        controlador.DepartamentoAlterarDepartamento(departamentoAtual);
-                        break;
-                    }
-
-                case "Inclusão":
-                    {
-                        ArrayList l = null;
-                        if (lstLocalidades.Items.Count > 0)
-                        {
-                            l = new ArrayList();
-                            for (int i = 0; i < lstLocalidades.Items.Count; i++)
-                            {
-                                l.Add(lstLocalidades.Items[i]);
-                            }                           
-                        }
-                        Departamento d = new Departamento(0, txtNome.Text, l);
-                        controlador.DepartamentoInserirDepartamento(d);                    
-                        break;
-                    }
+                validacao = false;
             }
-            status.Navegando();
-            AjustaBotoes();
+
+            if (validacao)
+            {
+                switch (status.StatusAtual())
+                {
+                    case "Alteração":
+                        {
+
+                            departamentoAtual.Nome = txtNome.Text;
+                            ArrayList l = null;
+                            if (lstLocalidades.Items.Count > 0)
+                            {
+                                l = new ArrayList();
+                                for (int i = 0; i < lstLocalidades.Items.Count; i++)
+                                {
+                                    l.Add(lstLocalidades.Items[i]);
+                                }
+                            }
+                            departamentoAtual.Localidades = l;
+
+                            controlador.DepartamentoAlterarDepartamento(departamentoAtual);
+                            break;
+                        }
+
+                    case "Inclusão":
+                        {
+                            ArrayList l = null;
+                            if (lstLocalidades.Items.Count > 0)
+                            {
+                                l = new ArrayList();
+                                for (int i = 0; i < lstLocalidades.Items.Count; i++)
+                                {
+                                    l.Add(lstLocalidades.Items[i]);
+                                }
+                            }
+                            Departamento d = new Departamento(0, txtNome.Text, l);
+                            controlador.DepartamentoInserirDepartamento(d);
+                            break;
+                        }
+                }
+                status.Navegando();
+                AjustaBotoes();
+            }
+            else
+            {
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O campo deve conter ao menos um valor", txtNome);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
