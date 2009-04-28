@@ -29,7 +29,6 @@ namespace UI
         private void AdicionarSupervisor()
         {
             btnAdicionarSupervisor.Enabled = cmbSupervisor.Items.Count > 0 && lstSupervisor.Items.Count < 1;
-
         }
 
         private void RemoverSupervisor()
@@ -439,7 +438,10 @@ namespace UI
                             empregadoAtual = (Empregado)empregados[bsEmpregado.Position];
 
                             txtNome.Text = empregadoAtual.Nome;
-                            mskDataNascimento.Text = empregadoAtual.DataNascimento+"" ;
+                            if (empregadoAtual.DataNascimento != Convert.ToDateTime("01/01/0001") )
+                            {
+                                mskDataNascimento.Text = empregadoAtual.DataNascimento + "";
+                            }
                             mskRg.Text = empregadoAtual.Rg;
                             mskCpf.Text = empregadoAtual.Cpf;
                             mskTelefone.Text = empregadoAtual.Telefone;
@@ -471,29 +473,25 @@ namespace UI
                             if (empregadoAtual.DepartamentoAlocado != null)
 	                        {
                                 lstAlocar.Items.Add(empregadoAtual.DepartamentoAlocado);
-                                mskDataAlocacao.Text = empregadoAtual.DataAlocação+""; 
+                                if (empregadoAtual.DataAlocação != Convert.ToDateTime("01/01/0001"))
+                                {
+                                    mskDataAlocacao.Text = empregadoAtual.DataAlocação + "";  
+                                }
 	                        }
 
                             if (empregadoAtual.DepartamentoChefiado != null)
                             {
                                 lstChefiar.Items.Add( empregadoAtual.DepartamentoChefiado);
-                                mskDataInicio.Text = empregadoAtual.DataInicio+"";
-                                mskDataFinal.Text = empregadoAtual.DataFinal + ""; 
+                                if (empregadoAtual.DataInicio != Convert.ToDateTime("01/01/0001"))
+                                {
+                                    mskDataInicio.Text = empregadoAtual.DataInicio + "";
+                                }
+                                if (empregadoAtual.DataFinal != Convert.ToDateTime("01/01/0001"))
+                                {
+                                    mskDataFinal.Text = empregadoAtual.DataFinal + "";
+                                }
                             }
 
-
-                            //if (departamentoAtual.Localidades.Count > 0)
-                            //{
-                            //    localidadesDepartamento = departamentoAtual.Localidades;
-                            //    LimparLista();
-                            //    CarregarLista();
-                            //}
-                            //else
-                            //{
-                            //    localidadesDepartamento = new ArrayList();
-                            //    LimparLista();
-                            //    //CarregarLista();
-                            //}
                         }
                         lbInformacao.Text = "Quantidades de Empregados cadastrados: " + bsEmpregado.Count;
                         break;
@@ -569,147 +567,190 @@ namespace UI
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
+            bool validacao = true;
 
-            switch (status.StatusAtual())
+            if (txtNome.Text.Trim() == "")
             {
-                case "Alteração":
-                    {
-
-                        empregadoAtual.Endereco.Bairro = txtBairro.Text;
-                        empregadoAtual.Endereco.Cep = Convert.ToInt32(mskCep.Text);
-                        empregadoAtual.Endereco.Cidade = txtCidade.Text;
-                        empregadoAtual.Endereco.Complemento = txtComplemento.Text;
-                        empregadoAtual.Endereco.Logradouro = txtLogradouro.Text;
-                        empregadoAtual.Endereco.Numero = txtNumero.Text;
-                        empregadoAtual.Endereco.Pais = txtPais.Text;
-                        empregadoAtual.Endereco.Uf = (cmbUf.Text);
-
-                        empregadoAtual.Nome = txtNome.Text;
-                        empregadoAtual.Nome = txtNome.Text;
-                        empregadoAtual.Rg = mskRg.Text;
-                        empregadoAtual.Salario = Convert.ToDouble(txtSalario.Text);
-
-                        if (rdSexoMasculino.Checked)
-                        {
-                            empregadoAtual.Sexo = 'M';
-                        }
-                        else
-                        {
-                            empregadoAtual.Sexo = 'F';
-                        }
-
-                        if (lstSupervisor.Items.Count > 0)
-                        {
-                            empregadoAtual.Supervisor = (Empregado)lstSupervisor.Items[0];
-                        }
-
-                        empregadoAtual.Telefone = mskTelefone.Text;
-                        empregadoAtual.Cpf = mskCpf.Text;
-
-                        if (mskDataNascimento.Text.Trim() != "")
-                        {
-                            empregadoAtual.DataNascimento = Convert.ToDateTime(mskDataNascimento.Text);
-                        }
-
-                        if (lstAlocar.Items.Count > 0)
-                        {
-                            empregadoAtual.DepartamentoAlocado = (Departamento)lstAlocar.Items[0];
-
-                            if (mskDataAlocacao.Text.Trim() != "")
-                            {
-                                empregadoAtual.DataAlocação = Convert.ToDateTime(mskDataAlocacao.Text);
-                            }
-                        }
-
-                        if (lstChefiar.Items.Count > 0)
-                        {
-                            empregadoAtual.DepartamentoChefiado = (Departamento)lstChefiar.Items[0];
-
-                            if (mskDataInicio.Text.Trim() != "")
-                            {
-                                empregadoAtual.DataInicio = Convert.ToDateTime(mskDataInicio.Text);
-                            }
-
-                            if (mskDataFinal.Text.Trim() != "")
-                            {
-                                empregadoAtual.DataFinal = Convert.ToDateTime(mskDataFinal.Text);
-                            }
-                        }
-                        controlador.EmpregadoAlterarEmpregado(empregadoAtual);
-                        break;
-                    }
-
-                case "Inclusão":
-                    {
-                        Empregado emp = new Empregado();
-                        Endereco endereco = new Endereco();
-
-                        endereco.Bairro = txtBairro.Text;
-                        endereco.Cep = Convert.ToInt32(mskCep.Text);
-                        endereco.Cidade = txtCidade.Text;
-                        endereco.Complemento = txtComplemento.Text;
-                        endereco.Logradouro = txtLogradouro.Text;
-                        endereco.Numero = txtNumero.Text;
-                        endereco.Pais = txtPais.Text;
-                        endereco.Uf = (cmbSupervisor.Text);
-
-                        emp.Endereco = endereco;
-                        emp.Nome = txtNome.Text;
-                        emp.Rg = mskRg.Text;
-                        emp.Salario = Convert.ToDouble(txtSalario.Text);
-
-                        if (rdSexoMasculino.Checked)
-                        {
-                            emp.Sexo = 'M';
-                        }
-                        else
-                        {
-                            emp.Sexo = 'F';
-                        }
-
-                        if (lstSupervisor.Items.Count > 0)
-	                    {
-                            emp.Supervisor = (Empregado)lstSupervisor.Items[0];
-	                    }
-
-                        emp.Telefone = mskTelefone.Text;
-                        emp.Cpf = mskCpf.Text;
-
-                        if (mskDataNascimento.Text.Trim()!="")
-                        {
-                            emp.DataNascimento = Convert.ToDateTime(mskDataNascimento.Text); 
-                        }
-
-                        if (lstAlocar.Items.Count > 0)
-	                    {
-                            emp.DepartamentoAlocado = (Departamento)lstAlocar.Items[0];
-
-                            if (mskDataAlocacao.Text.Trim() != "")
-                            {
-                                emp.DataAlocação = Convert.ToDateTime(mskDataAlocacao.Text);
-                            }
-	                    }
-
-                        if (lstChefiar.Items.Count > 0)
-                        {
-                            emp.DepartamentoChefiado = (Departamento)lstChefiar.Items[0];
-
-                            if (mskDataInicio.Text.Trim() != "")
-                            {
-                                emp.DataInicio = Convert.ToDateTime(mskDataInicio.Text);
-                            }
-
-                            if (mskDataFinal.Text.Trim() != "")
-                            {
-                                emp.DataFinal = Convert.ToDateTime(mskDataFinal.Text);
-                            }
-                        }
-                        controlador.EmpregadoInserirEmpregado(emp);
-                        break;
-                    }
+                validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O campo não pode ser vazio", txtNome);
             }
-            status.Navegando();
-            AjustaBotoes();
+
+
+            if (validacao)
+            {
+                switch (status.StatusAtual())
+                {
+                    case "Alteração":
+                        {
+                            empregadoAtual.Endereco.Bairro = txtBairro.Text;
+                            empregadoAtual.Endereco.Cep = Convert.ToInt32(mskCep.Text);
+                            empregadoAtual.Endereco.Cidade = txtCidade.Text;
+                            empregadoAtual.Endereco.Complemento = txtComplemento.Text;
+                            empregadoAtual.Endereco.Logradouro = txtLogradouro.Text;
+                            empregadoAtual.Endereco.Numero = txtNumero.Text;
+                            empregadoAtual.Endereco.Pais = txtPais.Text;
+                            empregadoAtual.Endereco.Uf = (cmbUf.Text);
+
+                            empregadoAtual.Nome = txtNome.Text;
+                            empregadoAtual.Nome = txtNome.Text;
+                            empregadoAtual.Rg = mskRg.Text;
+                            empregadoAtual.Salario = Convert.ToDouble(txtSalario.Text);
+
+                            if (rdSexoMasculino.Checked)
+                            {
+                                empregadoAtual.Sexo = 'M';
+                            }
+                            else
+                            {
+                                empregadoAtual.Sexo = 'F';
+                            }
+
+                            if (lstSupervisor.Items.Count > 0)
+                            {
+                                empregadoAtual.Supervisor = (Empregado)lstSupervisor.Items[0];
+                            }
+
+                            empregadoAtual.Telefone = mskTelefone.Text;
+                            empregadoAtual.Cpf = mskCpf.Text;
+
+                            if (mskDataNascimento.MaskCompleted)
+                            {
+                                empregadoAtual.DataNascimento = Convert.ToDateTime(mskDataNascimento.Text);
+                            }
+                            else
+                            {
+                                empregadoAtual.DataNascimento = Convert.ToDateTime("01/01/0001");
+                            }
+
+                            if (lstAlocar.Items.Count > 0)
+                            {
+                                empregadoAtual.DepartamentoAlocado = (Departamento)lstAlocar.Items[0];
+
+                                if (mskDataAlocacao.MaskCompleted)
+                                {
+                                    empregadoAtual.DataAlocação = Convert.ToDateTime(mskDataAlocacao.Text);
+                                }
+                                else
+                                {
+                                    empregadoAtual.DataAlocação = Convert.ToDateTime("01/01/0001");
+                                }
+                            }
+
+                            if (lstChefiar.Items.Count > 0)
+                            {
+                                empregadoAtual.DepartamentoChefiado = (Departamento)lstChefiar.Items[0];
+
+                                if (mskDataInicio.MaskCompleted)
+                                {
+                                    empregadoAtual.DataInicio = Convert.ToDateTime(mskDataInicio.Text);
+                                }
+                                else
+                                {
+                                    empregadoAtual.DataInicio = Convert.ToDateTime("01/01/0001");
+                                }
+
+                                if (mskDataFinal.MaskCompleted)
+                                {
+                                    empregadoAtual.DataFinal = Convert.ToDateTime(mskDataFinal.Text);
+                                }
+                                else
+                                {
+                                    empregadoAtual.DataFinal = Convert.ToDateTime("01/01/0001");
+                                }
+                            }
+                            controlador.EmpregadoAlterarEmpregado(empregadoAtual);
+                            break;
+                        }
+
+                    case "Inclusão":
+                        {
+                            Empregado emp = new Empregado();
+                            Endereco endereco = new Endereco();
+
+                            endereco.Bairro = txtBairro.Text;
+                            endereco.Cep = Convert.ToInt32(mskCep.Text);
+                            endereco.Cidade = txtCidade.Text;
+                            endereco.Complemento = txtComplemento.Text;
+                            endereco.Logradouro = txtLogradouro.Text;
+                            endereco.Numero = txtNumero.Text;
+                            endereco.Pais = txtPais.Text;
+                            endereco.Uf = (cmbSupervisor.Text);
+
+                            emp.Endereco = endereco;
+                            emp.Nome = txtNome.Text;
+                            emp.Rg = mskRg.Text;
+                            emp.Salario = Convert.ToDouble(txtSalario.Text);
+
+                            if (rdSexoMasculino.Checked)
+                            {
+                                emp.Sexo = 'M';
+                            }
+                            else
+                            {
+                                emp.Sexo = 'F';
+                            }
+
+                            if (lstSupervisor.Items.Count > 0)
+                            {
+                                emp.Supervisor = (Empregado)lstSupervisor.Items[0];
+                            }
+
+                            emp.Telefone = mskTelefone.Text;
+                            emp.Cpf = mskCpf.Text;
+
+                            if (mskDataNascimento.MaskCompleted)
+                            {
+                                emp.DataNascimento = Convert.ToDateTime(mskDataNascimento.Text);
+                            }
+                            else
+                            {
+                                emp.DataNascimento = Convert.ToDateTime("01/01/0001");
+                            }
+
+                            if (lstAlocar.Items.Count > 0)
+                            {
+                                emp.DepartamentoAlocado = (Departamento)lstAlocar.Items[0];
+
+                                if (mskDataAlocacao.MaskCompleted)
+                                {
+                                    emp.DataAlocação = Convert.ToDateTime(mskDataAlocacao.Text);
+                                }
+                                else
+                                {
+                                    emp.DataAlocação = Convert.ToDateTime("01/01/0001");
+                                }
+                            }
+
+                            if (lstChefiar.Items.Count > 0)
+                            {
+                                emp.DepartamentoChefiado = (Departamento)lstChefiar.Items[0];
+
+                                if (mskDataInicio.MaskCompleted)
+                                {
+                                    emp.DataInicio = Convert.ToDateTime(mskDataInicio.Text);
+                                }
+                                else
+                                {
+                                    emp.DataInicio = Convert.ToDateTime("01/01/0001");
+                                }
+
+                                if (mskDataFinal.MaskCompleted)
+                                {
+                                    emp.DataFinal = Convert.ToDateTime(mskDataFinal.Text);
+                                }
+                                else
+                                {
+                                    emp.DataFinal = Convert.ToDateTime("01/01/0001");
+                                }
+                            }
+                            controlador.EmpregadoInserirEmpregado(emp);
+                            break;
+                        }
+                }
+                status.Navegando();
+                AjustaBotoes(); 
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -767,7 +808,126 @@ namespace UI
             AjustaBotoes();
         }
 
+        private void mskDataNascimento_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                {
+                   Convert.ToDateTime(mskDataNascimento.Text);
+                }
+            }
+            catch (Exception)
+            {               
+                tlMensagem.ToolTipTitle = "Data Inválida";
+                tlMensagem.Show("O campo deve conter uma data válida", mskDataNascimento);
+                mskDataNascimento.Clear();
+            }
 
+               
+        }
 
+        private void mskDataNascimento_Enter(object sender, EventArgs e)
+        {
+            this.mskDataNascimento.Focus();
+            this.mskDataNascimento.SelectAll();
+        }
+
+        private void mskDataNascimento_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.mskDataNascimento.Focus();
+            this.mskDataNascimento.SelectAll();
+        }
+
+        private void mskDataAlocacao_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                {
+                   Convert.ToDateTime(mskDataAlocacao.Text);                  
+                }
+            }
+            catch (Exception)
+            {
+                tlMensagem.ToolTipTitle = "Data Inválida";
+                tlMensagem.Show("O campo deve conter uma data válida", mskDataAlocacao);
+                mskDataAlocacao.Clear();
+            }
+        }
+
+        private void mskDataAlocacao_Enter(object sender, EventArgs e)
+        {
+            this.mskDataAlocacao.Focus();
+            this.mskDataAlocacao.SelectAll();
+        }
+
+        private void mskDataAlocacao_Click(object sender, EventArgs e)
+        {
+            this.mskDataAlocacao.Focus();
+            this.mskDataAlocacao.SelectAll();
+        }
+
+        private void mskDataInicio_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                {
+                    Convert.ToDateTime(mskDataInicio.Text);
+                }
+            }
+            catch (Exception)
+            {
+                tlMensagem.ToolTipTitle = "Data Inválida";
+                tlMensagem.Show("O campo deve conter uma data válida", mskDataInicio);
+                mskDataInicio.Clear();
+            }
+        }
+
+        private void mskDataInicio_Enter(object sender, EventArgs e)
+        {
+            this.mskDataInicio.Focus();
+            this.mskDataInicio.SelectAll();
+        }
+
+        private void mskDataInicio_Click(object sender, EventArgs e)
+        {
+            this.mskDataInicio.Focus();
+            this.mskDataInicio.SelectAll();
+        }
+
+        private void mskDataFinal_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                {
+                    Convert.ToDateTime(mskDataFinal.Text);
+                }
+            }
+            catch (Exception)
+            {
+                tlMensagem.ToolTipTitle = "Data Inválida";
+                tlMensagem.Show("O campo deve conter uma data válida", mskDataFinal);
+                mskDataFinal.Clear();
+            }
+        }
+
+        private void mskDataFinal_Enter(object sender, EventArgs e)
+        {
+            this.mskDataFinal.Focus();
+            this.mskDataFinal.SelectAll();
+        }
+
+        private void mskDataFinal_Click(object sender, EventArgs e)
+        {
+            this.mskDataFinal.Focus();
+            this.mskDataFinal.SelectAll();
+        }
+
+        
     }
+    
 }
+
