@@ -30,8 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadEmpregado));
-            this.bsEmpregado = new System.Windows.Forms.BindingSource(this.components);
-            this.stPrincipal = new System.Windows.Forms.StatusStrip();
+            this.stInformacao = new System.Windows.Forms.StatusStrip();
             this.lbInformacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlPrincipal = new System.Windows.Forms.ToolStrip();
             this.btnNovo = new System.Windows.Forms.ToolStripButton();
@@ -106,8 +105,10 @@
             this.lbTelefone = new System.Windows.Forms.Label();
             this.lbRg = new System.Windows.Forms.Label();
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEmpregado)).BeginInit();
-            this.stPrincipal.SuspendLayout();
+            this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
+            this.bsEmpregado = new System.Windows.Forms.BindingSource(this.components);
+            this.mskSalario = new System.Windows.Forms.MaskedTextBox();
+            this.stInformacao.SuspendLayout();
             this.tlPrincipal.SuspendLayout();
             this.tbpDadosDepartamentos.SuspendLayout();
             this.gpbAlocado.SuspendLayout();
@@ -117,16 +118,17 @@
             this.gpbDadosPessoais.SuspendLayout();
             this.gpbSexo.SuspendLayout();
             this.tbcPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEmpregado)).BeginInit();
             this.SuspendLayout();
             // 
-            // stPrincipal
+            // stInformacao
             // 
-            this.stPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stInformacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbInformacao});
-            this.stPrincipal.Location = new System.Drawing.Point(0, 357);
-            this.stPrincipal.Name = "stPrincipal";
-            this.stPrincipal.Size = new System.Drawing.Size(707, 22);
-            this.stPrincipal.TabIndex = 138;
+            this.stInformacao.Location = new System.Drawing.Point(0, 357);
+            this.stInformacao.Name = "stInformacao";
+            this.stInformacao.Size = new System.Drawing.Size(707, 22);
+            this.stInformacao.TabIndex = 138;
             // 
             // lbInformacao
             // 
@@ -165,7 +167,7 @@
             this.btnNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(23, 22);
-            this.btnNovo.ToolTipText = "Clique aqui para incluir uma  nova localidade";
+            this.btnNovo.ToolTipText = "Clique aqui para incluir um novo empregado";
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // toolStripSeparator1
@@ -394,6 +396,9 @@
             this.mskDataAlocacao.Size = new System.Drawing.Size(67, 20);
             this.mskDataAlocacao.TabIndex = 1;
             this.mskDataAlocacao.ValidatingType = typeof(System.DateTime);
+            this.mskDataAlocacao.Leave += new System.EventHandler(this.mskDataAlocacao_Leave);
+            this.mskDataAlocacao.Enter += new System.EventHandler(this.mskDataAlocacao_Enter);
+            this.mskDataAlocacao.Click += new System.EventHandler(this.mskDataAlocacao_Click);
             // 
             // gpbChefiado
             // 
@@ -494,6 +499,9 @@
             this.mskDataFinal.Size = new System.Drawing.Size(75, 20);
             this.mskDataFinal.TabIndex = 1;
             this.mskDataFinal.ValidatingType = typeof(System.DateTime);
+            this.mskDataFinal.Leave += new System.EventHandler(this.mskDataFinal_Leave);
+            this.mskDataFinal.Enter += new System.EventHandler(this.mskDataFinal_Enter);
+            this.mskDataFinal.Click += new System.EventHandler(this.mskDataFinal_Click);
             // 
             // lbDataInicial
             // 
@@ -512,6 +520,9 @@
             this.mskDataInicio.Size = new System.Drawing.Size(67, 20);
             this.mskDataInicio.TabIndex = 1;
             this.mskDataInicio.ValidatingType = typeof(System.DateTime);
+            this.mskDataInicio.Leave += new System.EventHandler(this.mskDataInicio_Leave);
+            this.mskDataInicio.Enter += new System.EventHandler(this.mskDataInicio_Enter);
+            this.mskDataInicio.Click += new System.EventHandler(this.mskDataInicio_Click);
             // 
             // tbpDadosGerais
             // 
@@ -624,9 +635,11 @@
             this.mskCep.Location = new System.Drawing.Point(353, 78);
             this.mskCep.Mask = "00.000-000";
             this.mskCep.Name = "mskCep";
+            this.mskCep.ResetOnPrompt = false;
+            this.mskCep.ResetOnSpace = false;
             this.mskCep.Size = new System.Drawing.Size(100, 20);
             this.mskCep.TabIndex = 7;
-            this.mskCep.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.mskCep.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             // 
             // lbNumero
             // 
@@ -712,6 +725,7 @@
             // 
             // gpbDadosPessoais
             // 
+            this.gpbDadosPessoais.Controls.Add(this.mskSalario);
             this.gpbDadosPessoais.Controls.Add(this.btnRemoverSupervisor);
             this.gpbDadosPessoais.Controls.Add(this.btnAdicionarSupervisor);
             this.gpbDadosPessoais.Controls.Add(this.lstSupervisor);
@@ -854,17 +868,25 @@
             this.mskDataNascimento.Location = new System.Drawing.Point(602, 19);
             this.mskDataNascimento.Mask = "00/00/0000";
             this.mskDataNascimento.Name = "mskDataNascimento";
+            this.mskDataNascimento.ResetOnPrompt = false;
+            this.mskDataNascimento.ResetOnSpace = false;
             this.mskDataNascimento.Size = new System.Drawing.Size(67, 20);
             this.mskDataNascimento.TabIndex = 1;
             this.mskDataNascimento.ValidatingType = typeof(System.DateTime);
+            this.mskDataNascimento.MouseClick += new System.Windows.Forms.MouseEventHandler(this.mskDataNascimento_MouseClick);
+            this.mskDataNascimento.Leave += new System.EventHandler(this.mskDataNascimento_Leave);
+            this.mskDataNascimento.Enter += new System.EventHandler(this.mskDataNascimento_Enter);
             // 
             // mskRg
             // 
             this.mskRg.Location = new System.Drawing.Point(61, 58);
             this.mskRg.Mask = "0.000.000";
             this.mskRg.Name = "mskRg";
+            this.mskRg.ResetOnPrompt = false;
+            this.mskRg.ResetOnSpace = false;
             this.mskRg.Size = new System.Drawing.Size(59, 20);
             this.mskRg.TabIndex = 2;
+            this.mskRg.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             // 
             // lbCpf
             // 
@@ -878,10 +900,13 @@
             // mskTelefone
             // 
             this.mskTelefone.Location = new System.Drawing.Point(586, 58);
-            this.mskTelefone.Mask = "(99) 0000-0000";
+            this.mskTelefone.Mask = "(00) 0000-0000";
             this.mskTelefone.Name = "mskTelefone";
+            this.mskTelefone.ResetOnPrompt = false;
+            this.mskTelefone.ResetOnSpace = false;
             this.mskTelefone.Size = new System.Drawing.Size(83, 20);
             this.mskTelefone.TabIndex = 5;
+            this.mskTelefone.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             // 
             // cmbSupervisor
             // 
@@ -925,8 +950,11 @@
             this.mskCpf.Location = new System.Drawing.Point(174, 58);
             this.mskCpf.Mask = "000.000.000-00";
             this.mskCpf.Name = "mskCpf";
+            this.mskCpf.ResetOnPrompt = false;
+            this.mskCpf.ResetOnSpace = false;
             this.mskCpf.Size = new System.Drawing.Size(85, 20);
             this.mskCpf.TabIndex = 3;
+            this.mskCpf.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             // 
             // lbTelefone
             // 
@@ -956,21 +984,34 @@
             this.tbcPrincipal.Size = new System.Drawing.Size(701, 326);
             this.tbcPrincipal.TabIndex = 164;
             // 
+            // mskSalario
+            // 
+            this.mskSalario.Location = new System.Drawing.Point(61, 114);
+            this.mskSalario.Mask = "$000,000.00";
+            this.mskSalario.Name = "mskSalario";
+            this.mskSalario.RejectInputOnFirstFailure = true;
+            this.mskSalario.ResetOnPrompt = false;
+            this.mskSalario.ResetOnSpace = false;
+            this.mskSalario.Size = new System.Drawing.Size(131, 20);
+            this.mskSalario.SkipLiterals = false;
+            this.mskSalario.TabIndex = 149;
+            this.mskSalario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mskSalario.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
+            // 
             // FrmCadEmpregado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 379);
             this.Controls.Add(this.tbcPrincipal);
-            this.Controls.Add(this.stPrincipal);
+            this.Controls.Add(this.stInformacao);
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadEmpregado";
             this.Text = "FrmCadEmpregado";
             this.Load += new System.EventHandler(this.FrmCadEmpregado_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bsEmpregado)).EndInit();
-            this.stPrincipal.ResumeLayout(false);
-            this.stPrincipal.PerformLayout();
+            this.stInformacao.ResumeLayout(false);
+            this.stInformacao.PerformLayout();
             this.tlPrincipal.ResumeLayout(false);
             this.tlPrincipal.PerformLayout();
             this.tbpDadosDepartamentos.ResumeLayout(false);
@@ -986,6 +1027,7 @@
             this.gpbSexo.ResumeLayout(false);
             this.gpbSexo.PerformLayout();
             this.tbcPrincipal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsEmpregado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -994,7 +1036,7 @@
         #endregion
 
         private System.Windows.Forms.BindingSource bsEmpregado;
-        private System.Windows.Forms.StatusStrip stPrincipal;
+        private System.Windows.Forms.StatusStrip stInformacao;
         private System.Windows.Forms.ToolStripStatusLabel lbInformacao;
         private System.Windows.Forms.ToolStrip tlPrincipal;
         private System.Windows.Forms.ToolStripButton btnNovo;
@@ -1069,5 +1111,7 @@
         private System.Windows.Forms.Button btnAdicionarChefiar;
         private System.Windows.Forms.ListBox lstAlocar;
         private System.Windows.Forms.ListBox lstChefiar;
+        private System.Windows.Forms.ToolTip tlMensagem;
+        private System.Windows.Forms.MaskedTextBox mskSalario;
     }
 }
