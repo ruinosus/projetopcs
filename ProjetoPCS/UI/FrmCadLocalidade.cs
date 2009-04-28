@@ -189,6 +189,8 @@ namespace UI
             if (txtNome.Text.Trim() == "")
             {
                 validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O campo não pode ser vazio", txtNome);
             }
 
 
