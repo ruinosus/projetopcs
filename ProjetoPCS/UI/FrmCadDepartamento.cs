@@ -265,7 +265,10 @@ namespace UI
             if (txtNome.Text.Trim() == "")
             {
                 validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O campo não pode ser vazio", txtNome);
             }
+
 
             if (validacao)
             {
@@ -309,11 +312,7 @@ namespace UI
                 status.Navegando();
                 AjustaBotoes();
             }
-            else
-            {
-                tlMensagem.ToolTipTitle = "Campo inválido";
-                tlMensagem.Show("O campo deve conter ao menos um valor", txtNome);
-            }
+ 
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
