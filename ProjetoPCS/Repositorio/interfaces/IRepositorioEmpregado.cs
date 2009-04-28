@@ -17,6 +17,7 @@ namespace Repositorio.interfaces
         ArrayList ConsultarPorNome(String nomeEmpregado);
         void RemoverEmpregado(int codEmpregado);
         ArrayList ConsultarTodos(); 
+        int ObterMaximoCodigo();
 
         #endregion
 
