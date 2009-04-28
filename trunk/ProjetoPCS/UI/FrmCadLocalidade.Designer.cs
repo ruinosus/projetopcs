@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadLocalidade));
             this.txtNome = new System.Windows.Forms.TextBox();
             this.lbNome = new System.Windows.Forms.Label();
-            this.tlPrincipal = new System.Windows.Forms.ToolStrip();
+            this.stInformacao = new System.Windows.Forms.ToolStrip();
             this.btnNovo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btnGravar = new System.Windows.Forms.ToolStripButton();
@@ -50,7 +50,8 @@
             this.stPrincipal = new System.Windows.Forms.StatusStrip();
             this.lbInformacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.bsLocalidade = new System.Windows.Forms.BindingSource(this.components);
-            this.tlPrincipal.SuspendLayout();
+            this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
+            this.stInformacao.SuspendLayout();
             this.stPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLocalidade)).BeginInit();
             this.SuspendLayout();
@@ -71,9 +72,9 @@
             this.lbNome.TabIndex = 132;
             this.lbNome.Text = "Nome:";
             // 
-            // tlPrincipal
+            // stInformacao
             // 
-            this.tlPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stInformacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNovo,
             this.toolStripSeparator1,
             this.btnGravar,
@@ -88,11 +89,11 @@
             this.btnUltimo,
             this.toolStripSeparator4,
             this.txtLocalizar});
-            this.tlPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tlPrincipal.Name = "tlPrincipal";
-            this.tlPrincipal.Size = new System.Drawing.Size(359, 25);
-            this.tlPrincipal.TabIndex = 133;
-            this.tlPrincipal.Text = "toolStrip1";
+            this.stInformacao.Location = new System.Drawing.Point(0, 0);
+            this.stInformacao.Name = "stInformacao";
+            this.stInformacao.Size = new System.Drawing.Size(359, 25);
+            this.stInformacao.TabIndex = 133;
+            this.stInformacao.Text = "toolStrip1";
             // 
             // btnNovo
             // 
@@ -236,15 +237,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(359, 206);
             this.Controls.Add(this.stPrincipal);
-            this.Controls.Add(this.tlPrincipal);
+            this.Controls.Add(this.stInformacao);
             this.Controls.Add(this.lbNome);
             this.Controls.Add(this.txtNome);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadLocalidade";
             this.Text = "FrmCadLocalidade";
             this.Load += new System.EventHandler(this.FrmCadLocalidade_Load);
-            this.tlPrincipal.ResumeLayout(false);
-            this.tlPrincipal.PerformLayout();
+            this.stInformacao.ResumeLayout(false);
+            this.stInformacao.PerformLayout();
             this.stPrincipal.ResumeLayout(false);
             this.stPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsLocalidade)).EndInit();
@@ -257,7 +258,7 @@
 
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.Label lbNome;
-        private System.Windows.Forms.ToolStrip tlPrincipal;
+        private System.Windows.Forms.ToolStrip stInformacao;
         private System.Windows.Forms.ToolStripButton btnNovo;
         private System.Windows.Forms.ToolStripButton btnGravar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -275,5 +276,6 @@
         private System.Windows.Forms.StatusStrip stPrincipal;
         private System.Windows.Forms.ToolStripStatusLabel lbInformacao;
         private System.Windows.Forms.BindingSource bsLocalidade;
+        private System.Windows.Forms.ToolTip tlMensagem;
     }
 }
