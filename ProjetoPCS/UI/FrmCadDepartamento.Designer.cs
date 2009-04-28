@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadDepartamento));
-            this.stPrincipal = new System.Windows.Forms.StatusStrip();
+            this.stInformacao = new System.Windows.Forms.StatusStrip();
             this.lbInformacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlPrincipal = new System.Windows.Forms.ToolStrip();
             this.btnNovo = new System.Windows.Forms.ToolStripButton();
@@ -55,19 +55,20 @@
             this.lstLocalidades = new System.Windows.Forms.ListBox();
             this.btnAdicionarLocalidade = new System.Windows.Forms.Button();
             this.btnRemoverLocalidade = new System.Windows.Forms.Button();
-            this.stPrincipal.SuspendLayout();
+            this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
+            this.stInformacao.SuspendLayout();
             this.tlPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDepartamento)).BeginInit();
             this.SuspendLayout();
             // 
-            // stPrincipal
+            // stInformacao
             // 
-            this.stPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.stInformacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbInformacao});
-            this.stPrincipal.Location = new System.Drawing.Point(0, 184);
-            this.stPrincipal.Name = "stPrincipal";
-            this.stPrincipal.Size = new System.Drawing.Size(461, 22);
-            this.stPrincipal.TabIndex = 136;
+            this.stInformacao.Location = new System.Drawing.Point(0, 184);
+            this.stInformacao.Name = "stInformacao";
+            this.stInformacao.Size = new System.Drawing.Size(461, 22);
+            this.stInformacao.TabIndex = 136;
             // 
             // lbInformacao
             // 
@@ -105,7 +106,7 @@
             this.btnNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(23, 22);
-            this.btnNovo.ToolTipText = "Clique aqui para incluir uma  nova localidade";
+            this.btnNovo.ToolTipText = "Clique aqui para incluir um novo departamento";
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // toolStripSeparator1
@@ -295,14 +296,14 @@
             this.Controls.Add(this.lbLocalidades);
             this.Controls.Add(this.lbNome);
             this.Controls.Add(this.txtNome);
-            this.Controls.Add(this.stPrincipal);
+            this.Controls.Add(this.stInformacao);
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadDepartamento";
             this.Text = "FrmCadDepartamento";
             this.Load += new System.EventHandler(this.FrmCadDepartamento_Load);
-            this.stPrincipal.ResumeLayout(false);
-            this.stPrincipal.PerformLayout();
+            this.stInformacao.ResumeLayout(false);
+            this.stInformacao.PerformLayout();
             this.tlPrincipal.ResumeLayout(false);
             this.tlPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDepartamento)).EndInit();
@@ -313,7 +314,7 @@
 
         #endregion
 
-        private System.Windows.Forms.StatusStrip stPrincipal;
+        private System.Windows.Forms.StatusStrip stInformacao;
         private System.Windows.Forms.ToolStripStatusLabel lbInformacao;
         private System.Windows.Forms.ToolStrip tlPrincipal;
         private System.Windows.Forms.ToolStripButton btnNovo;
@@ -338,5 +339,6 @@
         private System.Windows.Forms.ListBox lstLocalidades;
         private System.Windows.Forms.Button btnAdicionarLocalidade;
         private System.Windows.Forms.Button btnRemoverLocalidade;
+        private System.Windows.Forms.ToolTip tlMensagem;
     }
 }
