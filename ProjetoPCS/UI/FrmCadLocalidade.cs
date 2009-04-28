@@ -184,24 +184,41 @@ namespace UI
 
         private void btnGravar_Click(object sender, EventArgs e)
         {
-            switch (status.StatusAtual())
-            {
-                case "Alteração":
-                    {
-                        localidadeAtual.Nome = txtNome.Text;
-                        controlador.LocalidadeAlterarLocalidade(localidadeAtual);
-                        break;
-                    }
+            bool validacao = true;
 
-                case "Inclusão":
-                    {
-                        Localidade l = new Localidade(0, txtNome.Text);
-                        controlador.LocalidadeInserirLocalidade(l);
-                        break;
-                    }
+            if (txtNome.Text.Trim() == "")
+            {
+                validacao = false;
             }
-            status.Navegando();
-            AjustaBotoes();
+
+
+            if (validacao)
+            {
+                switch (status.StatusAtual())
+                {
+                    case "Alteração":
+                        {
+                            localidadeAtual.Nome = txtNome.Text;
+                            controlador.LocalidadeAlterarLocalidade(localidadeAtual);
+                            break;
+                        }
+
+                    case "Inclusão":
+                        {
+                            Localidade l = new Localidade(0, txtNome.Text);
+                            controlador.LocalidadeInserirLocalidade(l);
+                            break;
+                        }
+                }
+                status.Navegando();
+                AjustaBotoes();
+            }
+            else
+            {
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O campo deve conter ao menos um valor", txtNome);
+            }
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
