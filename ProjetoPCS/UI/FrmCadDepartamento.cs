@@ -120,13 +120,17 @@ namespace UI
             {
                 departamentos = controlador.DepartamentoConsultarPorNome(txtLocalizar.Text);
             }
-
+            bsDepartamento.DataSource = departamentos;
             localidades =  controlador.LocalidadeConsultarTodos();
 
-            bsDepartamento.DataSource = departamentos;
-            cmbLocalidades.DataSource = localidades;
-            cmbLocalidades.DisplayMember = "Nome";
-            cmbLocalidades.ValueMember = "Codigo";
+
+            if (localidades.Count > 0)
+            {
+                cmbLocalidades.DataSource = localidades;
+                cmbLocalidades.DisplayMember = "Nome";
+                cmbLocalidades.ValueMember = "Codigo";
+            }
+
           
             switch (status.StatusAtual())
             {
