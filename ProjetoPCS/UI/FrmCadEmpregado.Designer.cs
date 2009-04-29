@@ -107,7 +107,6 @@
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
             this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
             this.bsEmpregado = new System.Windows.Forms.BindingSource(this.components);
-            this.mskSalario = new System.Windows.Forms.MaskedTextBox();
             this.stInformacao.SuspendLayout();
             this.tlPrincipal.SuspendLayout();
             this.tbpDadosDepartamentos.SuspendLayout();
@@ -725,7 +724,6 @@
             // 
             // gpbDadosPessoais
             // 
-            this.gpbDadosPessoais.Controls.Add(this.mskSalario);
             this.gpbDadosPessoais.Controls.Add(this.btnRemoverSupervisor);
             this.gpbDadosPessoais.Controls.Add(this.btnAdicionarSupervisor);
             this.gpbDadosPessoais.Controls.Add(this.lstSupervisor);
@@ -846,6 +844,7 @@
             this.txtSalario.Size = new System.Drawing.Size(131, 20);
             this.txtSalario.TabIndex = 6;
             this.txtSalario.Text = "0";
+            this.txtSalario.Leave += new System.EventHandler(this.txtSalario_Leave);
             // 
             // txtNome
             // 
@@ -912,34 +911,6 @@
             // 
             this.cmbSupervisor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSupervisor.FormattingEnabled = true;
-            this.cmbSupervisor.Items.AddRange(new object[] {
-            "AC",
-            "AL",
-            "AP",
-            "AM",
-            "BA",
-            "CE",
-            "DF",
-            "GO",
-            "ES",
-            "MA",
-            "MT",
-            "MS",
-            "MG",
-            "PA",
-            "PB",
-            "PR ",
-            "PE",
-            "PI",
-            "RJ",
-            "RN",
-            "RS",
-            "RO",
-            "RR",
-            "SP",
-            "SC",
-            "SE",
-            "TO"});
             this.cmbSupervisor.Location = new System.Drawing.Point(273, 86);
             this.cmbSupervisor.Name = "cmbSupervisor";
             this.cmbSupervisor.Size = new System.Drawing.Size(313, 21);
@@ -983,20 +954,6 @@
             this.tbcPrincipal.SelectedIndex = 0;
             this.tbcPrincipal.Size = new System.Drawing.Size(701, 326);
             this.tbcPrincipal.TabIndex = 164;
-            // 
-            // mskSalario
-            // 
-            this.mskSalario.Location = new System.Drawing.Point(61, 114);
-            this.mskSalario.Mask = "$000,000.00";
-            this.mskSalario.Name = "mskSalario";
-            this.mskSalario.RejectInputOnFirstFailure = true;
-            this.mskSalario.ResetOnPrompt = false;
-            this.mskSalario.ResetOnSpace = false;
-            this.mskSalario.Size = new System.Drawing.Size(131, 20);
-            this.mskSalario.SkipLiterals = false;
-            this.mskSalario.TabIndex = 149;
-            this.mskSalario.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.mskSalario.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt;
             // 
             // FrmCadEmpregado
             // 
@@ -1112,6 +1069,5 @@
         private System.Windows.Forms.ListBox lstAlocar;
         private System.Windows.Forms.ListBox lstChefiar;
         private System.Windows.Forms.ToolTip tlMensagem;
-        private System.Windows.Forms.MaskedTextBox mskSalario;
     }
 }

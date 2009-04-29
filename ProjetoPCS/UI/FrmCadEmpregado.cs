@@ -26,6 +26,82 @@ namespace UI
 
         private bool pesquisando = false;
 
+        /*private bool VerificarSupervisor(params Empregado[] emp)
+        {
+            bool verificar = false;
+
+            if (empregadoSupervisor.Supervisor != null)
+            {
+                if ((empregadoAtual.Codigo == empregadoSupervisor.Supervisor.Codigo) || empregadoAtual.Codigo == empregadoSupervisor.Codigo)
+                {
+
+                    return true;
+                }
+
+                if (empregadoSupervisor.Supervisor.Supervisor != null)
+                {
+                   // return this.VerificarSupervisor(empregadoSupervisor.Supervisor, empregadoSupervisor.Supervisor.Supervisor);
+                }
+                //else
+                //{
+                //    verificar = true;
+                //}
+            }
+            else
+            {
+                if (empregadoAtual.Codigo == empregadoSupervisor.Codigo)
+                {
+                    return true;
+                }
+            }
+
+            return verificar;
+        }*/
+
+        private bool VerificarSupervisor(Empregado empregadoAtual, Empregado empregadoSupervisor)
+        {
+            bool verificar = false;
+            if (empregadoSupervisor.Supervisor != null)
+            {
+                if ((empregadoAtual.Codigo == empregadoSupervisor.Supervisor.Codigo) || empregadoAtual.Codigo == empregadoSupervisor.Codigo)
+                {
+
+                    return true;
+                }
+
+                if (empregadoSupervisor.Supervisor.Supervisor != null)
+                {
+                    return this.VerificarSupervisor(empregadoAtual, empregadoSupervisor.Supervisor.Supervisor);
+                }
+
+            }
+            else
+            {
+                if (empregadoAtual.Codigo == empregadoSupervisor.Codigo)
+                {
+                    return true;
+                }
+            }
+
+            return verificar;
+
+        }
+       
+        //private void AjustarSupervisor()
+        //{
+        //    for (int i = 0; i < supervisores.Count; i++ )
+        //    {
+        //       if (((Empregado)supervisores[i]).Codigo == empregadoAtual.Codigo)
+        //        {
+        //            MessageBox.Show(((Empregado)supervisores[i]).Codigo + "  " + empregadoAtual.Codigo);
+        //            supervisores.RemoveAt(i);
+        //            MessageBox.Show(supervisores.Count + "  ");
+        //            cmbSupervisor.DataSource = null;
+        //            cmbSupervisor.DataSource = supervisores;  
+        //        }
+        //    }
+        //}
+
         private void AdicionarSupervisor()
         {
             btnAdicionarSupervisor.Enabled = cmbSupervisor.Items.Count > 0 && lstSupervisor.Items.Count < 1;
@@ -34,7 +110,6 @@ namespace UI
         private void RemoverSupervisor()
         {
             btnRemoverSupervisor.Enabled = (lstSupervisor.Items.Count > 0);
-
         }
 
         private void AdicionarAlocar()
@@ -170,26 +245,35 @@ namespace UI
             }
             bsEmpregado.DataSource = empregados;
 
-            supervisores = controlador.EmpregadoConsultarTodos();       
-            cmbSupervisor.DataSource = supervisores;
-            cmbSupervisor.DisplayMember = "Nome";
-            cmbSupervisor.ValueMember = "Codigo";
-            lstSupervisor.DisplayMember = "Nome";
-            lstSupervisor.ValueMember = "Codigo";
+            supervisores = controlador.EmpregadoConsultarTodos();
+            if (supervisores.Count > 0)
+            {
+                cmbSupervisor.DataSource = supervisores;
+                cmbSupervisor.DisplayMember = "Nome";
+                cmbSupervisor.ValueMember = "Codigo";
+                lstSupervisor.DisplayMember = "Nome";
+                lstSupervisor.ValueMember = "Codigo"; 
+            }
 
             departamentosAlocados = controlador.DepartamentoConsultarTodos();
-            cmbAlocar.DataSource = departamentosAlocados;
-            cmbAlocar.DisplayMember = "Nome";
-            cmbAlocar.ValueMember = "Codigo";
-            lstAlocar.DisplayMember = "Nome";
-            lstAlocar.ValueMember = "Codigo";
+            if (departamentosAlocados.Count > 0)
+            {
+                cmbAlocar.DataSource = departamentosAlocados;
+                cmbAlocar.DisplayMember = "Nome";
+                cmbAlocar.ValueMember = "Codigo";
+                lstAlocar.DisplayMember = "Nome";
+                lstAlocar.ValueMember = "Codigo";
+            }
 
             departamentosChefiados = controlador.DepartamentoConsultarTodos();
-            cmbChefiar.DataSource = departamentosChefiados;
-            cmbChefiar.DisplayMember = "Nome";
-            cmbChefiar.ValueMember = "Codigo";
-            lstChefiar.DisplayMember = "Nome";
-            lstChefiar.ValueMember = "Codigo";
+            if (departamentosChefiados.Count > 0)
+            {
+                cmbChefiar.DataSource = departamentosChefiados;
+                cmbChefiar.DisplayMember = "Nome";
+                cmbChefiar.ValueMember = "Codigo";
+                lstChefiar.DisplayMember = "Nome";
+                lstChefiar.ValueMember = "Codigo";
+            }
 
             switch (status.StatusAtual())
             {
@@ -491,7 +575,7 @@ namespace UI
                                     mskDataFinal.Text = empregadoAtual.DataFinal + "";
                                 }
                             }
-
+                            //AjustarSupervisor();
                         }
                         lbInformacao.Text = "Quantidades de Empregados cadastrados: " + bsEmpregado.Count;
                         break;
@@ -505,16 +589,41 @@ namespace UI
         }
 
         private void FrmCadEmpregado_Load(object sender, EventArgs e)
-        {
-            status.Navegando();
+        {            
             AjustaBotoes();
+            if(bsEmpregado.Count > 0)
+            status.Navegando();
+            else
+            status.Inativa();
+            AjustaBotoes();
+
         }
 
         private void btnAdicionarSupervisor_Click(object sender, EventArgs e)
         {
-            lstSupervisor.Items.Add(cmbSupervisor.Items[cmbSupervisor.SelectedIndex]);
-            AdicionarSupervisor();
-            RemoverSupervisor();
+            bool achou = false;
+
+            if (status.StatusAtual().Equals("Alteração")/* || status.StatusAtual().Equals("Inclusão")*/)
+            {
+                //if (cmbSupervisor.Items.Count > 0 )
+                //{
+                    Empregado sup = ((Empregado)cmbSupervisor.Items[cmbSupervisor.SelectedIndex]);
+                       
+                    achou = this.VerificarSupervisor(empregadoAtual,sup);
+                //}
+            }
+
+            if (achou == false)
+            {
+                lstSupervisor.Items.Add(cmbSupervisor.Items[cmbSupervisor.SelectedIndex]);
+                AdicionarSupervisor();
+                RemoverSupervisor();
+            }
+            else
+            {
+                tlMensagem.ToolTipTitle = "Valor Inválido";
+                tlMensagem.Show("Supervisor Inválido", lstSupervisor);
+            }
         }
 
         private void btnRemoverSupervisor_Click(object sender, EventArgs e)
@@ -569,13 +678,61 @@ namespace UI
         {
             bool validacao = true;
 
-            if (txtNome.Text.Trim() == "")
+            if ((txtNome.Text.Trim() == "") && (validacao == true))
             {
                 validacao = false;
                 tlMensagem.ToolTipTitle = "Campo inválido";
-                tlMensagem.Show("O campo não pode ser vazio", txtNome);
+                tlMensagem.Show("O nome não pode ser vazio", txtNome);
+                txtNome.Focus();
+                txtNome.SelectAll();
+            }           
+
+            if ((!mskDataNascimento.MaskCompleted) && (validacao == true))
+            {
+                validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("A data de Nascimento deve ser informada", mskDataNascimento);
+                mskDataNascimento.Focus();
+                mskDataNascimento.SelectAll();
             }
 
+            if ((!mskRg.MaskCompleted) && (validacao == true))
+            {
+                validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O Rg deve ser informado", mskRg);
+                mskRg.Focus();
+                mskRg.SelectAll();
+            }
+
+            if ((!mskCpf.MaskCompleted) && (validacao == true))
+            {
+                validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O Cpf deve ser informado", mskCpf);
+                mskCpf.Focus();
+                mskCpf.SelectAll();
+            }
+
+            if ((Convert.ToDouble(txtSalario.Text) <= 0) && (validacao == true))
+            {
+                validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O salário deve ser informado com um valor maior que zero", txtSalario);
+                txtSalario.Focus();
+                txtSalario.SelectAll();
+            }
+
+            if ((!mskCep.MaskCompleted) && (validacao == true))
+            {
+                validacao = false;
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O Cep deve ser informado", mskCep);
+                mskCep.Focus();
+                mskCep.SelectAll();
+            }           
+
+           
 
             if (validacao)
             {
@@ -597,6 +754,10 @@ namespace UI
                             empregadoAtual.Rg = mskRg.Text;
                             empregadoAtual.Salario = Convert.ToDouble(txtSalario.Text);
 
+                            empregadoAtual.Supervisor = null;
+                            empregadoAtual.DepartamentoAlocado = null;
+                            empregadoAtual.DepartamentoChefiado = null;
+
                             if (rdSexoMasculino.Checked)
                             {
                                 empregadoAtual.Sexo = 'M';
@@ -609,7 +770,7 @@ namespace UI
                             if (lstSupervisor.Items.Count > 0)
                             {
                                 empregadoAtual.Supervisor = (Empregado)lstSupervisor.Items[0];
-                            }
+                            }   
 
                             empregadoAtual.Telefone = mskTelefone.Text;
                             empregadoAtual.Cpf = mskCpf.Text;
@@ -681,6 +842,10 @@ namespace UI
                             emp.Nome = txtNome.Text;
                             emp.Rg = mskRg.Text;
                             emp.Salario = Convert.ToDouble(txtSalario.Text);
+
+                            emp.Supervisor = null;
+                            emp.DepartamentoAlocado = null;
+                            emp.DepartamentoChefiado = null;
 
                             if (rdSexoMasculino.Checked)
                             {
@@ -812,7 +977,7 @@ namespace UI
         {
             try
             {
-                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                if (!status.StatusAtual().Equals("Navegação") && !status.StatusAtual().Equals("Inativa"))
                 {
                    Convert.ToDateTime(mskDataNascimento.Text);
                 }
@@ -843,7 +1008,7 @@ namespace UI
         {
             try
             {
-                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                if (!status.StatusAtual().Equals("Navegação") && !status.StatusAtual().Equals("Inativa"))
                 {
                    Convert.ToDateTime(mskDataAlocacao.Text);                  
                 }
@@ -872,7 +1037,7 @@ namespace UI
         {
             try
             {
-                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                if (!status.StatusAtual().Equals("Navegação") && !status.StatusAtual().Equals("Inativa"))
                 {
                     Convert.ToDateTime(mskDataInicio.Text);
                 }
@@ -901,7 +1066,7 @@ namespace UI
         {
             try
             {
-                if (!status.StatusAtual().Equals("Navegação") || !status.StatusAtual().Equals("Inativa"))
+                if (!status.StatusAtual().Equals("Navegação") && !status.StatusAtual().Equals("Inativa"))
                 {
                     Convert.ToDateTime(mskDataFinal.Text);
                 }
@@ -924,6 +1089,26 @@ namespace UI
         {
             this.mskDataFinal.Focus();
             this.mskDataFinal.SelectAll();
+        }
+
+        private void txtSalario_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!status.StatusAtual().Equals("Navegação") && !status.StatusAtual().Equals("Inativa"))
+                {
+                    if (Convert.ToDouble(txtSalario.Text) < 0)
+                    {
+                       throw new Exception();
+                    }
+                }
+            }
+            catch (Exception)
+            {                
+                tlMensagem.ToolTipTitle = "Campo inválido";
+                tlMensagem.Show("O campo deve conter um valor númerico maior que zero", txtSalario);
+                txtSalario.Text = "0";
+            }
         }
 
         
