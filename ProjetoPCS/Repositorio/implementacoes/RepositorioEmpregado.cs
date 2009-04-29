@@ -24,8 +24,7 @@ namespace Repositorio.implementacoes
 
         private static String QUERY_INSERT_1 = "INSERT INTO EMPREGADO (COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
         private static String QUERY_INSERT_2 = "INSERT INTO EMPREGADO (COD_EMPREGADO_SUPERVISOR,COD_ENDERECO,NOME_EMPREGADO,SALARIO,CPF,DATA_NASCIMENTO,RG,SEXO,TELEFONE) VALUES (?codEmpregadoSupervisor,?codEndereco,?nomeEmpregado,?salario,?cpf,?dataNascimento,?rg,?sexo,?telefone)";
-        private static String QUERY_UPDATE_1 = "UPDATE EMPREGADO SET COD_ENDERECO = ?codEndereco ,NOME_EMPREGADO = ?nomeEmpregado, SALARIO = ?salario, CPF = ?cpf, DATA_NASCIMENTO = ?dataNascimento, RG = ?rg, SEXO = ?sexo, TELEFONE =?telefone WHERE COD_EMPREGADO = ?codEmpregado ";
-        private static String QUERY_UPDATE_2 = "UPDATE EMPREGADO SET COD_EMPREGADO_SUPERVISOR = ?codEmpregadoSupervisor ,COD_ENDERECO = ?codEndereco ,NOME_EMPREGADO = ?nomeEmpregado, SALARIO = ?salario, CPF = ?cpf, DATA_NASCIMENTO = ?dataNascimento, RG = ?rg, SEXO = ?sexo, TELEFONE =?telefone WHERE COD_EMPREGADO = ?codEmpregado "; 
+        private static String QUERY_UPDATE = "UPDATE EMPREGADO SET COD_EMPREGADO_SUPERVISOR = ?codEmpregadoSupervisor ,COD_ENDERECO = ?codEndereco ,NOME_EMPREGADO = ?nomeEmpregado, SALARIO = ?salario, CPF = ?cpf, DATA_NASCIMENTO = ?dataNascimento, RG = ?rg, SEXO = ?sexo, TELEFONE =?telefone WHERE COD_EMPREGADO = ?codEmpregado "; 
         private static String QUERY_SELECT_ALL = "SELECT * FROM EMPREGADO ORDER BY NOME_EMPREGADO";
         private static String QUERY_SELECT_CODIGO = "SELECT * FROM EMPREGADO WHERE COD_EMPREGADO = ?codEmpregado";
         private static String QUERY_SELECT_NOME = "SELECT * FROM EMPREGADO  WHERE NOME_EMPREGADO LIKE ?nomeEmpregado ORDER BY NOME_EMPREGADO";
@@ -111,14 +110,13 @@ namespace Repositorio.implementacoes
             try
             {
                 MySqlCommand comando;
-
+                comando = new MySqlCommand(QUERY_UPDATE, conexao);
                 if (empregado.Supervisor == null)
-                {
-                    comando = new MySqlCommand(QUERY_UPDATE_1, conexao);
+                {                     
+                    comando.Parameters.AddWithValue("?codEmpregadoSupervisor", null);
                 }
                 else
                 {
-                    comando = new MySqlCommand(QUERY_UPDATE_2, conexao);
                     comando.Parameters.AddWithValue("?codEmpregadoSupervisor", empregado.Supervisor.Codigo);
                 }
                 comando.Parameters.AddWithValue("?codEndereco", empregado.Endereco.Codigo);
