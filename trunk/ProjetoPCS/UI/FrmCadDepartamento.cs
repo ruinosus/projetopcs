@@ -386,7 +386,8 @@ namespace UI
             }
             else
             {
-                MessageBox.Show("localidade já adicionada a lista.");
+                tlMensagem.ToolTipTitle = "Valor já informado";
+                tlMensagem.Show("localidade já adicionada a lista", lstLocalidades);
             }
         }
 
