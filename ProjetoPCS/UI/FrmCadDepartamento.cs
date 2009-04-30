@@ -266,7 +266,7 @@ namespace UI
 
             bool validacao = true;
 
-            if (txtNome.Text.Trim() == "")
+            if (txtNome.Text.Trim() == "" && (validacao == true))
             {
                 validacao = false;
                 tlMensagem.ToolTipTitle = "Campo inválido";
