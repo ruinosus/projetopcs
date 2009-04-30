@@ -303,6 +303,7 @@ namespace Negocios
             else
             {
                 this.repProjeto.AlterarProjeto(projeto);
+                this.repProjeto.RemoverEmpregadoProjeto(projeto.Codigo);
             }
 
         }
