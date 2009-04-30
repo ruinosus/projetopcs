@@ -35,6 +35,7 @@
             this.LocalidadeMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.departamentoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.empregadoMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.dependenteMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.projetoMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -92,16 +93,26 @@
             // 
             // empregadoMenu
             // 
+            this.empregadoMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dependenteMenu});
             this.empregadoMenu.Name = "empregadoMenu";
             this.empregadoMenu.Size = new System.Drawing.Size(152, 22);
             this.empregadoMenu.Text = "Empregado";
             this.empregadoMenu.Click += new System.EventHandler(this.empregadoMenu_Click);
+            // 
+            // dependenteMenu
+            // 
+            this.dependenteMenu.Name = "dependenteMenu";
+            this.dependenteMenu.Size = new System.Drawing.Size(138, 22);
+            this.dependenteMenu.Text = "Dependente";
+            this.dependenteMenu.Click += new System.EventHandler(this.dependenteMenu_Click);
             // 
             // projetoMenu
             // 
             this.projetoMenu.Name = "projetoMenu";
             this.projetoMenu.Size = new System.Drawing.Size(152, 22);
             this.projetoMenu.Text = "Projeto";
+            this.projetoMenu.Click += new System.EventHandler(this.projetoMenu_Click);
             // 
             // FrmPrincipal
             // 
@@ -129,6 +140,7 @@
         private System.Windows.Forms.ToolStripMenuItem departamentoMenu;
         private System.Windows.Forms.ToolStripMenuItem empregadoMenu;
         private System.Windows.Forms.ToolStripMenuItem projetoMenu;
+        private System.Windows.Forms.ToolStripMenuItem dependenteMenu;
     }
 }
 
