@@ -90,7 +90,7 @@
             this.gpbSexo = new System.Windows.Forms.GroupBox();
             this.rdSexoMasculino = new System.Windows.Forms.RadioButton();
             this.rdSexoFeminino = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbSupervisor = new System.Windows.Forms.Label();
             this.lbSalario = new System.Windows.Forms.Label();
             this.lbNome = new System.Windows.Forms.Label();
             this.txtSalario = new System.Windows.Forms.TextBox();
@@ -728,7 +728,7 @@
             this.gpbDadosPessoais.Controls.Add(this.btnAdicionarSupervisor);
             this.gpbDadosPessoais.Controls.Add(this.lstSupervisor);
             this.gpbDadosPessoais.Controls.Add(this.gpbSexo);
-            this.gpbDadosPessoais.Controls.Add(this.label1);
+            this.gpbDadosPessoais.Controls.Add(this.lbSupervisor);
             this.gpbDadosPessoais.Controls.Add(this.lbSalario);
             this.gpbDadosPessoais.Controls.Add(this.lbNome);
             this.gpbDadosPessoais.Controls.Add(this.txtSalario);
@@ -810,14 +810,14 @@
             this.rdSexoFeminino.Text = "Feminino";
             this.rdSexoFeminino.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lbSupervisor
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(212, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 140;
-            this.label1.Text = "Supervisor:";
+            this.lbSupervisor.AutoSize = true;
+            this.lbSupervisor.Location = new System.Drawing.Point(212, 90);
+            this.lbSupervisor.Name = "lbSupervisor";
+            this.lbSupervisor.Size = new System.Drawing.Size(60, 13);
+            this.lbSupervisor.TabIndex = 140;
+            this.lbSupervisor.Text = "Supervisor:";
             // 
             // lbSalario
             // 
@@ -1044,7 +1044,7 @@
         private System.Windows.Forms.GroupBox gpbSexo;
         private System.Windows.Forms.RadioButton rdSexoMasculino;
         private System.Windows.Forms.RadioButton rdSexoFeminino;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbSupervisor;
         private System.Windows.Forms.Label lbSalario;
         private System.Windows.Forms.Label lbNome;
         private System.Windows.Forms.TextBox txtSalario;
