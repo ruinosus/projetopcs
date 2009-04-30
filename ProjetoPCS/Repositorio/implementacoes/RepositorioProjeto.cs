@@ -418,6 +418,10 @@ namespace Repositorio.implementacoes
                 resultado = comando.ExecuteReader();
                 //resultado.Read();
 
+                if (empregados == null)
+                {
+                    empregados = new ArrayList();
+                }
                 if (resultado.HasRows)
                 {
                     while (resultado.Read())
