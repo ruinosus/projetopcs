@@ -74,7 +74,7 @@
             // 
             // btnRemoverEmpregado
             // 
-            this.btnRemoverEmpregado.Location = new System.Drawing.Point(300, 249);
+            this.btnRemoverEmpregado.Location = new System.Drawing.Point(313, 249);
             this.btnRemoverEmpregado.Name = "btnRemoverEmpregado";
             this.btnRemoverEmpregado.Size = new System.Drawing.Size(21, 23);
             this.btnRemoverEmpregado.TabIndex = 162;
@@ -84,7 +84,7 @@
             // 
             // btnAdicionarEmpregado
             // 
-            this.btnAdicionarEmpregado.Location = new System.Drawing.Point(300, 214);
+            this.btnAdicionarEmpregado.Location = new System.Drawing.Point(313, 214);
             this.btnAdicionarEmpregado.Name = "btnAdicionarEmpregado";
             this.btnAdicionarEmpregado.Size = new System.Drawing.Size(21, 23);
             this.btnAdicionarEmpregado.TabIndex = 161;
@@ -95,10 +95,11 @@
             // lstEmpregado
             // 
             this.lstEmpregado.FormattingEnabled = true;
-            this.lstEmpregado.Location = new System.Drawing.Point(77, 247);
+            this.lstEmpregado.Location = new System.Drawing.Point(90, 247);
             this.lstEmpregado.Name = "lstEmpregado";
             this.lstEmpregado.Size = new System.Drawing.Size(220, 43);
             this.lstEmpregado.TabIndex = 160;
+            this.lstEmpregado.SelectedIndexChanged += new System.EventHandler(this.lstEmpregado_SelectedIndexChanged);
             // 
             // lbEmpregado
             // 
@@ -113,7 +114,7 @@
             // 
             this.cmbEmpregado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEmpregado.FormattingEnabled = true;
-            this.cmbEmpregado.Location = new System.Drawing.Point(77, 215);
+            this.cmbEmpregado.Location = new System.Drawing.Point(90, 215);
             this.cmbEmpregado.Name = "cmbEmpregado";
             this.cmbEmpregado.Size = new System.Drawing.Size(220, 21);
             this.cmbEmpregado.TabIndex = 158;
@@ -241,7 +242,6 @@
             // btnPrimeiro
             // 
             this.btnPrimeiro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnPrimeiro.Image = ((System.Drawing.Image)(resources.GetObject("btnPrimeiro.Image")));
             this.btnPrimeiro.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPrimeiro.Name = "btnPrimeiro";
             this.btnPrimeiro.Size = new System.Drawing.Size(27, 22);
@@ -392,7 +392,7 @@
             this.lbDepartamento.TabIndex = 168;
             this.lbDepartamento.Text = "Departamento:";
             // 
-            // FormCadProjeto
+            // FrmCadProjeto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -417,7 +417,7 @@
             this.Controls.Add(this.stInformacao);
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "FormCadProjeto";
+            this.Name = "FrmCadProjeto";
             this.Text = "FormCadProjeto";
             this.Load += new System.EventHandler(this.FormCadProjeto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsProjeto)).EndInit();
