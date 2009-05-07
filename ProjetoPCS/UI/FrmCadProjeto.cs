@@ -38,8 +38,8 @@ namespace UI
         private void LimparListaEmpregado()
         {
             lstEmpregado.DataSource = null;
-            lstEmpregado.DisplayMember = "Nome";
-            lstEmpregado.ValueMember = "Codigo";
+            //lstEmpregado.DisplayMember = "Nome";
+            //lstEmpregado.ValueMember = "Codigo";
             lstEmpregado.Items.Clear();
         }
 
@@ -556,6 +556,12 @@ namespace UI
             else
                 status.Inativa();
             AjustaBotoes();
+        }
+
+        private void lstEmpregado_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AdicionarEmpregado();
+            RemoverEmpregado();
         }
     }
 }

@@ -27,3 +27,7 @@ D:\ProjetoPCS\UI\bin\Debug\Negocios.pdb
 D:\ProjetoPCS\UI\bin\Debug\Util.pdb
 D:\ProjetoPCS\UI\bin\Debug\Excecoes.pdb
 D:\ProjetoPCS\UI\bin\Debug\Repositorio.pdb
+D:\ProjetoPCS\UI\obj\Debug\UI.FrmCadDepartamento.resources
+D:\ProjetoPCS\UI\obj\Debug\UI.FrmCadDependente.resources
+D:\ProjetoPCS\UI\obj\Debug\UI.FrmCadEmpregado.resources
+D:\ProjetoPCS\UI\obj\Debug\UI.FrmCadProjeto.resources

@@ -210,9 +210,10 @@ namespace UI
         private void LimparLista()
         {
             lstLocalidades.DataSource = null;
-            lstLocalidades.DisplayMember = "Nome";
-            lstLocalidades.ValueMember = "Codigo";
             lstLocalidades.Items.Clear();
+            //lstLocalidades.DisplayMember = "Nome";
+            //lstLocalidades.ValueMember = "Codigo";
+            
         }
 
         public FrmCadDepartamento()
