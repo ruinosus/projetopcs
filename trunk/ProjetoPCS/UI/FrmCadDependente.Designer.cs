@@ -74,9 +74,9 @@
             // 
             this.stInformacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbInformacao});
-            this.stInformacao.Location = new System.Drawing.Point(0, 247);
+            this.stInformacao.Location = new System.Drawing.Point(0, 207);
             this.stInformacao.Name = "stInformacao";
-            this.stInformacao.Size = new System.Drawing.Size(515, 22);
+            this.stInformacao.Size = new System.Drawing.Size(516, 22);
             this.stInformacao.TabIndex = 140;
             // 
             // lbInformacao
@@ -105,7 +105,7 @@
             this.txtLocalizar});
             this.tlPrincipal.Location = new System.Drawing.Point(0, 0);
             this.tlPrincipal.Name = "tlPrincipal";
-            this.tlPrincipal.Size = new System.Drawing.Size(515, 25);
+            this.tlPrincipal.Size = new System.Drawing.Size(516, 25);
             this.tlPrincipal.TabIndex = 139;
             this.tlPrincipal.Text = "toolStrip1";
             // 
@@ -383,7 +383,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 269);
+            this.ClientSize = new System.Drawing.Size(516, 229);
             this.Controls.Add(this.lbGrauParentesco);
             this.Controls.Add(this.cmbGrauParentesco);
             this.Controls.Add(this.btnRemoverEmpregado);
@@ -400,7 +400,7 @@
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadDependente";
-            this.Text = "FrmCadDependente";
+            this.Text = "Cadastrar Dependentes";
             this.Load += new System.EventHandler(this.FrmCadDependente_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsDependente)).EndInit();
             this.stInformacao.ResumeLayout(false);
