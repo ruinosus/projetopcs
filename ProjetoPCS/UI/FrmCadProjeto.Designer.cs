@@ -418,7 +418,7 @@
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadProjeto";
-            this.Text = "FormCadProjeto";
+            this.Text = "Cadastrar Projetos";
             this.Load += new System.EventHandler(this.FormCadProjeto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.bsProjeto)).EndInit();
             this.stInformacao.ResumeLayout(false);

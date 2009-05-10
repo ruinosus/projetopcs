@@ -212,7 +212,7 @@
             // txtLocalizar
             // 
             this.txtLocalizar.Name = "txtLocalizar";
-            this.txtLocalizar.Size = new System.Drawing.Size(100, 23);
+            this.txtLocalizar.Size = new System.Drawing.Size(100, 25);
             this.txtLocalizar.ToolTipText = "Informe o nome ou parte dele para localiza-lo";
             this.txtLocalizar.TextChanged += new System.EventHandler(this.txtLocalizar_TextChanged);
             // 
@@ -242,7 +242,7 @@
             this.Controls.Add(this.txtNome);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadLocalidade";
-            this.Text = "FrmCadLocalidade";
+            this.Text = "Cadastrar Localidade";
             this.Load += new System.EventHandler(this.FrmCadLocalidade_Load);
             this.stInformacao.ResumeLayout(false);
             this.stInformacao.PerformLayout();

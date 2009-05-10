@@ -965,7 +965,7 @@
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadEmpregado";
-            this.Text = "FrmCadEmpregado";
+            this.Text = "Cadastrar Empregado";
             this.Load += new System.EventHandler(this.FrmCadEmpregado_Load);
             this.stInformacao.ResumeLayout(false);
             this.stInformacao.PerformLayout();

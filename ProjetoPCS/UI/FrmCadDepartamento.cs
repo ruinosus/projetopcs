@@ -400,5 +400,43 @@ namespace UI
             AdicionarLocalidade();
             RemoverLocalidade();
         }
+
+        private void btnAnterior_Click_1(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsDepartamento.MovePrevious();
+            AjustaBotoes();
+        }
+
+        private void txtLocalizar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUltimo_Click_1(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsDepartamento.MoveLast();
+            AjustaBotoes();
+        }
+
+        private void btnPrimeiro_Click_1(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsDepartamento.MoveFirst();
+            AjustaBotoes();
+        }
+
+        private void btnProximo_Click_1(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsDepartamento.MoveNext();
+            AjustaBotoes();
+        }
+
+        private void lbLocalidades_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
