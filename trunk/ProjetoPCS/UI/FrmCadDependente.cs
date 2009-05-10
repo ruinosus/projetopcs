@@ -419,5 +419,10 @@ namespace UI
                 status.Inativa();
             AjustaBotoes();
         }
+
+        private void txtLocalizar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

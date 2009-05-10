@@ -74,7 +74,7 @@
             // 
             this.stInformacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbInformacao});
-            this.stInformacao.Location = new System.Drawing.Point(0, 207);
+            this.stInformacao.Location = new System.Drawing.Point(0, 193);
             this.stInformacao.Name = "stInformacao";
             this.stInformacao.Size = new System.Drawing.Size(516, 22);
             this.stInformacao.TabIndex = 140;
@@ -235,6 +235,7 @@
             this.txtLocalizar.Size = new System.Drawing.Size(200, 25);
             this.txtLocalizar.ToolTipText = "Informe o nome ou parte dele para localiza-lo";
             this.txtLocalizar.TextChanged += new System.EventHandler(this.txtLocalizar_TextChanged);
+            this.txtLocalizar.Click += new System.EventHandler(this.txtLocalizar_Click);
             // 
             // lbNome
             // 
@@ -383,7 +384,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(516, 229);
+            this.ClientSize = new System.Drawing.Size(516, 215);
             this.Controls.Add(this.lbGrauParentesco);
             this.Controls.Add(this.cmbGrauParentesco);
             this.Controls.Add(this.btnRemoverEmpregado);
