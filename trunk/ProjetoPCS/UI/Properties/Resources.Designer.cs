@@ -67,6 +67,13 @@ namespace UI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Add_Card_1_96x96_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Add_Card-1-96x96-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Back___Previous_5_32x32_32bpp {
             get {
                 object obj = ResourceManager.GetObject("Back___Previous-5-32x32-32bpp", resourceCulture);
@@ -77,6 +84,13 @@ namespace UI.Properties {
         internal static System.Drawing.Bitmap Back_2_5_32x32_32bpp {
             get {
                 object obj = ResourceManager.GetObject("Back_2-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Clients_15_96x96_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Clients-15-96x96-32bpp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -102,6 +116,20 @@ namespace UI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap dependentes1 {
+            get {
+                object obj = ResourceManager.GetObject("dependentes1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap empregados2 {
+            get {
+                object obj = ResourceManager.GetObject("empregados2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Forward___Next_5_32x32_32bpp {
             get {
                 object obj = ResourceManager.GetObject("Forward___Next-5-32x32-32bpp", resourceCulture);
@@ -116,9 +144,37 @@ namespace UI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap G_Projects_96 {
+            get {
+                object obj = ResourceManager.GetObject("G_Projects-96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap List_1_96x96_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("List-1-96x96-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap localidades {
+            get {
+                object obj = ResourceManager.GetObject("localidades", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap New_Doc_5_32x32_32bpp {
             get {
                 object obj = ResourceManager.GetObject("New_Doc-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap projetos1 {
+            get {
+                object obj = ResourceManager.GetObject("projetos1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,6 +189,13 @@ namespace UI.Properties {
         internal static System.Drawing.Bitmap Stop_5_32x32_32bpp {
             get {
                 object obj = ResourceManager.GetObject("Stop-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap World_15_96x96_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("World-15-96x96-32bpp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

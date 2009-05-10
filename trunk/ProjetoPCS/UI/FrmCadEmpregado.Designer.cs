@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadEmpregado));
             this.stInformacao = new System.Windows.Forms.StatusStrip();
             this.lbInformacao = new System.Windows.Forms.ToolStripStatusLabel();
             this.tlPrincipal = new System.Windows.Forms.ToolStrip();
@@ -40,11 +39,6 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.btnAlterar = new System.Windows.Forms.ToolStripButton();
             this.btnRemover = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnPrimeiro = new System.Windows.Forms.ToolStripButton();
-            this.btnAnterior = new System.Windows.Forms.ToolStripButton();
-            this.btnProximo = new System.Windows.Forms.ToolStripButton();
-            this.btnUltimo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.lbLocalizar = new System.Windows.Forms.ToolStripLabel();
             this.txtLocalizar = new System.Windows.Forms.ToolStripTextBox();
@@ -106,7 +100,13 @@
             this.lbRg = new System.Windows.Forms.Label();
             this.tbcPrincipal = new System.Windows.Forms.TabControl();
             this.tlMensagem = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnPrimeiro = new System.Windows.Forms.ToolStripButton();
+            this.btnAnterior = new System.Windows.Forms.ToolStripButton();
+            this.btnProximo = new System.Windows.Forms.ToolStripButton();
+            this.btnUltimo = new System.Windows.Forms.ToolStripButton();
             this.bsEmpregado = new System.Windows.Forms.BindingSource(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.stInformacao.SuspendLayout();
             this.tlPrincipal.SuspendLayout();
             this.tbpDadosDepartamentos.SuspendLayout();
@@ -117,14 +117,16 @@
             this.gpbDadosPessoais.SuspendLayout();
             this.gpbSexo.SuspendLayout();
             this.tbcPrincipal.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsEmpregado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // stInformacao
             // 
             this.stInformacao.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lbInformacao});
-            this.stInformacao.Location = new System.Drawing.Point(0, 357);
+            this.stInformacao.Location = new System.Drawing.Point(0, 447);
             this.stInformacao.Name = "stInformacao";
             this.stInformacao.Size = new System.Drawing.Size(707, 22);
             this.stInformacao.TabIndex = 138;
@@ -137,6 +139,8 @@
             // 
             // tlPrincipal
             // 
+            this.tlPrincipal.Dock = System.Windows.Forms.DockStyle.None;
+            this.tlPrincipal.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.tlPrincipal.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNovo,
             this.toolStripSeparator1,
@@ -145,144 +149,90 @@
             this.toolStripSeparator2,
             this.btnAlterar,
             this.btnRemover,
-            this.toolStripSeparator3,
-            this.btnPrimeiro,
-            this.btnAnterior,
-            this.btnProximo,
-            this.btnUltimo,
             this.toolStripSeparator4,
             this.lbLocalizar,
             this.txtLocalizar});
-            this.tlPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.tlPrincipal.Location = new System.Drawing.Point(0, 51);
             this.tlPrincipal.Name = "tlPrincipal";
-            this.tlPrincipal.Size = new System.Drawing.Size(707, 25);
+            this.tlPrincipal.Size = new System.Drawing.Size(455, 39);
             this.tlPrincipal.TabIndex = 137;
             this.tlPrincipal.Text = "toolStrip1";
             // 
             // btnNovo
             // 
             this.btnNovo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNovo.Image = ((System.Drawing.Image)(resources.GetObject("btnNovo.Image")));
+            this.btnNovo.Image = global::UI.Properties.Resources.New_Doc_5_32x32_32bpp;
             this.btnNovo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(23, 22);
+            this.btnNovo.Size = new System.Drawing.Size(36, 36);
             this.btnNovo.ToolTipText = "Clique aqui para incluir um novo empregado";
             this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // btnGravar
             // 
             this.btnGravar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnGravar.Image = ((System.Drawing.Image)(resources.GetObject("btnGravar.Image")));
+            this.btnGravar.Image = global::UI.Properties.Resources.Save_5_32x32_32bpp;
             this.btnGravar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(23, 22);
+            this.btnGravar.Size = new System.Drawing.Size(36, 36);
             this.btnGravar.ToolTipText = "Clique aqui para confirmar";
             this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
             // 
             // btnCancelar
             // 
             this.btnCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCancelar.Image = ((System.Drawing.Image)(resources.GetObject("btnCancelar.Image")));
+            this.btnCancelar.Image = global::UI.Properties.Resources.Stop_5_32x32_32bpp;
             this.btnCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(23, 22);
+            this.btnCancelar.Size = new System.Drawing.Size(36, 36);
             this.btnCancelar.ToolTipText = "Clique aqui para cancelar";
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // btnAlterar
             // 
             this.btnAlterar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnAlterar.Image = ((System.Drawing.Image)(resources.GetObject("btnAlterar.Image")));
+            this.btnAlterar.Image = global::UI.Properties.Resources.Write_5_32x32_32bpp;
             this.btnAlterar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnAlterar.Name = "btnAlterar";
-            this.btnAlterar.Size = new System.Drawing.Size(23, 22);
+            this.btnAlterar.Size = new System.Drawing.Size(36, 36);
             this.btnAlterar.ToolTipText = "Clique aqui para alterar";
             this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnRemover
             // 
             this.btnRemover.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRemover.Image = ((System.Drawing.Image)(resources.GetObject("btnRemover.Image")));
+            this.btnRemover.Image = global::UI.Properties.Resources.Delete_6_32x32_32bpp;
             this.btnRemover.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRemover.Name = "btnRemover";
-            this.btnRemover.Size = new System.Drawing.Size(23, 22);
+            this.btnRemover.Size = new System.Drawing.Size(36, 36);
             this.btnRemover.ToolTipText = "Clique aqui para remover";
             this.btnRemover.Click += new System.EventHandler(this.btnRemover_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // btnPrimeiro
-            // 
-            this.btnPrimeiro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnPrimeiro.Image = ((System.Drawing.Image)(resources.GetObject("btnPrimeiro.Image")));
-            this.btnPrimeiro.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnPrimeiro.Name = "btnPrimeiro";
-            this.btnPrimeiro.Size = new System.Drawing.Size(27, 22);
-            this.btnPrimeiro.Text = "<<";
-            this.btnPrimeiro.ToolTipText = "Vai para o primeiro elemento";
-            this.btnPrimeiro.Click += new System.EventHandler(this.btnPrimeiro_Click);
-            // 
-            // btnAnterior
-            // 
-            this.btnAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnAnterior.Image = ((System.Drawing.Image)(resources.GetObject("btnAnterior.Image")));
-            this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(23, 22);
-            this.btnAnterior.Text = "<";
-            this.btnAnterior.ToolTipText = "Vai para o elemento anterior";
-            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
-            // 
-            // btnProximo
-            // 
-            this.btnProximo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnProximo.Image = ((System.Drawing.Image)(resources.GetObject("btnProximo.Image")));
-            this.btnProximo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnProximo.Name = "btnProximo";
-            this.btnProximo.Size = new System.Drawing.Size(23, 22);
-            this.btnProximo.Text = ">";
-            this.btnProximo.ToolTipText = "Vai para o proximo elemento";
-            this.btnProximo.Click += new System.EventHandler(this.btnProximo_Click);
-            // 
-            // btnUltimo
-            // 
-            this.btnUltimo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnUltimo.Image = ((System.Drawing.Image)(resources.GetObject("btnUltimo.Image")));
-            this.btnUltimo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnUltimo.Name = "btnUltimo";
-            this.btnUltimo.Size = new System.Drawing.Size(27, 22);
-            this.btnUltimo.Text = ">>";
-            this.btnUltimo.ToolTipText = "Vai para o último elemento";
-            this.btnUltimo.Click += new System.EventHandler(this.btnUltimo_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 39);
             // 
             // lbLocalizar
             // 
             this.lbLocalizar.Name = "lbLocalizar";
-            this.lbLocalizar.Size = new System.Drawing.Size(43, 22);
+            this.lbLocalizar.Size = new System.Drawing.Size(43, 36);
             this.lbLocalizar.Text = "Nome:";
             // 
             // txtLocalizar
             // 
             this.txtLocalizar.Name = "txtLocalizar";
-            this.txtLocalizar.Size = new System.Drawing.Size(200, 25);
+            this.txtLocalizar.Size = new System.Drawing.Size(200, 39);
             this.txtLocalizar.ToolTipText = "Informe o nome ou parte dele para localiza-lo";
             this.txtLocalizar.TextChanged += new System.EventHandler(this.txtLocalizar_TextChanged);
             // 
@@ -293,7 +243,7 @@
             this.tbpDadosDepartamentos.Location = new System.Drawing.Point(4, 22);
             this.tbpDadosDepartamentos.Name = "tbpDadosDepartamentos";
             this.tbpDadosDepartamentos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpDadosDepartamentos.Size = new System.Drawing.Size(693, 300);
+            this.tbpDadosDepartamentos.Size = new System.Drawing.Size(693, 286);
             this.tbpDadosDepartamentos.TabIndex = 1;
             this.tbpDadosDepartamentos.Text = "Departamentos";
             this.tbpDadosDepartamentos.UseVisualStyleBackColor = true;
@@ -530,7 +480,7 @@
             this.tbpDadosGerais.Location = new System.Drawing.Point(4, 22);
             this.tbpDadosGerais.Name = "tbpDadosGerais";
             this.tbpDadosGerais.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpDadosGerais.Size = new System.Drawing.Size(693, 300);
+            this.tbpDadosGerais.Size = new System.Drawing.Size(693, 286);
             this.tbpDadosGerais.TabIndex = 0;
             this.tbpDadosGerais.Text = "Dados Gerais";
             this.tbpDadosGerais.UseVisualStyleBackColor = true;
@@ -553,7 +503,7 @@
             this.gpEndereco.Controls.Add(this.lbPais);
             this.gpEndereco.Controls.Add(this.lbLogradouro);
             this.gpEndereco.Controls.Add(this.lbBairro);
-            this.gpEndereco.Location = new System.Drawing.Point(3, 151);
+            this.gpEndereco.Location = new System.Drawing.Point(3, 166);
             this.gpEndereco.Name = "gpEndereco";
             this.gpEndereco.Size = new System.Drawing.Size(683, 117);
             this.gpEndereco.TabIndex = 165;
@@ -744,35 +694,35 @@
             this.gpbDadosPessoais.Controls.Add(this.lbRg);
             this.gpbDadosPessoais.Location = new System.Drawing.Point(3, 7);
             this.gpbDadosPessoais.Name = "gpbDadosPessoais";
-            this.gpbDadosPessoais.Size = new System.Drawing.Size(683, 138);
+            this.gpbDadosPessoais.Size = new System.Drawing.Size(683, 159);
             this.gpbDadosPessoais.TabIndex = 162;
             this.gpbDadosPessoais.TabStop = false;
             this.gpbDadosPessoais.Text = "Dados Pessoais";
             // 
             // btnRemoverSupervisor
             // 
-            this.btnRemoverSupervisor.Location = new System.Drawing.Point(592, 109);
+            this.btnRemoverSupervisor.Image = global::UI.Properties.Resources.Delete_21_24x24_32bpp;
+            this.btnRemoverSupervisor.Location = new System.Drawing.Point(592, 119);
             this.btnRemoverSupervisor.Name = "btnRemoverSupervisor";
-            this.btnRemoverSupervisor.Size = new System.Drawing.Size(21, 23);
+            this.btnRemoverSupervisor.Size = new System.Drawing.Size(32, 32);
             this.btnRemoverSupervisor.TabIndex = 148;
-            this.btnRemoverSupervisor.Text = "-";
             this.btnRemoverSupervisor.UseVisualStyleBackColor = true;
             this.btnRemoverSupervisor.Click += new System.EventHandler(this.btnRemoverSupervisor_Click);
             // 
             // btnAdicionarSupervisor
             // 
-            this.btnAdicionarSupervisor.Location = new System.Drawing.Point(592, 86);
+            this.btnAdicionarSupervisor.Image = global::UI.Properties.Resources.Add_21_24x24_32bpp;
+            this.btnAdicionarSupervisor.Location = new System.Drawing.Point(592, 85);
             this.btnAdicionarSupervisor.Name = "btnAdicionarSupervisor";
-            this.btnAdicionarSupervisor.Size = new System.Drawing.Size(21, 23);
+            this.btnAdicionarSupervisor.Size = new System.Drawing.Size(32, 32);
             this.btnAdicionarSupervisor.TabIndex = 147;
-            this.btnAdicionarSupervisor.Text = "+";
             this.btnAdicionarSupervisor.UseVisualStyleBackColor = true;
             this.btnAdicionarSupervisor.Click += new System.EventHandler(this.btnAdicionarSupervisor_Click);
             // 
             // lstSupervisor
             // 
             this.lstSupervisor.FormattingEnabled = true;
-            this.lstSupervisor.Location = new System.Drawing.Point(273, 114);
+            this.lstSupervisor.Location = new System.Drawing.Point(273, 127);
             this.lstSupervisor.Name = "lstSupervisor";
             this.lstSupervisor.Size = new System.Drawing.Size(313, 17);
             this.lstSupervisor.TabIndex = 146;
@@ -813,7 +763,7 @@
             // lbSupervisor
             // 
             this.lbSupervisor.AutoSize = true;
-            this.lbSupervisor.Location = new System.Drawing.Point(212, 90);
+            this.lbSupervisor.Location = new System.Drawing.Point(212, 95);
             this.lbSupervisor.Name = "lbSupervisor";
             this.lbSupervisor.Size = new System.Drawing.Size(60, 13);
             this.lbSupervisor.TabIndex = 140;
@@ -911,7 +861,7 @@
             // 
             this.cmbSupervisor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSupervisor.FormattingEnabled = true;
-            this.cmbSupervisor.Location = new System.Drawing.Point(273, 86);
+            this.cmbSupervisor.Location = new System.Drawing.Point(273, 91);
             this.cmbSupervisor.Name = "cmbSupervisor";
             this.cmbSupervisor.Size = new System.Drawing.Size(313, 21);
             this.cmbSupervisor.TabIndex = 7;
@@ -949,22 +899,93 @@
             // 
             this.tbcPrincipal.Controls.Add(this.tbpDadosGerais);
             this.tbcPrincipal.Controls.Add(this.tbpDadosDepartamentos);
-            this.tbcPrincipal.Location = new System.Drawing.Point(0, 28);
+            this.tbcPrincipal.Location = new System.Drawing.Point(6, 93);
             this.tbcPrincipal.Name = "tbcPrincipal";
             this.tbcPrincipal.SelectedIndex = 0;
-            this.tbcPrincipal.Size = new System.Drawing.Size(701, 326);
+            this.tbcPrincipal.Size = new System.Drawing.Size(701, 312);
             this.tbcPrincipal.TabIndex = 164;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnPrimeiro,
+            this.btnAnterior,
+            this.btnProximo,
+            this.btnUltimo});
+            this.toolStrip1.Location = new System.Drawing.Point(277, 408);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(187, 39);
+            this.toolStrip1.TabIndex = 165;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnPrimeiro
+            // 
+            this.btnPrimeiro.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnPrimeiro.Image = global::UI.Properties.Resources.Back_2_5_32x32_32bpp;
+            this.btnPrimeiro.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPrimeiro.Name = "btnPrimeiro";
+            this.btnPrimeiro.Size = new System.Drawing.Size(36, 36);
+            this.btnPrimeiro.Text = ">";
+            this.btnPrimeiro.ToolTipText = "Vai para o proximo elemento";
+            this.btnPrimeiro.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // btnAnterior
+            // 
+            this.btnAnterior.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAnterior.Image = global::UI.Properties.Resources.Back___Previous_5_32x32_32bpp;
+            this.btnAnterior.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAnterior.Name = "btnAnterior";
+            this.btnAnterior.Size = new System.Drawing.Size(36, 36);
+            this.btnAnterior.Text = ">>";
+            this.btnAnterior.ToolTipText = "Vai para o último elemento";
+            this.btnAnterior.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // btnProximo
+            // 
+            this.btnProximo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnProximo.Image = global::UI.Properties.Resources.Forward___Next_5_32x32_32bpp;
+            this.btnProximo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnProximo.Name = "btnProximo";
+            this.btnProximo.Size = new System.Drawing.Size(36, 36);
+            this.btnProximo.Text = "<";
+            this.btnProximo.ToolTipText = "Vai para o elemento anterior";
+            this.btnProximo.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // btnUltimo
+            // 
+            this.btnUltimo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnUltimo.Image = global::UI.Properties.Resources.Forward_2_5_32x32_32bpp;
+            this.btnUltimo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnUltimo.Name = "btnUltimo";
+            this.btnUltimo.Size = new System.Drawing.Size(36, 36);
+            this.btnUltimo.Text = "<<";
+            this.btnUltimo.ToolTipText = "Vai para o primeiro elemento";
+            this.btnUltimo.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::UI.Properties.Resources.empregados2;
+            this.pictureBox1.Location = new System.Drawing.Point(0, -2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(697, 50);
+            this.pictureBox1.TabIndex = 149;
+            this.pictureBox1.TabStop = false;
             // 
             // FrmCadEmpregado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 379);
+            this.ClientSize = new System.Drawing.Size(707, 469);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tbcPrincipal);
             this.Controls.Add(this.stInformacao);
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadEmpregado";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cadastrar Empregado";
             this.Load += new System.EventHandler(this.FrmCadEmpregado_Load);
             this.stInformacao.ResumeLayout(false);
@@ -984,7 +1005,10 @@
             this.gpbSexo.ResumeLayout(false);
             this.gpbSexo.PerformLayout();
             this.tbcPrincipal.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsEmpregado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1003,11 +1027,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton btnAlterar;
         private System.Windows.Forms.ToolStripButton btnRemover;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton btnPrimeiro;
-        private System.Windows.Forms.ToolStripButton btnAnterior;
-        private System.Windows.Forms.ToolStripButton btnProximo;
-        private System.Windows.Forms.ToolStripButton btnUltimo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripLabel lbLocalizar;
         private System.Windows.Forms.ToolStripTextBox txtLocalizar;
@@ -1069,5 +1088,11 @@
         private System.Windows.Forms.ListBox lstAlocar;
         private System.Windows.Forms.ListBox lstChefiar;
         private System.Windows.Forms.ToolTip tlMensagem;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnPrimeiro;
+        private System.Windows.Forms.ToolStripButton btnAnterior;
+        private System.Windows.Forms.ToolStripButton btnProximo;
+        private System.Windows.Forms.ToolStripButton btnUltimo;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

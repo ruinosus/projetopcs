@@ -54,5 +54,30 @@ namespace UI
         {
             frmCadProjeto.ShowDialog();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmCadLocalidade.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            frmCadDepartamento.ShowDialog();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmCadEmpregado.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            frmCadDepartamento.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            frmCadProjeto.ShowDialog();
+        }
     }
 }

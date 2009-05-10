@@ -563,5 +563,33 @@ namespace UI
             AdicionarEmpregado();
             RemoverEmpregado();
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsProjeto.MoveFirst();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsProjeto.MovePrevious();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsProjeto.MoveNext();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsProjeto.MoveLast();
+            AjustaBotoes();
+        }
     }
 }
