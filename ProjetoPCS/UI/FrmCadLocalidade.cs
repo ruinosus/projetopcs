@@ -256,6 +256,34 @@ namespace UI
             AjustaBotoes();
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsLocalidade.MoveFirst();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsLocalidade.MovePrevious();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsLocalidade.MoveNext();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsLocalidade.MoveLast();
+            AjustaBotoes();
+        }
+
 
     }
 }

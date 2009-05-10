@@ -96,7 +96,7 @@
             this.btnRemover,
             this.toolStripSeparator3,
             this.txtLocalizar});
-            this.tlPrincipal.Location = new System.Drawing.Point(0, 45);
+            this.tlPrincipal.Location = new System.Drawing.Point(0, 53);
             this.tlPrincipal.Name = "tlPrincipal";
             this.tlPrincipal.Size = new System.Drawing.Size(412, 39);
             this.tlPrincipal.TabIndex = 135;
@@ -138,7 +138,7 @@
             // 
             this.txtNome.Location = new System.Drawing.Point(70, 100);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(347, 20);
+            this.txtNome.Size = new System.Drawing.Size(392, 20);
             this.txtNome.TabIndex = 137;
             // 
             // cmbLocalidades
@@ -166,7 +166,7 @@
             this.lstLocalidades.FormattingEnabled = true;
             this.lstLocalidades.Location = new System.Drawing.Point(307, 139);
             this.lstLocalidades.Name = "lstLocalidades";
-            this.lstLocalidades.Size = new System.Drawing.Size(120, 95);
+            this.lstLocalidades.Size = new System.Drawing.Size(155, 95);
             this.lstLocalidades.TabIndex = 139;
             this.lstLocalidades.SelectedIndexChanged += new System.EventHandler(this.lstLocalidades_SelectedIndexChanged);
             // 
@@ -183,9 +183,9 @@
             this.btnProximo,
             this.toolStripSeparator5,
             this.btnUltimo});
-            this.toolStrip1.Location = new System.Drawing.Point(135, 245);
+            this.toolStrip1.Location = new System.Drawing.Point(160, 245);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(205, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(174, 39);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 143;
             this.toolStrip1.Text = "toolStrip1";
@@ -209,9 +209,10 @@
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.Image = global::UI.Properties.Resources.departamentos;
-            this.pictureBox1.Location = new System.Drawing.Point(0, -6);
+            this.pictureBox1.Location = new System.Drawing.Point(0, 1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(474, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(473, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox1.TabIndex = 144;
             this.pictureBox1.TabStop = false;
             // 
@@ -258,7 +259,7 @@
             // btnRemoverLocalidade
             // 
             this.btnRemoverLocalidade.Image = global::UI.Properties.Resources.Delete_21_24x24_32bpp;
-            this.btnRemoverLocalidade.Location = new System.Drawing.Point(433, 139);
+            this.btnRemoverLocalidade.Location = new System.Drawing.Point(268, 181);
             this.btnRemoverLocalidade.Name = "btnRemoverLocalidade";
             this.btnRemoverLocalidade.Size = new System.Drawing.Size(36, 36);
             this.btnRemoverLocalidade.TabIndex = 142;
@@ -343,6 +344,7 @@
             this.Controls.Add(this.tlPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FrmCadDepartamento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cadastrar Departamentos";
             this.Load += new System.EventHandler(this.FrmCadDepartamento_Load);
             this.stInformacao.ResumeLayout(false);

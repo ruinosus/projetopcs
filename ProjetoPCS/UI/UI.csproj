@@ -9,9 +9,25 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UI</RootNamespace>
-    <AssemblyName>UI</AssemblyName>
+    <AssemblyName>G-Projects</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>G-Projects.ico</ApplicationIcon>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -183,6 +199,51 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\departamentos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dependentes1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\empregados2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\localidades.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\projetos1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="G-Projects.ico" />
+    <None Include="Resources\Clients-15-96x96-32bpp.png" />
+    <None Include="Resources\World-15-96x96-32bpp.png" />
+    <None Include="Resources\G_Projects-96.png" />
+    <None Include="Resources\G_Projects-2-128x128-32bpp.png" />
+    <None Include="Resources\G_Projects-3-48x48-32bpp.png" />
+    <None Include="Resources\Add_Card-1-96x96-32bpp.png" />
+    <None Include="Resources\List-1-96x96-32bpp.png" />
+    <None Include="Resources\List-0-128x128-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

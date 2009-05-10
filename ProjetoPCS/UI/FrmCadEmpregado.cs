@@ -1111,6 +1111,34 @@ namespace UI
             }
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsEmpregado.MoveFirst();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsEmpregado.MovePrevious();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsEmpregado.MoveNext();
+            AjustaBotoes();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            status.Navegando();
+            bsEmpregado.MoveLast();
+            AjustaBotoes();
+        }
+
         
     }
     
