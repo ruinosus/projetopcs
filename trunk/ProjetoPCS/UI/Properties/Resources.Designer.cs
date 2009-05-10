@@ -66,5 +66,89 @@ namespace UI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        internal static System.Drawing.Bitmap Add_21_24x24_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Add-21-24x24-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Back___Previous_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Back___Previous-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Back_2_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Back_2-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Delete_21_24x24_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Delete-21-24x24-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Delete_6_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Delete-6-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap departamentos {
+            get {
+                object obj = ResourceManager.GetObject("departamentos", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Forward___Next_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Forward___Next-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Forward_2_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Forward_2-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap New_Doc_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("New_Doc-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Save_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Save-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Stop_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Stop-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Write_5_32x32_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Write-5-32x32-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

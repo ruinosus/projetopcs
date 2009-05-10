@@ -117,6 +117,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -145,6 +146,42 @@
       <Project>{F9EB57D7-D2C0-481B-9269-4CD8D4A067F7}</Project>
       <Name>Util</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\New_Doc-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Save-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add-21-24x24-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete-21-24x24-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stop-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Write-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete-6-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forward_2-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back_2-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Back___Previous-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forward___Next-5-32x32-32bpp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\departamentos.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
