@@ -60,13 +60,6 @@ namespace UI.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _2leftarrow {
-            get {
-                object obj = ResourceManager.GetObject("2leftarrow", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap Add_21_24x24_32bpp {
             get {
                 object obj = ResourceManager.GetObject("Add-21-24x24-32bpp", resourceCulture);
