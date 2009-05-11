@@ -74,6 +74,13 @@ namespace UI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Add_Card_7_16x16_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Add_Card-7-16x16-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Back___Previous_5_32x32_32bpp {
             get {
                 object obj = ResourceManager.GetObject("Back___Previous-5-32x32-32bpp", resourceCulture);
@@ -91,6 +98,13 @@ namespace UI.Properties {
         internal static System.Drawing.Bitmap Clients_15_96x96_32bpp {
             get {
                 object obj = ResourceManager.GetObject("Clients-15-96x96-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Clients_22_16x16_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("Clients-22-16x16-32bpp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -144,6 +158,13 @@ namespace UI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap G_Projects_5_16x16_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("G_Projects-5-16x16-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap G_Projects_96 {
             get {
                 object obj = ResourceManager.GetObject("G_Projects-96", resourceCulture);
@@ -151,9 +172,37 @@ namespace UI.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap inicial {
+            get {
+                object obj = ResourceManager.GetObject("inicial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap inicial2 {
+            get {
+                object obj = ResourceManager.GetObject("inicial2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap inicial3 {
+            get {
+                object obj = ResourceManager.GetObject("inicial3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap List_1_96x96_32bpp {
             get {
                 object obj = ResourceManager.GetObject("List-1-96x96-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap List_7_16x16_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("List-7-16x16-32bpp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +245,13 @@ namespace UI.Properties {
         internal static System.Drawing.Bitmap World_15_96x96_32bpp {
             get {
                 object obj = ResourceManager.GetObject("World-15-96x96-32bpp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap World_22_16x16_32bpp {
+            get {
+                object obj = ResourceManager.GetObject("World-22-16x16-32bpp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

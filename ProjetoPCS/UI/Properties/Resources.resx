@@ -121,14 +121,17 @@
   <data name="Add_Card-1-96x96-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add_Card-1-96x96-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Forward_2-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forward_2-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Back___Previous-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Back___Previous-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="empregados2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\empregados2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="World-15-96x96-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\World-15-96x96-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="inicial2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inicial2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Forward___Next-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Forward___Next-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,14 +139,20 @@
   <data name="dependentes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\dependentes1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="New_Doc-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\New_Doc-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="World-15-96x96-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\World-15-96x96-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="projetos1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\projetos1.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="G_Projects-96" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\G_Projects-96.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="List-1-96x96-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\List-1-96x96-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="World-22-16x16-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\World-22-16x16-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Add-21-24x24-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add-21-24x24-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,8 +163,11 @@
   <data name="Back_2-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Back_2-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Forward_2-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Forward_2-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Clients-15-96x96-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Clients-15-96x96-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Delete-21-24x24-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Delete-21-24x24-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="localidades" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\localidades.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -163,22 +175,34 @@
   <data name="Stop-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Stop-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="G_Projects-5-16x16-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\G_Projects-5-16x16-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Delete-6-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete-6-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Delete-21-24x24-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Delete-21-24x24-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Clients-22-16x16-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Clients-22-16x16-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="departamentos" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\departamentos.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="List-1-96x96-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\List-1-96x96-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="New_Doc-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\New_Doc-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Save-5-32x32-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Save-5-32x32-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Clients-15-96x96-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Clients-15-96x96-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="departamentos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\departamentos.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="List-7-16x16-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\List-7-16x16-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inicial" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inicial.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Add_Card-7-16x16-32bpp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Add_Card-7-16x16-32bpp.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="inicial3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\inicial3.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
