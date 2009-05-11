@@ -214,6 +214,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="G-Projects.ico" />
+    <None Include="Resources\inicial3.png" />
+    <None Include="Resources\inicial2.png" />
+    <None Include="Resources\inicial.png" />
+    <None Include="Resources\List-7-16x16-32bpp.png" />
+    <None Include="Resources\G_Projects-5-16x16-32bpp.png" />
+    <None Include="Resources\Add_Card-7-16x16-32bpp.png" />
+    <None Include="Resources\Clients-22-16x16-32bpp.png" />
+    <None Include="Resources\World-22-16x16-32bpp.png" />
     <None Include="Resources\Clients-15-96x96-32bpp.png" />
     <None Include="Resources\World-15-96x96-32bpp.png" />
     <None Include="Resources\G_Projects-96.png" />

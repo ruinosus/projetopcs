@@ -72,12 +72,17 @@ namespace UI
 
         private void button5_Click(object sender, EventArgs e)
         {
-            frmCadDepartamento.ShowDialog();
+            frmCadDependente.ShowDialog();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             frmCadProjeto.ShowDialog();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
